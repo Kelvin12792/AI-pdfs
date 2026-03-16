@@ -1,0 +1,141 @@
+# RAW TWEETS BATCH 1
+# Date collected: 2026-03-16
+# Source count: 28 posts from 17+ authors
+# Status: Collected for processing
+
+## Sources Index
+
+[TWEET] Author: Tech with Mak (@techNmak) | Date: Dec 13, 2025
+Title: "5 practical AI books worth reading"
+Topic: AI book recommendations (AI Engineering, LLM Engineer's Handbook, Building LLMs for Production, Build a Large Language Model from Scratch, Hands-On Large Language Models)
+
+[TWEET] Author: Shraddha Bharuka (@BharukaShraddha) | Date: Dec 28, 2025
+Title: "Stop wasting hours trying to learn AI"
+Topic: Curated AI learning resources (videos, repos, guides, books, papers, courses)
+
+[THREAD] Author: DAN KOE (@thedankoe) | Date: Not specified
+Title: "How to fix your entire life in 1 day"
+Topic: Personal development, behavior change psychology, identity transformation
+Note: NOT AI-specific content - self-help/productivity
+
+[THREAD] Author: klöss (@kloss_xyz) | Date: Not specified
+Title: "why you suck at vibe coding (and the comprehensive guide to fix you)"
+Topic: Vibe coding methodology, documentation-first system, AI coding tools, UI/UX fundamentals, web dev concepts
+[FACT-CHECK] Claims about AI hallucination rates and tool capabilities
+
+[THREAD] Author: klöss (@kloss_xyz) | Date: Not specified
+Title: "how to build a prompt for anything (and remix them at will)"
+Topic: Prompt engineering framework, XML tag system, role/mission/rules architecture
+
+[THREAD] Author: DAN KOE (@thedankoe) | Date: Not specified
+Title: "Full guide: how to unlock extreme focus on command"
+Topic: Productivity, focus, deep work psychology, flow states
+Note: NOT AI-specific content - self-help/productivity
+
+[THREAD] Author: Nav Toor (@heynavtoor) | Date: Feb 5, 2026
+Title: "You can now run Claude Code for FREE"
+Topic: Running Claude Code locally with Ollama
+[FACT-CHECK] Claims about running Claude Code free with no rate limits - verify accuracy
+
+[TWEET] Author: J.B. (@VibeMarketer_) | Date: Not specified
+Title: "the skill that changed how i use claude for marketing"
+Topic: Recursive self-improvement loops, iterative prompt refinement for marketing
+
+[THREAD] Author: Zephyr (@Zephyr_hg) | Date: Not specified
+Title: "AI Business Ideas Nobody Is Building Yet"
+Topic: 5 AI business ideas (niche research, local business audits, meeting summarizers, hiring assistants, custom AI training)
+[FACT-CHECK] Revenue claims and pricing assumptions need verification
+
+[THREAD] Author: Machina (@EXM7777) | Date: Not specified
+Title: "how to stop feeling behind in AI"
+Topic: AI overwhelm, filtering AI news, building weekly AI brief agents, testing frameworks
+[FACT-CHECK] Claims about model capabilities and specific tool features
+
+[THREAD] Author: Machina (@EXM7777) | Date: Not specified
+Title: "how to master AI in 30 days (the Operator Toolkit)"
+Topic: 30-day AI learning roadmap, model landscape, prompt engineering, context engineering, tools overview
+[FACT-CHECK] Multiple model capability claims, pricing claims, benchmark comparisons
+
+[THREAD] Author: Tommi Pedruzzi (@TommiPedruzzi) | Date: Not specified
+Title: "You Don't Actually Want to Be Successful. You Just Like Thinking About It"
+Topic: Motivation, action vs consumption, selling AI ebooks
+Note: Primarily motivational/sales content, not AI educational
+
+[TWEET] Author: Riley (@chasing_next) | Date: Not specified
+Title: "The Skillmaxxer-3000: Use This To Build Expert-Level Claude Skills"
+Topic: Claude Skills meta-skill builder, skill engineering patterns
+
+[TWEET] Author: pedram.md (@pdrmnvd) | Date: Not specified
+Title: "How Claude Code Skills Work"
+Topic: Claude Code Skills architecture, progressive disclosure, three-layer loading system
+
+[THREAD] Author: Vox (@Voxyz_ai) | Date: Not specified
+Title: "The Full Tutorial: 6 AI Agents That Run a Company"
+Topic: Multi-agent system architecture, Supabase + Next.js + VPS, conversation systems, memory, relationships
+Note: Highly technical - developer-level content
+
+[TWEET] Author: Alex Prompter (@alex_prompter) | Date: Feb 11
+Title: "Start vibe coding with this prompt"
+Topic: Architecture-first vibe coding system prompt
+
+[THREAD] Author: Alex Prompter (@alex_prompter) | Date: Not specified
+Title: "time + AI = $$$ (the window is closing)"
+Topic: AI early adoption advantage, learning AI now vs later, DIY window
+
+[THREAD] Author: Oliver Henry (@oliverhenry) | Date: Not specified
+Title: "How my OpenClaw agent, Larry, got millions of TikTok views"
+Topic: AI agent for TikTok content automation, OpenClaw setup, image generation pipeline
+[FACT-CHECK] View count claims, MRR claims
+
+[TWEET] Author: Leo Ye (@LeoYe_AI) | Date: Not specified
+Title: "The OpenClaw Ecosystem 2026"
+Topic: OpenClaw ecosystem overview, agent infrastructure, skills hub, channels, marketplace
+
+[THREAD] Author: Machina (@EXM7777) | Date: Not specified
+Title: "how to master prompt engineering"
+Topic: Prompt engineering fundamentals (clarity, context, tasks, output format, examples, role assignment, constraints)
+
+[THREAD] Author: Muratcan Koylan (@koylanai) | Date: Not specified
+Title: "The File System Is the New Database: Personal Brain OS"
+Topic: Context engineering, file-based AI memory system, progressive disclosure architecture
+Note: Highly technical - developer/advanced user content
+
+[THREAD] Author: jacob (@jacobgrowth) | Date: Not specified
+Title: "How I Made $10,503 This Month Automating IG/Clipping with AI"
+Topic: AI content pipeline (Claude + Seedance + CapCut), automated content creation
+[FACT-CHECK] Revenue claims
+
+[THREAD] Author: Leo Ye (@LeoYe_AI) | Date: Not specified
+Title: "I Gave Myself a 24/7 AI Assistant. It Changed Everything in 30 Days"
+Topic: OpenClaw/MyClaw 24/7 AI agent setup, personal AI assistant
+Note: Promotional content for MyClaw.ai
+
+[THREAD] Author: Elvis (@elvissun) | Date: Not specified
+Title: "OpenClaw + Codex/ClaudeCode Agent Swarm: The One-Person Dev Team"
+Topic: Multi-agent orchestration, parallel coding agents, agent swarm architecture
+Note: Highly technical - developer content
+
+[THREAD] Author: Vox (@Voxyz_ai) | Date: Not specified
+Title: "If I Were Starting AI Today, This Is Exactly What I'd Do"
+Topic: AI beginner advice, agent setup, learning approach, personal AI assistant
+
+[THREAD] Author: Arman Hezarkhani (@ArmanHezarkhani) | Date: Not specified
+Title: "The Complete Guide: Claude for Excel"
+Topic: Claude for Excel features, financial modeling, MCP connectors, prompting patterns
+
+[THREAD] Author: Kurnia Bijaksana (@mkbijaksana) | Date: Not specified
+Title: "Beginner Roadmap to Master AI Agents in 2026"
+Topic: 6-month AI agent learning roadmap, frameworks, memory, tools, deployment
+
+[THREAD] Author: klöss (@kloss_xyz) | Date: Not specified
+Title: "how to actually win in the AI era (the roadmap nobody's telling you)"
+Topic: AI era success traits, money paths, operating system for AI era
+
+[THREAD] Author: Harshil Tomar (@Hartdrawss) | Date: Not specified
+Title: "Vibe Coding 2.0: 18 Rules to be the Top 1% builder"
+Topic: Vibe coding best practices, tool recommendations, do's and don'ts
+
+[THREAD] Author: Corey Ganim (@coreyganim) | Date: Not specified
+Title: "4 AI Side Hustles Paying $2,000-$12,000/Month"
+Topic: AI monetization (agent setup services, workshops, productized automation, communities)
+[FACT-CHECK] Revenue/pricing claims
