@@ -22,6 +22,30 @@ Every edition of the series follows the same 8-stage pipeline. No stage may be s
 
 ---
 
+## Stage 0.5 — Persistent Reference Update (Auto-Triggered)
+
+**Trigger:** Every time a new batch completes Stage 1 cleaning
+**Input:** Newly cleaned batch content
+
+**Process:**
+1. Append all cleaned posts from the new batch to `cleaned/master_cleaned_tweets.md`
+2. Update the file header: "Last updated" date, "Total posts processed" count, "Batches included" list
+3. Each post entry includes: post number, topic, tier, key concepts, best analogies, edition assignment
+4. Assign sequential post numbers continuing from the previous batch (Batch 1: 1–29, Batch 2: 30+, etc.)
+5. Route each cleaned post to its matching topic file in `structured/topics/` — append under the "New batch content" marker
+6. If a post introduces a new topic not covered by existing topic files, create a new topic file following the same template
+
+**Output:**
+- Updated `cleaned/master_cleaned_tweets.md`
+- Updated topic files in `structured/topics/`
+- Updated `structured/curriculum_map.md` (new entries added)
+
+**Status tag:** `[INDEXED]`
+
+**Note:** This stage runs automatically as part of every batch processing cycle. It ensures all persistent reference files stay current without manual intervention.
+
+---
+
 ## Stage 1 — Content Cleaning
 
 **Input:** `source/raw_tweets_batch{N}_{date}.txt`  
@@ -272,6 +296,7 @@ Include all six CTAs in this order:
 | Stage | Name | Input | Output | Status Tag |
 |-------|------|-------|--------|------------|
 | 0 | Raw Content Intake | Twitter copy-paste | `source/raw_tweets_batch{N}.txt` | [RAW] |
+| 0.5 | Persistent Reference Update | Cleaned batch | `cleaned/master_cleaned_tweets.md` + topic files | [INDEXED] |
 | 1 | Content Cleaning | Raw file | `cleaned/cleaned_batch{N}.txt` | [CLEANED] |
 | 2 | Fact-Checking | Cleaned file | `cleaned/cleaned_batch{N}_verified.txt` | [VERIFIED] |
 | 3 | Topic Clustering | Verified file | `structured/curriculum_map.md` | [MAPPED] |
