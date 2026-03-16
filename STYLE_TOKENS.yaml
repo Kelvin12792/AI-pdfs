@@ -1,0 +1,320 @@
+# STYLE_TOKENS.yaml
+# Machine-readable design system for the AI Education PDF Series by Kelvin M
+# This file is the single source of truth for all visual values.
+# All build scripts must read from this file. Never hardcode values elsewhere.
+
+meta:
+  project: "AI Education PDF Series"
+  author: "Kelvin M"
+  version: "1.0.0"
+  last_updated: "2026-03"
+
+# ─────────────────────────────────────────────
+# COLOR PALETTE — Anthropic Brand
+# ─────────────────────────────────────────────
+color:
+  primary: "#CC785C"
+  primary_dark: "#9E4E2E"
+  primary_light: "#F2D4C8"
+
+  bg:
+    page: "#FFFFFF"
+    surface: "#F9F6F3"
+    dark: "#1A1A1A"
+
+  text:
+    primary: "#1A1A1A"
+    secondary: "#4A4A4A"
+    muted: "#888888"
+    inverse: "#FFFFFF"
+
+  border: "#E0D9D4"
+
+  accent:
+    teal: "#2A9D8F"
+    amber: "#E9C46A"
+    coral: "#E76F51"
+    green: "#57A773"
+
+# ─────────────────────────────────────────────
+# TYPOGRAPHY
+# ─────────────────────────────────────────────
+font:
+  family:
+    regular: "Inter-Regular"
+    medium: "Inter-Medium"
+    semibold: "Inter-SemiBold"
+    bold: "Inter-Bold"
+    italic: "Inter-Italic"
+
+  files:
+    regular: "assets/fonts/Inter-Regular.ttf"
+    medium: "assets/fonts/Inter-Medium.ttf"
+    semibold: "assets/fonts/Inter-SemiBold.ttf"
+    bold: "assets/fonts/Inter-Bold.ttf"
+    italic: "assets/fonts/Inter-Italic.ttf"
+
+  size:
+    cover_title: 36       # pt
+    cover_series: 14      # pt
+    cover_author: 12      # pt
+    cover_tagline: 11     # pt
+    h1: 22                # pt
+    h2: 17                # pt
+    h3: 14                # pt
+    body: 11              # pt
+    body_lead: 13         # pt
+    caption: 9            # pt
+    callout_body: 10      # pt
+    callout_label: 9      # pt
+    quiz: 10              # pt
+    glossary_term: 10     # pt
+    glossary_def: 10      # pt
+    footer: 8             # pt
+    page_number: 9        # pt
+    step_badge: 10        # pt
+
+  line_height:
+    body: 1.4
+    lead: 1.6
+    callout: 1.2
+    heading: 1.2
+
+  letter_spacing:
+    default: 0
+    labels: 0.05          # em — for callout type labels
+
+# ─────────────────────────────────────────────
+# PAGE LAYOUT — Portrait A4
+# ─────────────────────────────────────────────
+page:
+  width_mm: 210
+  height_mm: 297
+  width_pt: 595.28
+  height_pt: 841.89
+
+  margin:
+    top_mm: 20
+    bottom_mm: 20
+    left_mm: 22
+    right_mm: 22
+    top_pt: 56.69
+    bottom_pt: 56.69
+    left_pt: 62.36
+    right_pt: 62.36
+
+  content:
+    width_mm: 166
+    height_mm: 257
+    width_pt: 470.55
+    height_pt: 728.50
+
+  gutter_mm: 8
+
+# ─────────────────────────────────────────────
+# COVER PAGE
+# ─────────────────────────────────────────────
+cover:
+  image_zone_height_pct: 0.60    # 60% of page height
+  text_zone_height_pct: 0.40     # 40% of page height
+  text_zone_bg: "#1A1A1A"
+  padding_mm: 22
+  title_color: "#CC785C"
+  series_name_color: "#FFFFFF"
+  author_color: "#888888"
+  tagline_color: "#FFFFFF"
+
+# ─────────────────────────────────────────────
+# CALLOUT BOXES
+# ─────────────────────────────────────────────
+callout:
+  padding_mm: 8
+  border_radius_pt: 4
+  border_left_width_pt: 1.5
+  bg: "#F9F6F3"
+  bottom_margin_mm: 6
+  max_lines: 3
+
+  types:
+    did_you_know:
+      label: "DID YOU KNOW?"
+      border_color: "#2A9D8F"
+      label_color: "#2A9D8F"
+    key_fact:
+      label: "KEY FACT"
+      border_color: "#E9C46A"
+      label_color: "#E9C46A"
+    real_world:
+      label: "IN THE REAL WORLD"
+      border_color: "#57A773"
+      label_color: "#57A773"
+    watch_out:
+      label: "WATCH OUT"
+      border_color: "#E76F51"
+      label_color: "#E76F51"
+
+  label_margin_below_mm: 2
+
+# ─────────────────────────────────────────────
+# TABLES
+# ─────────────────────────────────────────────
+table:
+  width: "full"                    # full content width
+  header_bg: "#F2D4C8"
+  header_font: "Inter-SemiBold"
+  header_size_pt: 10
+  body_font: "Inter-Regular"
+  body_size_pt: 10
+  alt_row_bg: "#F9F6F3"
+  row_bg: "#FFFFFF"
+  border_color: "#E0D9D4"
+  border_width_pt: 0.5
+  cell_padding_h_mm: 3
+  cell_padding_v_mm: 2.5
+  vertical_borders: false
+  bottom_margin_mm: 6
+
+# ─────────────────────────────────────────────
+# SECTION HEADINGS
+# ─────────────────────────────────────────────
+heading:
+  h1:
+    font: "Inter-Bold"
+    size_pt: 22
+    color: "#CC785C"
+    space_before_mm: 8
+    space_after_mm: 4
+    border_bottom: true
+    border_width_pt: 0.5
+    border_color: "#E0D9D4"
+  h2:
+    font: "Inter-SemiBold"
+    size_pt: 17
+    color: "#1A1A1A"
+    space_before_mm: 6
+    space_after_mm: 3
+    border_bottom: false
+  h3:
+    font: "Inter-Medium"
+    size_pt: 14
+    color: "#4A4A4A"
+    space_before_mm: 4
+    space_after_mm: 2
+    border_bottom: false
+
+# ─────────────────────────────────────────────
+# STEP-BY-STEP SECTIONS
+# ─────────────────────────────────────────────
+steps:
+  badge_diameter_pt: 18
+  badge_bg: "#CC785C"
+  badge_text_color: "#FFFFFF"
+  badge_font: "Inter-Bold"
+  badge_font_size_pt: 10
+  text_indent_mm: 8
+  step_spacing_mm: 4
+
+# ─────────────────────────────────────────────
+# FOOTER
+# ─────────────────────────────────────────────
+footer:
+  height_mm: 8
+  border_top_width_pt: 0.5
+  border_top_color: "#E0D9D4"
+  font: "Inter-Regular"
+  font_size_pt: 8
+  text_color: "#888888"
+  page_number_font: "Inter-Medium"
+  page_number_size_pt: 9
+
+# ─────────────────────────────────────────────
+# DIAGRAMS
+# ─────────────────────────────────────────────
+diagram:
+  dpi: 300
+  bg_color: "#FFFFFF"
+  primary_fill: "#F2D4C8"
+  primary_border: "#CC785C"
+  primary_border_width: 2
+  secondary_fill: "#F9F6F3"
+  secondary_border: "#E0D9D4"
+  secondary_border_width: 1
+  arrow_color: "#4A4A4A"
+  arrow_width: 1.5
+  label_font_size: 10
+  label_color: "#1A1A1A"
+  caption_font_size: 9
+  caption_color: "#4A4A4A"
+  max_width_px: 1960       # full content width at 300 DPI
+  bottom_margin_mm: 4
+  caption_margin_mm: 3
+
+# ─────────────────────────────────────────────
+# COVER ART (AI-generated images)
+# ─────────────────────────────────────────────
+cover_art:
+  width_px: 2480
+  height_px: 3508
+  dpi: 300
+  format: "PNG"
+
+# ─────────────────────────────────────────────
+# SPACING SYSTEM
+# ─────────────────────────────────────────────
+space:
+  xs_mm: 2
+  sm_mm: 4
+  md_mm: 6
+  lg_mm: 8
+  xl_mm: 12
+  xxl_mm: 20
+
+# ─────────────────────────────────────────────
+# QUIZ SECTION
+# ─────────────────────────────────────────────
+quiz:
+  question_number_font: "Inter-Bold"
+  question_number_size_pt: 10
+  question_number_color: "#CC785C"
+  question_text_font: "Inter-Regular"
+  question_text_size_pt: 10
+  option_indent_mm: 6
+  fill_blank_line_width_mm: 40
+  fill_blank_line_color: "#E0D9D4"
+  short_answer_lines: 3
+  short_answer_line_color: "#E0D9D4"
+  question_spacing_mm: 5
+  total_questions: 10
+  format_mix:
+    multiple_choice: 3
+    true_false: 2
+    fill_blank: 2
+    short_answer: 3
+
+# ─────────────────────────────────────────────
+# GLOSSARY SECTION
+# ─────────────────────────────────────────────
+glossary:
+  term_font: "Inter-SemiBold"
+  term_size_pt: 10
+  term_color: "#1A1A1A"
+  def_font: "Inter-Regular"
+  def_size_pt: 10
+  def_color: "#4A4A4A"
+  def_indent_mm: 6
+  separator_color: "#E0D9D4"
+  separator_width_pt: 0.5
+  entry_spacing_mm: 3
+
+# ─────────────────────────────────────────────
+# FILE OUTPUT
+# ─────────────────────────────────────────────
+output:
+  max_file_size_mb: 10
+  pdf_version: "1.7"
+  embed_fonts: true
+  compress: true
+  metadata:
+    author: "Kelvin M"
+    creator: "AI Education PDF Series Build System"
+    subject: "AI Education for Complete Beginners"
