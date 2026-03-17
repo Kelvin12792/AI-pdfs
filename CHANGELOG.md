@@ -18,6 +18,36 @@ Every decision, change, and build event must be logged here. No exceptions. Log 
 
 ---
 
+## [2026-03-17] — Stage 6-7: Edition 01 Asset Production + PDF Build
+
+**What changed:**
+1. **Generated 2 body diagrams** — `assets/diagrams/edition_01_diagram_01.png` (Regular Software vs AI comparison flowchart, 1960x900px) and `assets/diagrams/edition_01_diagram_02.png` (Three Convergences timeline, 1960x1000px). Both generated with Python + Pillow at 300 DPI using exact STYLE_TOKENS.yaml colors and Inter font family.
+2. **Created cover page** — Programmatic cover with AI network node illustration (no external image dependency), dark overlay text band with series name, edition title, tagline, and author line per DESIGN_GUIDELINES.md.
+3. **Built Edition 01 PDF** — 14-page production PDF at `output/edition_01_what-is-ai_v1.0.pdf` (0.27 MB). All content expanded with detailed explanations integrating source material from Posts 10, 24, 27, 52, and supporting posts. All Inter fonts embedded. Follows STYLE_TOKENS.yaml for colors, spacing, typography. Includes all required sections per BUILD_FLOW.md Stage 4.
+4. **Created build scripts** — `scripts/build_diagrams_01.py` and `scripts/build_pdf_01.py` for reproducible builds.
+5. **Downloaded Inter font family** — All 5 weights (Regular, Medium, SemiBold, Bold, Italic) saved to `assets/fonts/`.
+6. **Updated EDITION_REGISTRY.md** — Edition 01 status changed from [DRAFTED] to [BUILT].
+7. **Created Edition 01 outline** — `structured/edition_01_what-is-ai/outline.md` with section-by-section breakdown, source post mappings, asset requirements, and viral readiness checklist.
+
+**Why:** First complete PDF production run for the pilot edition. Validates the full build pipeline from draft content through diagram generation to final PDF output.
+
+**New files created:**
+- `output/edition_01_what-is-ai_v1.0.pdf`
+- `assets/diagrams/edition_01_diagram_01.png`
+- `assets/diagrams/edition_01_diagram_02.png`
+- `assets/fonts/Inter-*.ttf` (5 files)
+- `scripts/build_diagrams_01.py`
+- `scripts/build_pdf_01.py`
+- `structured/edition_01_what-is-ai/outline.md`
+
+**Files updated:**
+- `EDITION_REGISTRY.md` (Edition 01 status: [DRAFTED] → [BUILT])
+- `CHANGELOG.md` (this entry)
+
+**Decision made by:** Kelvin M
+
+---
+
 ## [2026-03-17] — Fix: Batch 2 Edition Assignment Mismatch + Stage 4: Edition 01 Draft
 
 **What changed:**
