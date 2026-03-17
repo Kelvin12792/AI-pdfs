@@ -12,7 +12,7 @@
 - **Original author:** jacobgrowth (paraphrased — not quoted)
 - **Topic:** A detailed breakdown of how to use AI tools to create short-form video content at scale, distribute it automatically across multiple platforms simultaneously, and monetise through brand campaign programmes rather than relying on advertising revenue alone.
 - **Tier:** Applications (11-15)
-- **Target editions:** 12 (AI for Productivity), 14 (AI in Business), 15 (AI Career Opportunities)
+- **Target editions:** 11 (AI Tools for Productivity), 12 (AI in Business)
 - **Key concepts:**
   - Short-form video platforms do not reward content based on views or watch time alone. The underlying algorithm evaluates viewer satisfaction per impression — whether someone paused their scroll, watched the whole clip, replayed it, or shared it. Understanding this shifts the entire content strategy from "make lots of videos" to "make videos the algorithm wants to push."
   - Every content category has its own patterns — the ideal video length, hook style, emotional tone, and pacing that get rewarded. Studying what already performs well in a specific category before producing anything is essential. Producing without this research is guessing at volume.
@@ -36,7 +36,7 @@
 - **Original author:** Tom Crawshaw (paraphrased — not quoted)
 - **Topic:** A comprehensive tutorial on using n8n, a visual workflow automation platform, covering the planning mindset needed before building automations, setup options, essential building blocks, common mistakes, a structured learning path, and how AI assistants can accelerate the process.
 - **Tier:** Applications (11-15) / Advanced (16-20)
-- **Target editions:** 11 (AI in Everyday Work Tools), 12 (AI for Productivity), 17 (AI Agents and Automation)
+- **Target editions:** 11 (AI Tools for Productivity), 15 (AI in Your Daily Life)
 - **Key concepts:**
   - Before building any automation, the single most important step is mapping out the process on paper first: what triggers it, what data flows through it, who is involved, what tools are used, what the ideal output looks like, and what could go wrong. Ten minutes of planning prevents hours of debugging.
   - Not everything should be automated. Good candidates for automation are tasks that are repetitive, follow predictable steps, use stable processes, and have manageable consequences if something goes wrong. Tasks that change frequently or require creative judgement are poor candidates.
@@ -63,7 +63,7 @@
 - **Original author:** Kshitij Mishra / DAIEvolutionHub (paraphrased — not quoted)
 - **Topic:** A compilation of practical tips for using AI-powered coding assistants more effectively, covering fundamentals like workspace awareness, conversational habits, version control integration, parallel workflows, research use, and the importance of verifying AI-generated output.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 18 (Building Your Own AI Workflows), 19 (Power User Workflows)
+- **Target editions:** 11 (AI Tools for Productivity)
 - **Key concepts:**
   - Keeping your AI assistant aware of its working context — which project it is in, which branch of code it is working on, how many resources it has consumed — prevents mistakes that come from the tool operating "blind."
   - Breaking large requests into focused, sequential steps produces dramatically better results than asking the AI to build an entire feature at once. AI assistants perform best when given one clear task at a time.
@@ -87,7 +87,7 @@
 - **Original author:** Zephyr (paraphrased — not quoted)
 - **Topic:** An argument that six specific skill sets — all related to helping businesses integrate AI and automation strategically — will become extremely valuable within the next 18 months as companies move from experimentation to serious implementation, and that the window to build expertise in these areas is right now.
 - **Tier:** Applications (11-15) / Advanced (16-20)
-- **Target editions:** 14 (AI in Business), 15 (AI Career Opportunities), 17 (AI Agents and Automation)
+- **Target editions:** 17 (AI and the Future of Work), 13 (AI in Education)
 - **Key concepts:**
   - Designing complete AI-integrated workflows — deciding where AI handles tasks independently, where humans review, how handoffs work, and what triggers escalation — is a skill that most organisations desperately need but very few people currently offer. The difference between a company throwing AI at random problems and one using it strategically comes down to this architecture.
   - Building automated systems using visual, no-code tools is becoming a high-value professional service. Most businesses have dozens of hours of repetitive work each week that can be automated, but they do not know these tools exist or how to use them. The return on investment is immediate and measurable, making it easy to justify the cost.
@@ -114,7 +114,7 @@
 - **Original author:** Himanshu / nothiingf4 (paraphrased — not quoted)
 - **Topic:** A structured guide to prompt engineering covering seven core tactics: providing context, being specific, using step-by-step instructions, specifying output format, asking for reasoning, using examples and constraints, and combining all tactics together. Includes reusable prompt templates for common tasks.
 - **Tier:** Core (06-10)
-- **Target editions:** 07 (How to Talk to AI), 08 (Choosing the Right AI Tool), 09 (AI Features You Should Know About)
+- **Target editions:** 09 (Large Language Models Explained)
 - **Key concepts:**
   - The quality of what you get from AI is directly determined by the quality of your instructions. Most frustration with AI comes not from the tool being inadequate but from unclear communication. Learning to give clear, structured instructions is the single highest-leverage skill for any AI user.
   - Five common mistakes that produce poor AI results: asking multiple unrelated questions at once (splits the AI's focus), being vague about what you do not want (telling AI what to avoid is as important as telling it what to do), treating the first response as final instead of iterating on it, not giving the AI permission to say "I don't know" (which leads to fabricated answers), and writing overly long or repetitive prompts that confuse rather than clarify.
@@ -140,7 +140,7 @@
 - **Original author:** Ziwen Xu (paraphrased — not quoted)
 - **Topic:** Ten hard-won lessons from running an always-on AI agent (OpenClaw), covering cost management, model selection discipline, skill installation safety, context window management, agent scaling, planning workflows, memory management, role scoping, dashboard monitoring, and the fundamental principle that AI amplifies your inputs rather than replacing your thinking.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Agents and Automation), 18 (Building Your Own AI Workflows), 19 (Power User Workflows)
+- **Target editions:** 19 (The Future of AI), 20 (How to Use AI Responsibly)
 - **Key concepts:**
   - Always-on AI agents perform background tasks automatically (checking for updates, monitoring inboxes, running scheduled routines), and each of these background checks costs real money through API calls. The very first configuration step should be minimising these routine costs — either by routing low-priority checks to a free local model or by disabling automatic check-ins entirely when no active task is running.
   - Switching between different AI models mid-task — even when it seems convenient — degrades the quality of the conversation. Different models process context differently, and swapping them during a task creates inconsistencies that compound over time. The disciplined approach is to pick one primary model and one backup, configure automatic fallback, and never manually switch.

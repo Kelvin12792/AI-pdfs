@@ -34,7 +34,7 @@ Every edition must be registered here the moment it is created. Update the statu
 
 | # | Slug | Title | Topic Cluster | Status | Draft Date | Publish Date | Output Filename | Notes |
 |---|------|-------|---------------|--------|------------|--------------|-----------------|-------|
-| 01 | what-is-ai | What is AI? | Foundational | [PLANNED] | — | — | `edition_01_what-is-ai_v1.0.pdf` | Pilot edition — validate all templates |
+| 01 | what-is-ai | What is AI? | Foundational | [DRAFTED] | 2026-03-17 | — | `edition_01_what-is-ai_v1.0.pdf` | Pilot edition — validate all templates |
 | 02 | how-ai-thinks | How AI Thinks | Foundational | [PLANNED] | — | — | `edition_02_how-ai-thinks_v1.0.pdf` | — |
 | 03 | history-of-ai | A Brief History of AI | Foundational | [PLANNED] | — | — | `edition_03_history-of-ai_v1.0.pdf` | — |
 | 04 | types-of-ai | Types of AI | Foundational | [PLANNED] | — | — | `edition_04_types-of-ai_v1.0.pdf` | — |

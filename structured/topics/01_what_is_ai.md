@@ -56,4 +56,11 @@
 
 ---
 
+### From Batch 2
+
+| Post # | Key Contribution | Role |
+|--------|-----------------|------|
+| 52 | AI adoption gap — "you are not late, you are early" — addresses fear of being behind | **Primary** (motivation/reassurance) |
+| 63 | "AI amplifies your inputs — your knowledge is the ceiling; the agent is just the ladder" | Supporting (amplification framing) |
+
 <!-- New batch content will be appended below this line -->

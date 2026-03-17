@@ -10,7 +10,7 @@
 - **Original author:** Sarvesh Shrivastava (paraphrased -- not quoted)
 - **Topic:** A structured 90-day SEO execution plan designed specifically for cash-strapped local businesses, focusing on high-intent keywords, Google Business Profile optimization, and revenue-generating pages rather than vanity traffic metrics.
 - **Tier:** Applications (11-15)
-- **Target editions:** 12 (AI for Small Business), 14 (AI-Powered Marketing)
+- **Target editions:** 12 (AI in Business)
 - **Key concepts:**
   - When resources are limited, SEO must prioritize buyer-intent keywords (people ready to hire now) over informational or high-volume keywords that generate traffic but not revenue
   - A local business website should be built around "money pages" -- service pages that directly convert visitors into customers, not content-heavy blogs
@@ -30,7 +30,7 @@
 - **Original author:** Nav Toor (paraphrased -- not quoted)
 - **Topic:** A comprehensive setup guide for using Claude's desktop Cowork feature as a productivity system, covering file access, clarifying questions, plugins, persistent instructions, and tool integrations -- framed as a shift from prompt-writing to context-building.
 - **Tier:** Core (06-10)
-- **Target editions:** 07 (Getting Started with AI Tools), 08 (Building Your AI Workflow), 09 (AI Productivity Systems)
+- **Target editions:** 09 (Large Language Models Explained), 11 (AI Tools for Productivity)
 - **Key concepts:**
   - AI desktop assistants that read and write files directly on your computer represent a fundamentally different workflow from browser-based chat tools -- the AI works in your environment rather than requiring constant uploads and downloads
   - The most underrated productivity strategy is building context files (personal profile, brand voice, working style preferences) that the AI loads at the start of every session, eliminating repetitive re-explanation
@@ -54,7 +54,7 @@
 - **Original author:** Clifton Sellers (paraphrased -- not quoted)
 - **Topic:** AI has made content creation and software development cheap, which means the ability to build and distribute a trusted personal brand is now the primary competitive advantage -- not technical skill or product quality.
 - **Tier:** Applications (11-15)
-- **Target editions:** 11 (AI and Your Career), 13 (AI for Content Creators), 15 (AI and the Future of Work)
+- **Target editions:** 12 (AI in Business), 17 (AI and the Future of Work)
 - **Key concepts:**
   - AI search tools synthesize answers from trusted sources rather than ranking web pages, which means being recognized and cited by AI models is becoming more important than traditional SEO
   - When AI reduces the cost of building products to near zero, differentiation shifts from what you can build to who knows and trusts you -- distribution becomes the real competitive moat
@@ -83,7 +83,7 @@
 - **Original author:** Clifton Sellers (paraphrased -- not quoted)
 - **Topic:** In an era where customer acquisition costs are skyrocketing and AI is eroding traditional search traffic, owning a direct audience relationship (through content and newsletters) functions as a compounding equity asset -- more valuable and more liquid than traditional business assets.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 16 (AI Business Strategy), 18 (The AI Economy)
+- **Target editions:** 17 (AI and the Future of Work), 12 (AI in Business)
 - **Key concepts:**
   - Customer acquisition costs have risen dramatically across industries, making paid advertising increasingly expensive while organic audience-building through content provides a compounding alternative that appreciates over time
   - Audience ownership functions like financial equity -- it compounds, appreciates, converts to multiple forms of value (revenue, partnerships, talent, funding), and creates a permanent asset that persists even when ad budgets are paused
@@ -126,7 +126,7 @@
 - **Original author:** Leo Grundstrom (paraphrased -- not quoted)
 - **Topic:** A step-by-step process for creating YouTube videos using AI tools for scriptwriting and voiceover generation, combined with a virtual assistant for editing, enabling someone with a full-time job to run a profitable channel in roughly two hours per day.
 - **Tier:** Applications (11-15)
-- **Target editions:** 11 (AI and Your Career), 13 (AI for Content Creators), 14 (AI-Powered Marketing)
+- **Target editions:** 11 (AI Tools for Productivity), 12 (AI in Business)
 - **Key concepts:**
   - AI has collapsed the production team needed for YouTube content creation -- tasks that previously required separate scriptwriters, voiceover artists, and thumbnail designers can now be handled by AI tools and one virtual assistant
   - Topic research remains the one step that cannot be outsourced to AI -- understanding what audiences actually want to watch requires human judgment about trends, competitor analysis, and creative differentiation
@@ -147,7 +147,7 @@
 - **Original author:** Idea Browser (paraphrased -- not quoted)
 - **Topic:** A business model for helping companies migrate from basic AI chatbot usage to structured AI workflows with custom skills, agents, and dashboards -- positioned as a niche consulting service targeting specific industry verticals.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Business Models), 19 (Building AI Services)
+- **Target editions:** 17 (AI and the Future of Work), 12 (AI in Business)
 - **Key concepts:**
   - Most businesses use AI tools at the individual employee level with no shared context, connected workflows, or company knowledge -- migrating them to structured AI environments with projects, memory, and integrations represents a significant consulting opportunity
   - Niche specialization is critical: targeting a specific team within a specific industry (e.g., sales teams at automotive dealerships) produces far better results than offering generic "AI consulting"
@@ -169,7 +169,7 @@
 - **Original author:** Zephyr (paraphrased -- not quoted)
 - **Topic:** Six emerging professional skills -- AI workflow integration, no-code automation, context engineering, AI quality evaluation, systems thinking, and strategic automation judgment -- that are currently accessible to learn but will become baseline requirements within 18 months.
 - **Tier:** Core (06-10)
-- **Target editions:** 06 (AI Skills for Everyone), 08 (Building Your AI Workflow), 10 (Thinking in Systems with AI)
+- **Target editions:** 17 (AI and the Future of Work)
 - **Key concepts:**
   - AI workflow integration means embedding AI into every stage of your work process (drafts, research, analysis, generation) rather than using it as an occasional question-answering tool -- the gap between these two approaches will become a career-defining difference
   - No-code automation tools allow anyone to build workflows that handle repetitive processes (data entry, report generation, follow-ups) without programming knowledge -- this capability will soon be as expected as spreadsheet proficiency

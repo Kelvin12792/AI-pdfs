@@ -12,7 +12,7 @@
 - **Original author:** AlexFinn (paraphrased — not quoted)
 - **Topic:** A walkthrough of how to create a centralised management interface (called a "Mission Control") for an autonomous AI agent, covering six dashboard components: task tracking, content pipeline, calendar, memory viewer, team structure, and a visual office representation.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Agents and Automation), 18 (Building Your Own AI Workflows), 19 (Power User Workflows)
+- **Target editions:** 19 (The Future of AI)
 - **Key concepts:**
   - When working with an AI agent that operates autonomously, you need a way to see what it is doing, what it has scheduled, and what it remembers. A management dashboard solves this by giving both you and the agent a shared workspace.
   - A shared task board between you and your AI agent is critical for proactive behaviour. When the agent can see what tasks are pending, it can take initiative and complete items without being asked. This transforms the agent from reactive (waits for instructions) to proactive (anticipates and acts).
@@ -33,7 +33,7 @@
 - **Original author:** jordymaui (paraphrased — not quoted)
 - **Topic:** A detailed, experience-based setup guide for getting an autonomous AI agent running on a personal device, covering hardware requirements, account setup, installation steps, messaging app integration, personalisation through identity files, and common mistakes to avoid.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Agents and Automation), 18 (Building Your Own AI Workflows)
+- **Target editions:** 19 (The Future of AI)
 - **Key concepts:**
   - Setting up an autonomous AI agent requires four core components: an AI subscription for the "brain," a web search capability, a voice transcription service, and a messaging platform to communicate with the agent. Everything else is optional and can be added later.
   - One of the most common and expensive mistakes new users make is paying for AI on a per-use basis through developer consoles instead of subscribing to a flat monthly plan. The subscription model provides significantly more value for typical agent usage patterns.
@@ -56,7 +56,7 @@
 - **Original author:** AI Edge (paraphrased — not quoted)
 - **Topic:** A comparative analysis of two approaches to AI agents — a managed cloud platform that requires no technical setup versus a self-hosted system that offers deeper control but demands more technical skill. Includes setup guidance, workflow examples, productivity tips, and a weighted rating across accessibility, value, privacy, and impact.
 - **Tier:** Core (06-10) / Applications (11-15)
-- **Target editions:** 08 (Choosing the Right AI Tool), 10 (The State of AI Today), 17 (AI Agents and Automation)
+- **Target editions:** 04 (Types of AI), 19 (The Future of AI)
 - **Key concepts:**
   - There are fundamentally two approaches to using AI agents: managed platforms where you create an account and start working immediately, and self-hosted systems where you install and run the agent on your own hardware. Each approach involves real trade-offs, not a clear winner.
   - Managed platforms excel at accessibility and ease of use. Anyone can sign up and start using them within minutes. They typically offer browser-based interfaces, mobile apps, pre-built integrations with common tools, and require zero technical knowledge to operate.
@@ -83,7 +83,7 @@
 - **Original author:** NoahEpstein (paraphrased — not quoted)
 - **Topic:** A business strategy breakdown arguing that autonomous AI agents have created a new high-value service opportunity — selling setup, customisation, and ongoing management of AI agent systems to businesses that want the benefits but lack the technical ability to implement them.
 - **Tier:** Applications (11-15) / Advanced (16-20)
-- **Target editions:** 14 (AI in Business), 15 (AI Career Opportunities), 17 (AI Agents and Automation)
+- **Target editions:** 12 (AI in Business), 17 (AI and the Future of Work)
 - **Key concepts:**
   - The automation industry is shifting from linear, rule-based workflows (if this happens, then do that) to autonomous agents that can reason through problems, adapt to unexpected situations, and improve their own processes over time. This is a fundamental change, not an incremental upgrade.
   - The biggest business opportunity in AI right now is not building the technology — it is bridging the gap between what AI can do and what businesses understand. Most organisations want AI automation but cannot handle the technical setup, and that implementation gap is where service providers can charge premium rates.
@@ -111,7 +111,7 @@
 - **Original author:** Guri Singh (paraphrased — not quoted)
 - **Topic:** A technical guide to building an automated stock screening system that pulls market data, applies institutional-grade filtering criteria, uses AI for news sentiment analysis, and delivers a daily email briefing — positioned as a low-cost alternative to expensive professional financial data terminals.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 18 (Building Your Own AI Workflows), 19 (Power User Workflows), 20+ (AI in Finance and Investing)
+- **Target editions:** 12 (AI in Business), 19 (The Future of AI)
 - **Key concepts:**
   - Professional-grade financial data tools that once cost tens of thousands of dollars per year can now be approximated using free open-source libraries, free market data APIs, and low-cost AI services. The democratisation of financial data is a major shift happening right now.
   - A practical AI-powered stock screener combines three layers: a data layer that pulls real-time market information, a filtering layer that applies technical and fundamental criteria (price-to-earnings ratios, momentum indicators, volume patterns, moving average crossovers), and an AI analysis layer that reads recent news headlines and assigns a sentiment score to each stock that passes the technical filters.

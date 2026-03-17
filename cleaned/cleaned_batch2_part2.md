@@ -12,7 +12,7 @@
 - **Original author:** Iseunife The First (paraphrased — not quoted)
 - **Topic:** A comprehensive walkthrough of how an AI assistant (Claude) can be used directly inside Microsoft Excel to save time on formulas, data cleaning, charting, reporting, and repetitive tasks.
 - **Tier:** Applications (11-15)
-- **Target editions:** 11 (AI in Everyday Work Tools), 12 (AI for Productivity), 14 (AI in Business)
+- **Target editions:** 11 (AI Tools for Productivity), 15 (AI in Your Daily Life)
 - **Key concepts:**
   - AI can now operate inside familiar tools like spreadsheets rather than only living in a separate chat window. It reads your actual data and responds based on what it sees.
   - Instead of memorising formula syntax, you can describe what you need in plain language and the AI writes and places the formula for you.
@@ -34,7 +34,7 @@
 - **Original author:** Corey Ganim (paraphrased — not quoted)
 - **Topic:** A tutorial on setting up an open-source tool that connects an AI assistant to your messaging apps (WhatsApp, Telegram, etc.), giving it real capabilities like browsing the web, managing files, and automating daily tasks — all from a text message.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Agents and Automation), 18 (Building Your Own AI Workflows), 19 (The AI-Powered Life)
+- **Target editions:** 19 (The Future of AI)
 - **Key concepts:**
   - There is a growing category of tools that let AI move beyond a browser chat window and become an always-available assistant you can reach through apps you already use every day.
   - The key difference between a chatbot and a true AI assistant is "tool access" — the ability to actually do things like send emails, manage files, browse websites, and control other applications, not just answer questions.
@@ -56,7 +56,7 @@
 - **Original author:** cogsec (paraphrased — not quoted)
 - **Topic:** A deep technical guide covering advanced strategies for using AI coding tools effectively — including memory management across sessions, cost optimisation, verification patterns, parallel workflows, and building reusable systems that compound over time.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 19 (Power User Workflows), 20+ (Building with AI at Scale)
+- **Target editions:** 19 (The Future of AI)
 - **Key concepts:**
   - AI coding tools have a "context window" — a limited amount of information they can hold in memory at once. Managing this window strategically (saving progress, clearing irrelevant context, loading previous session notes) is the difference between productive sessions and frustrating ones.
   - Building reusable workflows and instruction sets has a compounding effect: tedious to create at first, but they pay dividends every time you work with the AI in the future.
@@ -80,7 +80,7 @@
 - **Original author:** cogsec (paraphrased — not quoted)
 - **Topic:** Continuation of Post 47 covering parallel AI instance management, project setup best practices, the "two-instance kickoff" pattern, and a philosophy of building reusable patterns that transfer across tools.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 19 (Power User Workflows), 20+ (Building with AI at Scale)
+- **Target editions:** 19 (The Future of AI)
 - **Key concepts:**
   - When using multiple AI instances simultaneously, keep the number minimal and purposeful — more instances does not automatically mean more productivity, and managing too many creates overhead that cancels the benefit.
   - A good starting pattern for new projects is to run two AI sessions: one focused on building the actual structure, and another focused on deep research and planning. This separation prevents context pollution.
@@ -99,7 +99,7 @@
 - **Original author:** Ecom Daddy (paraphrased — not quoted)
 - **Topic:** A large JSON prompt template designed to turn an AI chatbot into a structured financial diagnostic and wealth-planning assistant, walking users through a 30-question assessment across six blocks before producing a personalised plan.
 - **Tier:** Applications (11-15)
-- **Target editions:** 13 (AI Prompt Templates and Frameworks), 14 (AI in Business and Finance)
+- **Target editions:** 09 (Large Language Models Explained), 12 (AI in Business)
 - **Key concepts:**
   - AI can be given highly structured instructions (a "system prompt") that transform it from a general chatbot into a specialised advisor with a defined methodology, personality, and sequence of steps.
   - A well-designed prompt template forces the AI to gather information before giving advice — mimicking how a real professional would conduct an assessment before making recommendations.
@@ -120,7 +120,7 @@
 - **Original author:** AI Edge (paraphrased — not quoted)
 - **Topic:** A comprehensive beginner-oriented guide covering Claude's interface, pricing tiers, prompt engineering basics, model selection, and an overview of both basic features (connectors, browser extension, projects, research mode) and advanced tools (background task execution, coding tools, reusable skills, plug-ins).
 - **Tier:** Core (06-10)
-- **Target editions:** 06 (Getting Started with AI Tools), 07 (How to Talk to AI), 08 (Choosing the Right AI Tool), 09 (AI Features You Should Know About)
+- **Target editions:** 09 (Large Language Models Explained)
 - **Key concepts:**
   - Every strong AI prompt has three components: setting the context (who you are and what you need), defining the specific task, and specifying rules for how the output should look (format, tone, length).
   - Different AI models exist for different purposes — just like a toolbox has different tools for different jobs. Everyday tasks need a fast, efficient model; complex reasoning tasks need a more powerful (but slower and more expensive) one.
@@ -153,7 +153,7 @@
 - **Original author:** Nozz (paraphrased — not quoted)
 - **Topic:** A data-driven argument that AI adoption is far lower than most people in tech circles believe, and that this gap represents a significant business opportunity for anyone who can help ordinary businesses implement AI practically.
 - **Tier:** Core (06-10) / Applications (11-15)
-- **Target editions:** 06 (Getting Started with AI Tools), 10 (The State of AI Today), 14 (AI in Business), 15 (AI Career Opportunities)
+- **Target editions:** 01 (What is AI?), 12 (AI in Business), 17 (AI and the Future of Work)
 - **Key concepts:**
   - The vast majority of the world has never used AI at all. Only a tiny fraction of people pay for AI tools. The tech-focused corners of the internet create an illusion that "everyone" is already using AI, but the data tells a completely different story.
   - Most businesses have not implemented AI in any meaningful way. Even among those that have tried, the majority are stuck in early experimentation rather than seeing real results.

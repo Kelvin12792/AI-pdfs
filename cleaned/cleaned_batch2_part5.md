@@ -12,7 +12,7 @@
 - **Original author:** Robin (@heyrobinai) (paraphrased — not quoted)
 - **Topic:** A walkthrough of seven pre-built AI skill workflows inside Claude Cowork that automate recurring tasks — from morning briefings and research to slide decks, meeting notes, visual explainers, diagrams, and custom skill creation — plus how connectors and scheduled tasks tie them together into an always-running system.
 - **Tier:** Applications (11-15)
-- **Target editions:** 11 (AI in Everyday Work Tools), 12 (AI for Productivity), 13 (AI Prompt Templates and Frameworks)
+- **Target editions:** 11 (AI Tools for Productivity)
 - **Key concepts:**
   - The shift from using AI as a question-and-answer tool to using it as a production system is what separates casual users from power users. The key difference is that the AI produces real, saved files — not just chat responses that disappear.
   - Reusable skills let you configure a workflow once and run it indefinitely. A morning briefing that pulls your calendar, email, and news into one dashboard is a single setup that replaces multiple apps every day.
@@ -38,7 +38,7 @@
 - **Original author:** Aaron Levie (@levie) (paraphrased — not quoted)
 - **Topic:** A strategic argument that AI agents are evolving from simple chatbots into autonomous digital workers with their own computing environments, and that this shift will fundamentally change how all software is designed, sold, and scaled — moving from human-first to agent-first architecture.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Agents and Automation), 18 (Building Your Own AI Workflows), 20+ (The Future of AI and Work)
+- **Target editions:** 19 (The Future of AI)
 - **Key concepts:**
   - AI agents have crossed a threshold: they now have their own sandboxed computing environments, can write and run code, interact with APIs, manage their own file systems, and maintain long-term memory. They are no longer chatbots with tools bolted on — they are closer to autonomous digital workers.
   - The scope of agent deployment is expanding beyond coding into all areas of knowledge work: contract review, customer support, financial auditing, medical research, sales presentations, and consumer transactions across the web.
@@ -65,7 +65,7 @@
 - **Original author:** Zayn (@quietly_rich) (paraphrased — not quoted)
 - **Topic:** A detailed guide to producing AI-generated content — both written and visual — for social media pages that do not feature a real person on camera, covering text generation through AI skills, AI character creation, video production, voice cloning, and the full end-to-end workflow.
 - **Tier:** Applications (11-15)
-- **Target editions:** 12 (AI for Productivity), 14 (AI in Business), 15 (AI Career Opportunities)
+- **Target editions:** 11 (AI Tools for Productivity), 12 (AI in Business)
 - **Key concepts:**
   - AI content for anonymous or faceless social media pages falls into two categories: written content (posts, captions, scripts) and visual content (images, slideshows, videos). Written content is cheaper and faster to start with; visual content expands reach on image- and video-heavy platforms.
   - The most efficient way to produce written content at scale is building a reusable AI skill — a set of instructions that teaches the AI your specific niche, voice, and audience. You configure it once and every piece of content afterward takes minutes instead of hours.
@@ -89,7 +89,7 @@
 - **Original author:** Dep (@0xDepressionn) (paraphrased — not quoted)
 - **Topic:** A comprehensive breakdown of prompt engineering as a fundamental skill — covering why it matters, the most common mistakes beginners make, a five-element prompt structure (role, context, task, constraints, output format), advanced techniques like prompt chaining and iterative refinement, and why this skill will become increasingly important as language becomes the primary interface for software.
 - **Tier:** Core (06-10)
-- **Target editions:** 07 (How to Talk to AI), 08 (Choosing the Right AI Tool), 09 (AI Features You Should Know About)
+- **Target editions:** 09 (Large Language Models Explained)
 - **Key concepts:**
   - The interface between humans and software has fundamentally shifted. Instead of learning buttons, menus, and dashboards, you now describe what you want in plain language. This makes the quality of your instructions the single biggest factor determining the quality of your results.
   - Two people using the exact same AI model can get wildly different outcomes. The difference is never the tool — it is how clearly the request was structured.
@@ -111,7 +111,7 @@
 - **Original author:** Eric Siu (@ericosiu) (paraphrased — not quoted)
 - **Topic:** A detailed case study of deploying six specialised AI agents and 64 automated tasks across a marketing agency over eight months, covering deal resurrection from a CRM, AI-powered recruiting, network mining for speaking opportunities, automated content production and repurposing, sales pipeline management, SEO monitoring, and a daily CEO operating system — with specific revenue and performance results.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 14 (AI in Business), 17 (AI Agents and Automation), 20+ (Real-World AI at Scale)
+- **Target editions:** 12 (AI in Business), 19 (The Future of AI)
 - **Key concepts:**
   - AI agents become valuable when they are built around specific business outcomes — revenue, hiring, content performance — rather than as general-purpose demonstrations. The distinction between "agents that do demos" and "agents that do revenue" is the central thesis.
   - A deal resurrection agent can scan hundreds of stale opportunities in a CRM, score them by recency, check whether the original contact has moved on, find replacements or follow champions to their new companies, and surface viable deals that no human had time to revisit.

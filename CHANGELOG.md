@@ -18,6 +18,32 @@ Every decision, change, and build event must be logged here. No exceptions. Log 
 
 ---
 
+## [2026-03-17] — Fix: Batch 2 Edition Assignment Mismatch + Stage 4: Edition 01 Draft
+
+**What changed:**
+1. **Fixed batch 2 edition assignments** — All 38 posts in batch 2 (Posts 30–68) had incorrect edition names that did not match the established curriculum map and edition registry. For example, Edition 07 was labeled "Getting Started with AI Tools" instead of the correct "Neural Networks Explained"; Edition 14 was labeled "AI-Powered Marketing" instead of "AI in Healthcare." All edition references in `cleaned/master_cleaned_tweets.md` and `cleaned/cleaned_batch2_part0.md` through `cleaned/cleaned_batch2_part5.md` have been corrected to use the canonical edition titles from `EDITION_REGISTRY.md`.
+2. **Created Edition 01 draft** — Full chapter draft for "What is AI?" following BUILD_FLOW.md Stage 4 exactly. Includes: hook/aha moment opener (predictive text analogy), 5 learning objectives, 5 body sections (definition, daily life examples, AI vs regular software, why now, try-it-yourself), key takeaways, 9-term glossary, 10-question quiz (3 MCQ + 2 T/F + 2 FIB + 3 SA), personal reflection question, all 6 CTAs, and next edition teaser with cliffhanger.
+3. **Created answer key** — `structured/edition_01_what-is-ai/answer_key.md` with all quiz answers.
+4. **Updated topic file** — Added batch 2 content (Post 52) to `structured/topics/01_what_is_ai.md`.
+5. **Updated EDITION_REGISTRY.md** — Edition 01 status changed from [PLANNED] to [DRAFTED] with draft date 2026-03-17.
+
+**Why:** Batch 2 content was cleaned using an alternative edition naming scheme that diverged from the canonical curriculum map established during batch 1 processing. This created inconsistency across the project. The correction ensures all files reference the same edition titles. The Edition 01 draft is the pilot chapter required before scaling to the full series.
+
+**New files created:**
+- `structured/edition_01_what-is-ai/draft.md`
+- `structured/edition_01_what-is-ai/answer_key.md`
+
+**Files updated:**
+- `cleaned/master_cleaned_tweets.md` (38 edition assignment corrections)
+- `cleaned/cleaned_batch2_part0.md` through `cleaned/cleaned_batch2_part5.md` (edition assignment corrections)
+- `structured/topics/01_what_is_ai.md` (batch 2 content added)
+- `EDITION_REGISTRY.md` (Edition 01 status updated)
+- `CHANGELOG.md` (this entry)
+
+**Decision made by:** Kelvin M
+
+---
+
 ## [2026-03-16] — Infrastructure: Persistent Reference System + Topic Categories + Language Patterns
 
 **What changed:**

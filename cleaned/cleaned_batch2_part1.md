@@ -12,7 +12,7 @@
 - **Original author:** Oliver Henry (paraphrased — not quoted)
 - **Topic:** A detailed account of setting up an autonomous AI agent on a personal computer that independently handles content creation, marketing analytics, product development, and business operations — leading to the creation of an AI skills marketplace.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 17 (AI Agents & Automation), 18 (Building with AI), 19 (AI Business Models), 20+ (Future of AI Work)
+- **Target editions:** 19 (The Future of AI), 17 (AI and the Future of Work)
 - **Key concepts:**
   - An AI agent is fundamentally different from a chatbot. A chatbot answers when asked; an agent operates independently, runs scheduled tasks, learns from its own mistakes, and improves its performance over time without human prompting.
   - AI agents can handle complex business operations across multiple domains simultaneously — content creation, analytics tracking, customer support monitoring, code development, and revenue optimization — replacing several job functions at a fraction of the cost.
@@ -38,7 +38,7 @@
 - **Original author:** Ecom Daddy (paraphrased — not quoted); additional promotional content from PromptX account
 - **Topic:** A demonstration of using structured JSON-format system prompts to turn an AI chatbot into a personalized strategic advisor that diagnoses behavioral patterns, identifies root-cause constraints, and builds customized action plans through a multi-round diagnostic process.
 - **Tier:** Core (06-10)
-- **Target editions:** 07 (Prompting Fundamentals), 08 (Advanced Prompting), 09 (AI as a Thinking Partner)
+- **Target editions:** 09 (Large Language Models Explained)
 - **Key concepts:**
   - System prompts can be structured like blueprints that define an AI's personality, behavior rules, and interaction protocols before any conversation begins. This goes far beyond simply asking a question — it creates a persistent framework for how the AI operates.
   - A well-designed system prompt can include sequential phases — such as diagnostic rounds that build on each other — turning a single conversation into a structured, multi-step process that mimics professional consulting.
@@ -59,7 +59,7 @@
 - **Original author:** Jim Prosser (paraphrased — not quoted)
 - **Topic:** A comprehensive, step-by-step account of how a non-programmer communications consultant built a four-layer AI automation system that manages email triage, task classification, parallel agent dispatch, calendar scheduling, and daily operations — replacing the need for a human operations assistant.
 - **Tier:** Applications (11-15) for concepts; Advanced (16-20) for implementation
-- **Target editions:** 11 (AI in Your Daily Life), 12 (AI Workflows & Automation), 13 (AI for Business), 14 (Building AI Systems), 17 (AI Agents & Automation)
+- **Target editions:** 11 (AI Tools for Productivity), 15 (AI in Your Daily Life)
 - **Key concepts:**
   - AI systems are most powerful when designed as layered architectures where each component feeds the next. An overnight email scanner creates enriched tasks, a morning classifier triages those tasks, specialized agents handle the work in parallel, and a scheduling layer organizes what remains — each piece inheriting context from the one before it.
   - The most important design decision in any AI automation is defining what stays human. The author's framework uses four categories: fully automated (AI handles it), preparation (AI does 80%, human finishes), human-only (requires judgment or presence), and skip (not actionable today). When uncertain, the system always defaults to preparation rather than full automation.
@@ -84,7 +84,7 @@
 - **Original author:** zack (paraphrased — not quoted)
 - **Topic:** A breakdown of building multiple anonymous online businesses that sell digital products (templates, guides, spreadsheets) through faceless social media pages — arguing that product quality and distribution matter more than personal brand for digital product sales.
 - **Tier:** Applications (11-15)
-- **Target editions:** 13 (AI for Business), 14 (Digital Products with AI), 15 (Scaling with AI)
+- **Target editions:** 12 (AI in Business)
 - **Key concepts:**
   - For low-to-mid-price digital products (templates, guides, spreadsheets), buyers care about whether the product solves their problem — not who created it. The purchasing psychology for a $27 template is fundamentally different from a $5,000 coaching program.
   - "Faceless" content businesses operate through anonymous social media accounts and product pages. The creator's identity is irrelevant to the buyer. This model allows one person to operate multiple businesses across different niches simultaneously.
@@ -109,7 +109,7 @@
 - **Original author:** Ruben Hassid (paraphrased — not quoted)
 - **Topic:** A concise framework for structuring AI prompts in the era of advanced models, emphasizing context files, reference examples, conversation-based refinement, and mutual alignment before execution — moving beyond the old "act as an expert" paradigm.
 - **Tier:** Core (06-10)
-- **Target editions:** 06 (Your First AI Conversation), 07 (Prompting Fundamentals), 08 (Advanced Prompting)
+- **Target editions:** 09 (Large Language Models Explained)
 - **Key concepts:**
   - Modern AI prompting has evolved from single-line instructions to structured, multi-part workflows. The old approach of "act as a senior expert" is outdated. Today's best prompts define the task clearly, upload context files, provide reference examples, and establish rules before any work begins.
   - Context files have fundamentally changed prompting. Instead of trying to explain everything in the prompt itself, you upload documents containing your expertise, rules, preferences, and standards. The AI reads these files first, then works from that foundation. It is the difference between handing someone a sticky note versus giving them an entire reference manual.
@@ -130,7 +130,7 @@
 - **Original author:** Ruben Hassid (paraphrased — not quoted)
 - **Topic:** A detailed guide on using AI tools to grow a large social media following on LinkedIn, covering the psychology of content that attracts followers, the mechanics of writing effective hooks, creating visual media with AI, and the role of consistency and taste as the remaining competitive advantages in an AI-powered content landscape.
 - **Tier:** Applications (11-15)
-- **Target editions:** 12 (AI for Content Creation), 13 (AI for Business), 14 (AI-Powered Marketing)
+- **Target editions:** 12 (AI in Business), 11 (AI Tools for Productivity)
 - **Key concepts:**
   - AI has made starting easy and strategy accessible — both are now commoditized. What remains scarce and valuable is taste (knowing what is good) and consistency (showing up every single day). These are the only real competitive advantages left in content creation.
   - The biggest mistake people make with AI-generated content is making it about themselves. Readers do not care about your achievements or journey. They care about their own problems. Content that grows a following is content that makes the reader feel like the post is about them, not about you.
@@ -158,7 +158,7 @@
 - **Original author:** Ruben Hassid (paraphrased — not quoted)
 - **Topic:** An exploration of how AI's frictionless nature leads to a new form of overwork — "performative productivity" — where people ship constantly but accomplish nothing meaningful, because AI removes the friction that once forced them to think about whether a task was worth doing.
 - **Tier:** Foundational (01-05)
-- **Target editions:** 03 (How to Think About AI), 04 (AI Benefits and Risks), 05 (Using AI Responsibly)
+- **Target editions:** 05 (AI vs Human Intelligence), 20 (How to Use AI Responsibly)
 - **Key concepts:**
   - AI has removed the friction of starting work, which is genuinely valuable. But it has also removed the friction of stopping, which is genuinely dangerous. When continuing to work feels easier than pausing to evaluate whether the work matters, you have an addiction pattern — not a productivity system.
   - "Performative productivity" is doing a large volume of AI-assisted work that feels productive but does not actually move you toward your goals. You ship landing pages, rewrite documents, generate content calendars, and redesign presentations — but at the end of the week, nothing meaningful has changed. The momentum was circular.
@@ -180,7 +180,7 @@
 - **Original author:** Nozz (paraphrased — not quoted)
 - **Topic:** A comprehensive playbook for building an AI services business targeting small and medium businesses in non-tech industries — covering four service models, seven client acquisition methods, and the strategic frameworks that determine whether an AI services business succeeds or fails.
 - **Tier:** Advanced (16-20)
-- **Target editions:** 16 (AI Careers & Opportunities), 17 (AI Agents & Automation), 19 (AI Business Models), 20+ (The AI Economy)
+- **Target editions:** 17 (AI and the Future of Work), 12 (AI in Business)
 - **Key concepts:**
   - The biggest opportunity in AI services is not selling to tech companies — it is serving "boring" industries (accounting, dental, HVAC, real estate, insurance, law) where business owners make good money, are not price-sensitive on solutions that work, face almost zero competition for AI services, and refer aggressively within their tight-knit professional networks.
   - There are four proven AI service models at different price points: (1) Speed-to-lead agents that respond to new customer inquiries instantly around the clock, (2) Workflow automation that eliminates repetitive manual processes, (3) Industry-specific AI training workshops, and (4) Productized automation packages sold as recurring monthly services to an entire niche.
