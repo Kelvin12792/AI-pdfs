@@ -1,16 +1,18 @@
 """
 Build PDF for Edition 01 — What is AI?
 Full production build following STYLE_TOKENS.yaml and DESIGN_GUIDELINES.md
+Expanded version: all 10 diagrams, enriched content, professional layout
 """
 
 import os
+import math
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
-    PageBreak, Image, KeepTogether, HRFlowable
+    PageBreak, Image, KeepTogether, HRFlowable, Flowable
 )
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.colors import HexColor, white, black
+from reportlab.lib.colors import HexColor, white, black, Color
 from reportlab.lib.units import mm
 pt = 1  # ReportLab uses points as native unit
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
@@ -25,7 +27,7 @@ DIAGRAM_DIR = os.path.join(BASE_DIR, "assets", "diagrams")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-OUTPUT_FILE = os.path.join(OUTPUT_DIR, "edition_01_what-is-ai_v1.0.pdf")
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "edition_01_what-is-ai_v2.0.pdf")
 
 # ─── Colors from STYLE_TOKENS.yaml ───
 PRIMARY = HexColor("#CC785C")
@@ -166,6 +168,15 @@ def make_styles():
         'KeyTakeaway', fontName='Inter-Medium', fontSize=11, leading=16,
         textColor=TEXT_PRIMARY, leftIndent=14, bulletIndent=0, spaceAfter=3*mm,
     )
+    s['pull_quote'] = ParagraphStyle(
+        'PullQuote', fontName='Inter-SemiBold', fontSize=14, leading=20,
+        textColor=PRIMARY_DARK, alignment=TA_CENTER,
+        spaceBefore=6*mm, spaceAfter=6*mm,
+    )
+    s['section_intro'] = ParagraphStyle(
+        'SectionIntro', fontName='Inter-Medium', fontSize=11, leading=16,
+        textColor=TEXT_SECONDARY, spaceAfter=4*mm, alignment=TA_JUSTIFY,
+    )
 
     return s
 
@@ -195,6 +206,18 @@ def bullet(text):
 
 def spacer(h_mm=4):
     return Spacer(1, h_mm * mm)
+
+def pull_quote(text):
+    """A highlighted quote styled as a visual pull-out."""
+    return Paragraph(f"\u201c{text}\u201d", STYLES['pull_quote'])
+
+
+def section_divider():
+    """A thin decorative line to separate major content blocks."""
+    return HRFlowable(
+        width="40%", thickness=1, color=PRIMARY_LIGHT,
+        spaceAfter=4*mm, spaceBefore=4*mm, hAlign='CENTER',
+    )
 
 
 def callout_box(label_text, body_text, border_color, label_color):
@@ -328,12 +351,20 @@ def step_item(number, text):
     return row
 
 
-def diagram_image(filename, caption_text, width=None):
-    """Insert a diagram image with caption."""
+def diagram_with_caption(filename, caption_text, width=None):
+    """Insert a diagram image with caption, auto-detecting aspect ratio."""
     path = os.path.join(DIAGRAM_DIR, filename)
+    if not os.path.exists(path):
+        return [body(f"[Diagram not found: {filename}]")]
+
+    from PIL import Image as PILImage
+    pil_img = PILImage.open(path)
+    aspect = pil_img.height / pil_img.width
     if width is None:
         width = CONTENT_W
-    img = Image(path, width=width, height=width * 0.46)  # Approximate aspect ratio
+    height = width * aspect
+
+    img = Image(path, width=width, height=height)
     img.hAlign = 'CENTER'
     caption = Paragraph(caption_text, STYLES['caption'])
     return [img, spacer(3), caption]
@@ -356,8 +387,6 @@ def draw_cover(canvas, doc):
     canvas.rect(0, text_zone_h, PAGE_W, image_zone_h, fill=1, stroke=0)
 
     # Draw decorative AI-themed elements in image zone
-    # Abstract circles and nodes
-    import math
     canvas.setStrokeColor(HexColor("#CC785C"))
     canvas.setFillColor(HexColor("#FFFFFF"))
     canvas.setLineWidth(2)
@@ -380,7 +409,7 @@ def draw_cover(canvas, doc):
     canvas.setFont('Inter-Bold', 16)
     canvas.drawCentredString(cx, cy - 6, "AI")
 
-    # Connect nodes
+    # Connect nodes to center
     canvas.setStrokeColor(HexColor("#CC785C"))
     canvas.setLineWidth(1.5)
     for nx, ny in nodes:
@@ -393,7 +422,7 @@ def draw_cover(canvas, doc):
 
     canvas.setStrokeAlpha(1.0)
 
-    # Outer ring
+    # Outer ring of dots
     for i in range(16):
         angle = i * math.pi * 2 / 16
         r = 180
@@ -473,7 +502,7 @@ def build():
         bottomMargin=MARGIN_BOTTOM,
         leftMargin=MARGIN_LEFT,
         rightMargin=MARGIN_RIGHT,
-        title="Edition 01 — What is AI?",
+        title="Edition 01 \u2014 What is AI?",
         author="Kelvin M",
         subject="AI Education for Complete Beginners",
         creator="AI Education PDF Series Build System",
@@ -481,12 +510,15 @@ def build():
 
     elements = []
 
-    # ─── COVER PAGE (empty frame, drawn by on_first_page) ───
-    # Use a small spacer — the cover is drawn by on_first_page callback
+    # ═══════════════════════════════════════════════════════
+    # COVER PAGE (drawn by on_first_page callback)
+    # ═══════════════════════════════════════════════════════
     elements.append(Spacer(1, 1))
     elements.append(PageBreak())
 
-    # ─── LEARNING OBJECTIVES ───
+    # ═══════════════════════════════════════════════════════
+    # LEARNING OBJECTIVES
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Learning Objectives"))
     elements.append(body("By the end of this edition, you will be able to:"))
     elements.append(spacer(2))
@@ -503,26 +535,36 @@ def build():
 
     elements.append(spacer(4))
 
-    # ─── TABLE OF CONTENTS ───
+    # ═══════════════════════════════════════════════════════
+    # TABLE OF CONTENTS
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Table of Contents"))
     toc_items = [
         "1.  What is AI? (The One-Sentence Answer)",
         "2.  AI is Already in Your Life",
         "3.  How is AI Different from Regular Software?",
-        "4.  Why is Everyone Talking About AI Now?",
-        "5.  Try It Yourself: Your First AI Conversation",
-        "6.  Key Takeaways",
-        "7.  Glossary",
-        "8.  Mini Quiz",
-        "9.  Reflection Question",
-        "10. What's Next",
+        "4.  The Three Types of AI",
+        "5.  Why is Everyone Talking About AI Now?",
+        "6.  A Brief History of AI",
+        "7.  How AI Actually Learns",
+        "8.  Myths vs. Reality",
+        "9.  AI is a Multiplier, Not a Replacement",
+        "10. Try It Yourself: Your First AI Conversation",
+        "11. Your AI Learning Path",
+        "12. Key Takeaways",
+        "13. Glossary",
+        "14. Mini Quiz",
+        "15. Reflection Question",
+        "16. What\u2019s Next",
     ]
     for item in toc_items:
         elements.append(Paragraph(item, STYLES['toc_item']))
 
     elements.append(PageBreak())
 
-    # ─── HOOK / AHA MOMENT OPENER ───
+    # ═══════════════════════════════════════════════════════
+    # HOOK / AHA MOMENT OPENER
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("You Already Know More Than You Think"))
     elements.append(spacer(2))
 
@@ -556,8 +598,8 @@ def build():
         "One of the most common feelings people have about AI is being overwhelmed. New AI tools, "
         "updates, and announcements come out almost every day, and it can feel like you are already "
         "falling behind before you even start. That feeling is normal \u2014 and it is also unnecessary. "
-        "You do not need to know everything about AI to benefit from it. Just like you do not need to "
-        "understand how a car engine works to drive to the grocery store, you do not need to understand "
+        "You do not need to know everything about AI to benefit from it. You do not need to "
+        "understand how a car engine works to drive to the grocery store, and you do not need to understand "
         "every new AI model to use AI effectively in your life."
     ))
 
@@ -568,7 +610,9 @@ def build():
 
     elements.append(spacer(4))
 
-    # ─── SECTION 1 ───
+    # ═══════════════════════════════════════════════════════
+    # SECTION 1: WHAT IS AI?
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Section 1: What is AI?"))
     elements.append(h2("The One-Sentence Answer"))
     elements.append(spacer(2))
@@ -588,7 +632,7 @@ def build():
         "because someone wrote a specific rule: \"when the user presses the plus button, add these numbers "
         "together.\" The calculator cannot do anything it was not specifically programmed to do. It cannot "
         "guess what you might want to calculate next. It cannot learn your habits. It cannot get better "
-        "over time. It simply follows its instructions, the same way, every single time."
+        "over time. It follows its instructions, the same way, every single time."
     ))
 
     elements.append(body(
@@ -620,22 +664,13 @@ def build():
 
     elements.append(spacer(2))
 
-    # Diagram 1
-    diag1_path = os.path.join(DIAGRAM_DIR, "edition_01_diagram_01.png")
-    if os.path.exists(diag1_path):
-        from PIL import Image as PILImage
-        pil_img = PILImage.open(diag1_path)
-        aspect = pil_img.height / pil_img.width
-        img_w = CONTENT_W
-        img_h = img_w * aspect
-        elements.append(Image(diag1_path, width=img_w, height=img_h))
-        elements.append(spacer(3))
-        elements.append(Paragraph(
-            "Figure 1: Regular software follows fixed rules written by a programmer. "
-            "AI learns patterns from examples and can handle new situations it was never "
-            "specifically programmed for.",
-            STYLES['caption']
-        ))
+    # Diagram 1: Regular Software vs AI
+    elements += diagram_with_caption(
+        "edition_01_diagram_01.png",
+        "Figure 1: Regular software follows fixed rules written by a programmer. "
+        "AI learns patterns from examples and can handle new situations it was never "
+        "specifically programmed for."
+    )
 
     elements.append(spacer(2))
 
@@ -647,7 +682,9 @@ def build():
 
     elements.append(spacer(4))
 
-    # ─── SECTION 2 ───
+    # ═══════════════════════════════════════════════════════
+    # SECTION 2: AI IS ALREADY IN YOUR LIFE
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Section 2: AI is Already in Your Life"))
     elements.append(spacer(2))
 
@@ -691,6 +728,15 @@ def build():
 
     elements.append(spacer(4))
 
+    # Diagram 3: AI in Daily Life icon grid
+    elements += diagram_with_caption(
+        "edition_01_diagram_03.png",
+        "Figure 2: AI is already embedded in the tools you use every day \u2014 from your phone keyboard "
+        "to your music streaming app."
+    )
+
+    elements.append(spacer(2))
+
     elements.append(body(
         "Here is a number that might surprise you: the vast majority of the world's population has never "
         "intentionally used an AI tool. Most people have interacted with AI without knowing it \u2014 through "
@@ -722,7 +768,9 @@ def build():
 
     elements.append(spacer(4))
 
-    # ─── SECTION 3 ───
+    # ═══════════════════════════════════════════════════════
+    # SECTION 3: HOW IS AI DIFFERENT FROM REGULAR SOFTWARE?
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Section 3: How is AI Different from Regular Software?"))
     elements.append(spacer(2))
 
@@ -770,7 +818,7 @@ def build():
         "Think of a thermostat versus a smart assistant. A basic thermostat follows one rule: \"If the "
         "temperature drops below 20 degrees, turn on the heating.\" It does this forever, regardless of "
         "anything else. It does not know if you are home or away, asleep or awake, in summer or winter. "
-        "It just follows its one rule, endlessly."
+        "It follows its one rule, endlessly."
     ))
 
     elements.append(body(
@@ -788,6 +836,15 @@ def build():
 
     elements.append(spacer(2))
 
+    # Diagram 7: Thermostat vs Smart Home
+    elements += diagram_with_caption(
+        "edition_01_diagram_07.png",
+        "Figure 3: A basic thermostat follows one fixed rule forever. An AI-powered smart assistant "
+        "learns your preferences and adapts over time."
+    )
+
+    elements.append(spacer(2))
+
     elements.append(real_world(
         "Your email spam filter is one of the oldest and most successful AI systems in daily use. It has "
         "been learning what spam looks like for over two decades \u2014 and it catches roughly 99% of spam "
@@ -796,8 +853,72 @@ def build():
 
     elements.append(spacer(4))
 
-    # ─── SECTION 4 ───
-    elements.append(h1("Section 4: Why is Everyone Talking About AI Now?"))
+    # ═══════════════════════════════════════════════════════
+    # SECTION 4: THE THREE TYPES OF AI
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 4: The Three Types of AI"))
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "Not all AI is created equal. Scientists categorise artificial intelligence into three levels, "
+        "based on how capable and general-purpose the AI is. Understanding these three levels will help "
+        "you put every AI headline you read into proper context."
+    ))
+
+    elements.append(spacer(2))
+
+    elements.append(h2("Narrow AI (Also Called Weak AI)"))
+    elements.append(body(
+        "This is AI that is designed to do <b>one specific task</b> very well. A spam filter catches spam. "
+        "A recommendation engine suggests movies. A translation tool converts text from one language to "
+        "another. Each of these tools is extremely good at its one job \u2014 but it cannot do anything else. "
+        "Your spam filter cannot recommend a recipe, and your music app cannot filter your email."
+    ))
+
+    elements.append(body(
+        "<b>Every single AI tool you use today \u2014 ChatGPT, Siri, Google Translate, Spotify "
+        "recommendations, Tesla autopilot \u2014 is Narrow AI.</b> This is the only type of AI that "
+        "currently exists."
+    ))
+
+    elements.append(h2("General AI (Also Called Strong AI)"))
+    elements.append(body(
+        "This would be AI that can perform <b>any intellectual task</b> that a human can do. It could write "
+        "poetry, diagnose diseases, negotiate a business deal, and fix a car engine \u2014 all with the same "
+        "system. General AI does not exist yet. Researchers are working toward it, but most experts believe "
+        "we are still years or decades away."
+    ))
+
+    elements.append(h2("Super AI"))
+    elements.append(body(
+        "This is a hypothetical AI that would <b>surpass human intelligence</b> in every possible way \u2014 "
+        "creativity, problem-solving, social intelligence, scientific discovery. Super AI is the stuff of "
+        "science fiction. It does not exist, and there is no consensus on whether or when it ever will."
+    ))
+
+    elements.append(spacer(2))
+
+    # Diagram 4: Types of AI Pyramid
+    elements += diagram_with_caption(
+        "edition_01_diagram_04.png",
+        "Figure 4: The three levels of AI. Narrow AI is the only type that exists today. "
+        "General AI and Super AI remain theoretical."
+    )
+
+    elements.append(spacer(2))
+
+    elements.append(watch_out(
+        "When news headlines say \"AI is becoming smarter than humans,\" they are almost always "
+        "talking about Narrow AI excelling at one specific task \u2014 not General AI that can "
+        "do everything a human can."
+    ))
+
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 5: WHY IS EVERYONE TALKING ABOUT AI NOW?
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 5: Why is Everyone Talking About AI Now?"))
     elements.append(spacer(2))
 
     elements.append(body(
@@ -849,35 +970,227 @@ def build():
 
     elements.append(spacer(2))
 
-    # Diagram 2
-    diag2_path = os.path.join(DIAGRAM_DIR, "edition_01_diagram_02.png")
-    if os.path.exists(diag2_path):
-        from PIL import Image as PILImage
-        pil_img = PILImage.open(diag2_path)
-        aspect = pil_img.height / pil_img.width
-        img_w = CONTENT_W
-        img_h = img_w * aspect
-        elements.append(Image(diag2_path, width=img_w, height=img_h))
-        elements.append(spacer(3))
-        elements.append(Paragraph(
-            "Figure 2: Three forces \u2014 massive data, powerful computers, and breakthrough methods \u2014 "
-            "converged in the 2020s to make AI accessible to everyone. The foundation was decades in "
-            "the making.",
-            STYLES['caption']
-        ))
+    # Diagram 2: Three Convergences
+    elements += diagram_with_caption(
+        "edition_01_diagram_02.png",
+        "Figure 5: Three forces \u2014 massive data, powerful computers, and breakthrough methods \u2014 "
+        "converged in the 2020s to make AI accessible to everyone. The foundation was decades in "
+        "the making."
+    )
+
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 6: A BRIEF HISTORY OF AI
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 6: A Brief History of AI"))
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "AI did not spring into existence with ChatGPT. The ideas behind artificial intelligence are "
+        "older than most people realise. Here are the key moments that brought us to where we are today."
+    ))
 
     elements.append(spacer(2))
 
-    elements.append(watch_out(
-        "AI did not appear overnight. The \"sudden\" explosion is the result of 70 years of research "
-        "reaching a tipping point. Understanding this helps you see AI as an evolution, not a revolution "
-        "\u2014 and protects you from hype-driven panic."
+    elements.append(make_table(
+        ["Year", "Event", "Why It Matters"],
+        [
+            ["1956",
+             "AI is born at Dartmouth College",
+             "Researchers first use the term \"artificial intelligence\" and set the research agenda"],
+            ["1966",
+             "ELIZA, the first chatbot",
+             "A program at MIT has the first text-based conversation with humans"],
+            ["1997",
+             "Deep Blue beats a chess champion",
+             "IBM's computer defeats world chess champion Garry Kasparov, proving AI can match humans at complex games"],
+            ["2011",
+             "Siri launches on iPhone",
+             "Voice-activated AI enters millions of pockets for the first time"],
+            ["2016",
+             "AlphaGo defeats the Go champion",
+             "AI conquers a game so complex it was thought to require human intuition"],
+            ["2022",
+             "ChatGPT launches to the public",
+             "Conversational AI becomes accessible to anyone with an internet connection"],
+            ["2024+",
+             "AI becomes a daily tool",
+             "AI moves from novelty to everyday use across work, education, and creative fields"],
+        ],
+        col_widths=[CONTENT_W * 0.12, CONTENT_W * 0.35, CONTENT_W * 0.53],
     ))
 
     elements.append(spacer(4))
 
-    # ─── SECTION 5 ───
-    elements.append(h1("Section 5: Try It Yourself"))
+    # Diagram 5: AI Timeline
+    elements += diagram_with_caption(
+        "edition_01_diagram_05.png",
+        "Figure 6: Key moments in the history of AI \u2014 from the field's birth in 1956 "
+        "to the accessible AI tools of today."
+    )
+
+    elements.append(spacer(2))
+
+    elements.append(did_you_know(
+        "ELIZA, created in 1966, was so convincing that some users believed they were talking to a real "
+        "person \u2014 even though the program used extremely simple pattern-matching tricks. It was one of "
+        "the first demonstrations of how easily humans connect with conversational technology."
+    ))
+
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 7: HOW AI ACTUALLY LEARNS
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 7: How AI Actually Learns"))
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "We said earlier that AI learns from examples. But what does that actually look like in practice? "
+        "Here is the simplified five-step process that every AI system follows:"
+    ))
+
+    elements.append(spacer(2))
+
+    steps_learning = [
+        ("<b>Collect data.</b> AI starts with a massive collection of examples \u2014 text, images, numbers, "
+         "audio recordings. The more relevant data it has, the better it can learn.",),
+        ("<b>Find patterns.</b> The AI scans all of that data, looking for repeating structures. "
+         "In email data, it might notice that messages containing certain words or coming from unknown "
+         "senders are usually spam.",),
+        ("<b>Build a model.</b> The patterns become a set of internal rules \u2014 a \"model\" \u2014 that "
+         "the AI uses to make decisions about new data it has never seen before.",),
+        ("<b>Test and improve.</b> The AI tests its model against new examples. When it gets something "
+         "wrong, it adjusts. This cycle of testing and adjusting happens thousands or millions of times.",),
+        ("<b>Deploy.</b> Once the model is accurate enough, it gets put to work in the real world \u2014 "
+         "filtering your spam, recommending your music, or answering your questions.",),
+    ]
+
+    for i, (text,) in enumerate(steps_learning, 1):
+        elements.append(step_item(i, text))
+
+    elements.append(spacer(4))
+
+    # Diagram 6: How AI Learns from Data
+    elements += diagram_with_caption(
+        "edition_01_diagram_06.png",
+        "Figure 7: The five-step process that AI uses to learn: collect data, find patterns, "
+        "build a model, test and improve, then deploy."
+    )
+
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "Here is a helpful analogy. Think about learning to cook. You start by collecting recipes (data). "
+        "After trying many of them, you notice what works and what does not (finding patterns). Eventually, "
+        "you develop your own cooking style (building a model). You taste your food and adjust the seasoning "
+        "(testing and improving). And finally, you cook confidently for friends and family (deploying). "
+        "AI follows the same cycle \u2014 it repeats it millions of times, but the core idea is the same as "
+        "how you learn any skill."
+    ))
+
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 8: MYTHS VS. REALITY
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 8: Myths vs. Reality"))
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "AI is surrounded by misconceptions. Some come from science fiction movies. Some come from "
+        "sensationalised news headlines. Some come from people who want to sell you something by making AI "
+        "sound either terrifying or magical. Let us separate fact from fiction."
+    ))
+
+    elements.append(spacer(2))
+
+    elements.append(make_table(
+        ["Myth", "Reality"],
+        [
+            ["\"AI will take all our jobs\"",
+             "AI changes jobs more than it eliminates them. New roles are being created every day \u2014 roles "
+             "that did not exist five years ago."],
+            ["\"AI is smarter than humans\"",
+             "AI is powerful at specific tasks involving patterns, but it has no common sense, emotions, or "
+             "genuine understanding."],
+            ["\"AI thinks like a human brain\"",
+             "AI processes mathematics and statistics. It does not actually think, feel, or understand in any "
+             "meaningful way."],
+            ["\"You need to be a genius to use AI\"",
+             "If you can type a question, you can use AI. No technical skills required."],
+            ["\"AI appeared out of nowhere\"",
+             "Researchers have worked on AI since 1956. It took 70 years of research to reach this moment."],
+        ],
+        col_widths=[CONTENT_W * 0.40, CONTENT_W * 0.60],
+    ))
+
+    elements.append(spacer(4))
+
+    # Diagram 8: Myths vs Reality
+    elements += diagram_with_caption(
+        "edition_01_diagram_08.png",
+        "Figure 8: Five common AI myths and the reality behind each one."
+    )
+
+    elements.append(spacer(2))
+
+    elements.append(key_fact(
+        "AI is a tool, not a being. It does not have goals, desires, or consciousness. It processes "
+        "data and returns outputs based on patterns it has learned \u2014 nothing more, nothing less."
+    ))
+
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 9: AI IS A MULTIPLIER
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 9: AI is a Multiplier, Not a Replacement"))
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "One of the biggest fears people have about AI is that it will replace them. That fear is "
+        "understandable \u2014 but it misses the point. AI is not designed to do your job for you. It is "
+        "designed to amplify what you can already do."
+    ))
+
+    elements.append(body(
+        "Think of AI like a megaphone. A megaphone does not create your voice \u2014 it takes the voice "
+        "you already have and makes it louder, so it reaches further. AI does the same thing with your "
+        "skills. If you are a teacher, AI can help you create personalised lessons in minutes instead of "
+        "hours. If you are a business owner, AI can help you analyse customer feedback at a scale no "
+        "human team could match. If you are a student, AI can explain a concept to you in twelve different "
+        "ways until one of them clicks."
+    ))
+
+    elements.append(body(
+        "The people who benefit most from AI are not the ones who know the most about technology. They are "
+        "the ones who bring something real to the table \u2014 ideas, creativity, experience, judgment, "
+        "empathy \u2014 and then use AI to amplify those human qualities."
+    ))
+
+    elements.append(spacer(2))
+
+    # Diagram 9: AI as Multiplier
+    elements += diagram_with_caption(
+        "edition_01_diagram_09.png",
+        "Figure 9: Your skills multiplied by AI tools equals amplified impact. "
+        "AI does not create your message \u2014 it makes it louder."
+    )
+
+    elements.append(spacer(2))
+
+    elements.append(pull_quote(
+        "AI does not replace human creativity. It amplifies it."
+    ))
+
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 10: TRY IT YOURSELF
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 10: Try It Yourself"))
     elements.append(h2("Your First AI Conversation"))
     elements.append(spacer(2))
 
@@ -895,30 +1208,22 @@ def build():
     elements.append(spacer(2))
 
     steps = [
-        ("<b>Open your phone or computer browser.</b> Any browser works \u2014 Chrome, Safari, Firefox, Edge.",
-
-         ),
+        ("<b>Open your phone or computer browser.</b> Any browser works \u2014 Chrome, Safari, Firefox, Edge.",),
         ("<b>Go to any free AI chat tool.</b> Three popular options: ChatGPT (chat.openai.com), "
-         "Claude (claude.ai), or Google Gemini (gemini.google.com). All three are free to start.",
-         ),
+         "Claude (claude.ai), or Google Gemini (gemini.google.com). All three are free to start.",),
         ("<b>Create a free account if prompted.</b> This typically takes about 60 seconds. You will "
-         "need an email address.",
-         ),
+         "need an email address.",),
         ("<b>In the message box, type exactly this:</b> \"Explain artificial intelligence to me like I "
-         "am 10 years old.\"",
-         ),
+         "am 10 years old.\"",),
         ("<b>Read the response.</b> Notice how the AI uses simple language, relatable examples, and "
          "a friendly tone \u2014 because you told it exactly what you needed. The quality of your "
-         "question shaped the quality of the answer.",
-         ),
+         "question shaped the quality of the answer.",),
         ("<b>Now try a follow-up.</b> Type: \"Give me three examples of AI I probably used today "
-         "without realising it.\"",
-         ),
+         "without realising it.\"",),
         ("<b>Notice something important:</b> the AI remembered your previous message. It built on the "
          "conversation. This is one of the things that makes modern AI different from a search engine \u2014 "
          "it holds context. A search engine gives you a list of links. An AI gives you a direct, "
-         "personalised answer and remembers what you said before.",
-         ),
+         "personalised answer and remembers what you said before.",),
     ]
 
     for i, (text,) in enumerate(steps, 1):
@@ -929,7 +1234,7 @@ def build():
     elements.append(body(
         "You have now had your first AI conversation. That is your starting line. From here, everything "
         "builds. A 54-year-old business consultant with zero coding experience recently built six working "
-        "AI assistants in just three weeks \u2014 not because he suddenly became a programmer, but because "
+        "AI assistants in three weeks \u2014 not because he suddenly became a programmer, but because "
         "AI itself helped him learn. If he can do it, so can you."
     ))
 
@@ -947,9 +1252,63 @@ def build():
         "gives you links. The AI gives you answers."
     ))
 
+    elements.append(spacer(4))
+
+    # ═══════════════════════════════════════════════════════
+    # SECTION 11: YOUR AI LEARNING PATH
+    # ═══════════════════════════════════════════════════════
+    elements.append(h1("Section 11: Your AI Learning Path"))
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "Learning AI is not a single leap \u2014 it is a series of steps. Here is a simple framework "
+        "to guide your journey. You are at Level 1 right now."
+    ))
+
+    elements.append(spacer(2))
+
+    elements.append(make_table(
+        ["Level", "Goal", "What You Do"],
+        [
+            ["Level 1: Try It",
+             "Have your first AI conversation",
+             "Open a free AI tool and ask it one question (you may have done this already)"],
+            ["Level 2: Use It",
+             "Apply AI to one real task",
+             "Use AI to help with something in your work, study, or daily life"],
+            ["Level 3: Learn It",
+             "Understand how AI works",
+             "Follow this series to build a solid foundation of AI knowledge"],
+            ["Level 4: Master It",
+             "Customise AI to fit your life",
+             "Create your own AI workflows, prompts, and systems that save you time daily"],
+        ],
+        col_widths=[CONTENT_W * 0.22, CONTENT_W * 0.32, CONTENT_W * 0.46],
+    ))
+
+    elements.append(spacer(4))
+
+    # Diagram 10: Your AI Learning Path
+    elements += diagram_with_caption(
+        "edition_01_diagram_10.png",
+        "Figure 10: Your AI learning journey \u2014 from first conversation to daily mastery. "
+        "You are at Level 1. Each edition in this series moves you forward."
+    )
+
+    elements.append(spacer(2))
+
+    elements.append(body(
+        "This series is designed to walk you through each level at a comfortable pace. By the time you "
+        "finish Edition 05, you will have a solid foundation. By Edition 10, you will understand how AI "
+        "works under the hood. And by Edition 20, you will be using AI with the confidence and skill of "
+        "someone who truly understands the technology."
+    ))
+
     elements.append(PageBreak())
 
-    # ─── KEY TAKEAWAYS ───
+    # ═══════════════════════════════════════════════════════
+    # KEY TAKEAWAYS
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Key Takeaways"))
     elements.append(spacer(2))
 
@@ -970,7 +1329,9 @@ def build():
 
     elements.append(spacer(6))
 
-    # ─── GLOSSARY ───
+    # ═══════════════════════════════════════════════════════
+    # GLOSSARY
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Glossary"))
     elements.append(spacer(2))
 
@@ -981,29 +1342,36 @@ def build():
         ("Algorithm",
          "A set of step-by-step instructions that a computer follows to solve a problem or complete "
          "a task. AI algorithms are special because they learn and improve from data."),
-        ("Data",
-         "Information that AI uses to learn \u2014 text, images, numbers, audio, or any other form of "
-         "recorded information. The more relevant data AI has, the better it performs."),
-        ("Machine Learning",
-         "A type of AI where the software improves its performance by studying examples rather than "
-         "being manually reprogrammed. Covered in depth in Edition 06."),
-        ("Deep Learning",
-         "An advanced form of machine learning inspired by the structure of the human brain. It is the "
-         "breakthrough behind modern AI tools like ChatGPT and image generators. Covered in Edition 08."),
-        ("Training",
-         "The process of feeding large amounts of data to an AI system so it can learn patterns. Think "
-         "of it like studying for an exam \u2014 the more relevant material the AI reviews, the better "
-         "it performs."),
-        ("Pattern Recognition",
-         "AI's core ability \u2014 finding repeating structures, trends, and relationships in data that "
-         "allow it to make predictions about new, unseen information."),
         ("Chatbot",
          "A software program that can have a text-based conversation with a human. Modern AI chatbots "
          "(like ChatGPT and Claude) use advanced language understanding to have natural, helpful "
          "conversations."),
+        ("Data",
+         "Information that AI uses to learn \u2014 text, images, numbers, audio, or any other form of "
+         "recorded information. The more relevant data AI has, the better it performs."),
+        ("Deep Learning",
+         "An advanced form of machine learning inspired by the structure of the human brain. It is the "
+         "breakthrough behind modern AI tools like ChatGPT and image generators. Covered in Edition 08."),
+        ("Machine Learning",
+         "A type of AI where the software improves its performance by studying examples rather than "
+         "being manually reprogrammed. Covered in depth in Edition 06."),
+        ("Model",
+         "The internal set of rules and patterns that an AI system builds during training. When you "
+         "hear about \"AI models,\" this is what they mean \u2014 the learned knowledge the AI uses to "
+         "make decisions."),
+        ("Narrow AI",
+         "AI designed for one specific task \u2014 like filtering spam, recommending songs, or translating "
+         "languages. This is the only type of AI that exists today."),
+        ("Pattern Recognition",
+         "AI's core ability \u2014 finding repeating structures, trends, and relationships in data that "
+         "allow it to make predictions about new, unseen information."),
         ("Prompt",
          "The text you type into an AI tool to tell it what you want. The clearer your prompt, the "
          "better the AI's response. You will learn much more about this in Edition 09."),
+        ("Training",
+         "The process of feeding large amounts of data to an AI system so it can learn patterns. Think "
+         "of it like studying for an exam \u2014 the more relevant material the AI reviews, the better "
+         "it performs."),
     ]
 
     for term, defn in glossary:
@@ -1014,7 +1382,9 @@ def build():
 
     elements.append(PageBreak())
 
-    # ─── MINI QUIZ ───
+    # ═══════════════════════════════════════════════════════
+    # MINI QUIZ
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Mini Quiz"))
     elements.append(spacer(2))
 
@@ -1077,7 +1447,6 @@ def build():
         "<b>8.</b> In your own words, explain one difference between regular software and AI software. "
         "(1\u20132 sentences)",
         STYLES['quiz_text']))
-    # Lines for writing
     for _ in range(3):
         elements.append(HRFlowable(width="90%", thickness=0.5, color=BORDER,
                                     spaceAfter=5*mm, spaceBefore=2*mm))
@@ -1104,7 +1473,9 @@ def build():
 
     elements.append(PageBreak())
 
-    # ─── REFLECTION QUESTION ───
+    # ═══════════════════════════════════════════════════════
+    # REFLECTION QUESTION
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Reflection Question"))
     elements.append(spacer(2))
 
@@ -1126,14 +1497,16 @@ def build():
     ))
 
     elements.append(body(
-        "There is no right or wrong answer here. This reflection is just for you. Write down your thoughts, "
-        "share them with a friend, or simply sit with the realisation for a moment. Awareness is the first "
+        "There is no right or wrong answer here. This reflection is for you. Write down your thoughts, "
+        "share them with a friend, or sit with the realisation for a moment. Awareness is the first "
         "step."
     ))
 
     elements.append(spacer(6))
 
-    # ─── CTA BLOCK ───
+    # ═══════════════════════════════════════════════════════
+    # CTA BLOCK
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Continue Your Journey"))
     elements.append(spacer(2))
 
@@ -1152,7 +1525,9 @@ def build():
 
     elements.append(spacer(6))
 
-    # ─── NEXT EDITION TEASER ───
+    # ═══════════════════════════════════════════════════════
+    # NEXT EDITION TEASER
+    # ═══════════════════════════════════════════════════════
     elements.append(h1("Coming Next: Edition 02 \u2014 How AI Thinks"))
     elements.append(spacer(2))
 
@@ -1173,7 +1548,9 @@ def build():
         "communicate with it. <b>Edition 02 \u2014 How AI Thinks \u2014 is where the real magic begins.</b>",
         STYLES['teaser']))
 
-    # ─── BUILD ───
+    # ═══════════════════════════════════════════════════════
+    # BUILD
+    # ═══════════════════════════════════════════════════════
     doc.build(elements, onFirstPage=on_first_page, onLaterPages=on_later_pages)
     print(f"\nPDF built successfully: {OUTPUT_FILE}")
 
@@ -1184,6 +1561,17 @@ def build():
         print("WARNING: File exceeds 10MB limit!")
     else:
         print("File size OK (under 10MB)")
+
+    # Report page count using reportlab's own reader
+    try:
+        from reportlab.lib.utils import open_for_read
+        import struct
+        with open(OUTPUT_FILE, 'rb') as f:
+            content = f.read()
+            pages = content.count(b'/Type /Page') - content.count(b'/Type /Pages')
+            print(f"Page count: ~{pages}")
+    except Exception:
+        print("(Page count not available)")
 
 
 if __name__ == "__main__":

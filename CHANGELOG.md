@@ -18,6 +18,30 @@ Every decision, change, and build event must be logged here. No exceptions. Log 
 
 ---
 
+## [2026-03-17] — Stage 7: Edition 01 Expanded Build v2.0
+
+**What changed:**
+1. **Expanded build script** — `scripts/build_pdf_01.py` rewritten with all 10 diagrams integrated (previously only 2). Script expanded from ~1190 lines to ~1575 lines.
+2. **Added 6 new content sections** — Types of AI (Narrow/General/Super pyramid), Brief History of AI (timeline table), How AI Actually Learns (5-step process), Myths vs Reality (5 myth/reality pairs), AI as Multiplier (amplification framing), Your AI Learning Path (4-level progression).
+3. **Built Edition 01 v2.0 PDF** — 21-page production PDF at `output/edition_01_what-is-ai_v2.0.pdf` (0.79 MB). All 10 Pillow-generated diagrams placed with captions. All Inter fonts embedded.
+4. **New visual elements** — Added pull quote style, section divider helper, and section intro style for richer page layout.
+5. **Added glossary terms** — "Model" and "Narrow AI" added to glossary (11 terms total, up from 9).
+6. **Updated EDITION_REGISTRY.md** — Edition 01 output filename and notes updated to reflect v2.0.
+
+**Why:** The v1.0 build used only 2 of 10 available diagrams and covered 5 body sections. The expanded v2.0 integrates all diagram assets and adds sections that better prepare readers for the rest of the series (AI types, history, learning process, myths, multiplier concept, learning path).
+
+**New files created:**
+- `output/edition_01_what-is-ai_v2.0.pdf`
+
+**Files updated:**
+- `scripts/build_pdf_01.py` (expanded build with all 10 diagrams)
+- `EDITION_REGISTRY.md` (Edition 01 updated to v2.0)
+- `CHANGELOG.md` (this entry)
+
+**Decision made by:** Kelvin M
+
+---
+
 ## [2026-03-17] — Stage 6-7: Edition 01 Asset Production + PDF Build
 
 **What changed:**
