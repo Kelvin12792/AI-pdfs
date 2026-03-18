@@ -8,6 +8,21 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 
 ---
 
+## Progress Summary (Updated 2026-03-18)
+
+| Phase | Status | Notes |
+|-------|--------|-------|
+| Phase 0 — Environment Setup | COMPLETE | All dirs, deps, fonts, git |
+| Phase 1 — Content Pipeline | COMPLETE | 67 posts cleaned, verified, mapped across 2 batches |
+| Phase 2 — PDF 01 Draft | IN PROGRESS | Expanded to 15-chapter book. 10/15 chapters written (Ch1-10). Ch9 pivoted from "What AI Gets Right" to prompt engineering per Kelvin. Remaining: Ch11-15 + back matter. |
+| Phase 3 — Asset Production | PARTIALLY COMPLETE | 10 diagrams built for v2.0 PDF. New diagrams needed for expanded book chapters. |
+| Phase 4 — PDF Build | PARTIALLY COMPLETE | v2.0 PDF built (21 pages). Full book PDF pending completion of all 15 chapters. |
+| Phase 5 — Pilot Review | NOT STARTED | Awaiting completed book |
+| Phase 6 — Distribution | NOT STARTED | — |
+| Phase 7 — Series Scaling | NOT STARTED | — |
+
+---
+
 ## Phase 0 — Environment Setup
 **Goal:** Working technical environment, all tools installed, all files in place  
 **Estimated time:** 2–4 hours  
@@ -15,7 +30,7 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 
 ### Tasks
 
-- [ ] **0.1** Create project directory structure exactly as specified in CLAUDE.md
+- [x] **0.1** Create project directory structure exactly as specified in CLAUDE.md
   ```
   kelvin_ai_series/
   ├── source/
@@ -28,25 +43,25 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
   └── scripts/
   ```
 
-- [ ] **0.2** Install Python 3.10+ (verify: `python3 --version`)
+- [x] **0.2** Install Python 3.10+ (verify: `python3 --version`)
 
-- [ ] **0.3** Create and activate Python virtual environment
+- [x] **0.3** Create and activate Python virtual environment
   ```bash
   python3 -m venv venv
   source venv/bin/activate
   ```
 
-- [ ] **0.4** Install all Python dependencies
+- [x] **0.4** Install all Python dependencies
   ```bash
   pip install reportlab pypdf Pillow pyyaml markdown
   ```
 
-- [ ] **0.5** Verify all dependencies installed correctly
+- [x] **0.5** Verify all dependencies installed correctly
   ```bash
   python -c "import reportlab, pypdf, PIL, yaml, markdown; print('All OK')"
   ```
 
-- [ ] **0.6** Download Inter font family from Google Fonts (all 5 weights)
+- [x] **0.6** Download Inter font family from Google Fonts (all 5 weights)
   - Inter-Regular.ttf
   - Inter-Medium.ttf
   - Inter-SemiBold.ttf
@@ -54,22 +69,22 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
   - Inter-Italic.ttf
   - Save all to `assets/fonts/`
 
-- [ ] **0.7** Initialise git repository
+- [x] **0.7** Initialise git repository
   ```bash
   git init
   git add .
   git commit -m "project: initial setup — all canonical docs created"
   ```
 
-- [ ] **0.8** Create GitHub private repository and push
+- [x] **0.8** Create GitHub private repository and push
   ```bash
   git remote add origin https://github.com/[username]/kelvin-ai-series.git
   git push -u origin main
   ```
 
-- [ ] **0.9** Set up Midjourney account (if not already active)
+- [x] **0.9** Set up Midjourney account (if not already active)
 
-- [ ] **0.10** Decide and confirm: series name — choose from proposals before proceeding
+- [x] **0.10** Decide and confirm: series name — choose from proposals before proceeding
 
 **Phase 0 complete when:** All directories exist, all dependencies installed, fonts downloaded, git initialised, series name confirmed
 
@@ -82,9 +97,9 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 
 ### Tasks
 
-- [ ] **1.1** Paste all 60+ raw Twitter posts into `source/raw_tweets_batch01_2026-03.txt`
+- [x] **1.1** Paste all 60+ raw Twitter posts into `source/raw_tweets_batch01_2026-03.txt`
 
-- [ ] **1.2** Write `scripts/clean_tweets.py` — script that:
+- [x] **1.2** Write `scripts/clean_tweets.py` — script that:
   - Strips @usernames
   - Strips #hashtags
   - Strips timestamps and dates
@@ -94,16 +109,16 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
   - Flags items with statistics as [FACT-CHECK]
   - Outputs to `cleaned/cleaned_batch01_2026-03.txt`
 
-- [ ] **1.3** Run `clean_tweets.py` on the raw file. Review output manually.
+- [x] **1.3** Run `clean_tweets.py` on the raw file. Review output manually.
 
-- [ ] **1.4** Manually fact-check every [FACT-CHECK] flagged item:
+- [x] **1.4** Manually fact-check every [FACT-CHECK] flagged item:
   - Verify against reliable source, or
   - Remove the claim if unverifiable
   - Document all verified sources in `cleaned/sources_batch01.md`
 
-- [ ] **1.5** Save verified cleaned file as `cleaned/cleaned_batch01_2026-03_verified.txt`
+- [x] **1.5** Save verified cleaned file as `cleaned/cleaned_batch01_2026-03_verified.txt`
 
-- [ ] **1.6** Read all cleaned content and manually group by topic cluster:
+- [x] **1.6** Read all cleaned content and manually group by topic cluster:
   - AI basics / What is AI
   - Machine Learning
   - LLMs / ChatGPT
@@ -114,28 +129,30 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
   - AI in business
   - Deep learning
 
-- [ ] **1.7** Create `structured/curriculum_map.md` — assign each content item to its target edition number
+- [x] **1.7** Create `structured/curriculum_map.md` — assign each content item to its target edition number
 
-- [ ] **1.8** Confirm Edition 01 (What is AI?) has enough verified content to write a full chapter
+- [x] **1.8** Confirm Edition 01 (What is AI?) has enough verified content to write a full chapter
 
-- [ ] **1.9** Log completion in CHANGELOG.md
+- [x] **1.9** Log completion in CHANGELOG.md
 
 **Phase 1 complete when:** `structured/curriculum_map.md` exists with all 60+ content items assigned to edition numbers
 
 ---
 
 ## Phase 2 — PDF 01 Draft (Pilot Edition)
-**Goal:** Complete draft of Edition 01 — "What is AI?"  
-**Estimated time:** 4–8 hours  
+**Goal:** Complete draft of Edition 01 — "What is AI?"
+**Estimated time:** 4–8 hours
 **Prerequisite for:** Phase 3
+
+> **STATUS UPDATE (2026-03-18):** Edition 01 has expanded from a single-chapter draft to a 15-chapter book (~150 pages). The original draft (2.1-2.5) is complete. The expanded book is being written chapter-by-chapter. 10 of 15 chapters are written (chapter_01.md through chapter_10.md). Chapter 9 was pivoted from "What AI Gets Right" to "How to Talk to AI — The Art of Prompting" per Kelvin's direction. Remaining: Chapters 11-15, back matter, editorial review, and full PDF rebuild.
 
 ### Tasks
 
-- [ ] **2.1** Create directory `structured/edition_01_what-is-ai/`
+- [x] **2.1** Create directory `structured/edition_01_what-is-ai/`
 
-- [ ] **2.2** Develop Kelvin's personal AI analogy — the one real-life comparison that will anchor Edition 01's hook. (Craft together — this is the soul of the first impression)
+- [x] **2.2** Develop Kelvin's personal AI analogy — the one real-life comparison that will anchor Edition 01's hook. (Craft together — this is the soul of the first impression)
 
-- [ ] **2.3** Write Edition 01 draft following BUILD_FLOW.md Stage 4 exactly:
+- [x] **2.3** Write Edition 01 draft following BUILD_FLOW.md Stage 4 exactly:
   - 2.3a — Hook / Aha moment (personal analogy, 150–250 words)
   - 2.3b — Learning objectives (3–5 bullet points)
   - 2.3c — Table of contents
@@ -149,9 +166,9 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
   - 2.3k — CTA block (all 6 CTAs)
   - 2.3l — Next edition teaser (Edition 02: "How AI Thinks")
 
-- [ ] **2.4** Save as `structured/edition_01_what-is-ai/draft.md`
+- [x] **2.4** Save as `structured/edition_01_what-is-ai/draft.md`
 
-- [ ] **2.5** Save answer key as `structured/edition_01_what-is-ai/answer_key.md`
+- [x] **2.5** Save answer key as `structured/edition_01_what-is-ai/answer_key.md`
 
 - [ ] **2.6** Check draft against SERIES_BIBLE.md:
   - No forbidden phrases
@@ -176,22 +193,22 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 
 ### Tasks
 
-- [ ] **3.1** Generate Edition 01 cover art using Midjourney
+- [x] **3.1** Generate Edition 01 cover art using Midjourney
   - Use prompt template from IMAGE_STRATEGY.md
   - Edition 01 prompt: brain/neural nodes, coral and cream palette, no text, no people
   - Upscale to 2480 × 3508px
   - Save as `assets/covers/edition_01_cover.png`
 
-- [ ] **3.2** Write `scripts/build_diagram.py` — reusable Pillow diagram generator
+- [x] **3.2** Write `scripts/build_diagram.py` — reusable Pillow diagram generator
 
-- [ ] **3.3** Build all diagrams specified in `draft_approved.md`:
+- [x] **3.3** Build all diagrams specified in `draft_approved.md`:
   - Identify all `[DIAGRAM: ...]` placeholders
   - Build each diagram using correct diagram type from IMAGE_STRATEGY.md
   - Save each as `assets/diagrams/edition_01_diagram_{N}.png`
 
-- [ ] **3.4** Quality check all assets against IMAGE_STRATEGY.md quality checklist
+- [x] **3.4** Quality check all assets against IMAGE_STRATEGY.md quality checklist
 
-- [ ] **3.5** Log completion in CHANGELOG.md
+- [x] **3.5** Log completion in CHANGELOG.md
 
 **Phase 3 complete when:** All cover and diagram PNGs exist, quality-checked, correctly named
 
@@ -204,7 +221,7 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 
 ### Tasks
 
-- [ ] **4.1** Write `scripts/build_pdf.py`:
+- [x] **4.1** Write `scripts/build_pdf.py`:
   - Reads STYLE_TOKENS.yaml for all design values
   - Assembles all sections in correct page order
   - Applies all callout box, table, heading, footer styles
@@ -212,7 +229,7 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
   - Embeds PDF metadata
   - Exports to `output/`
 
-- [ ] **4.2** Run build script for Edition 01
+- [x] **4.2** Run build script for Edition 01
   - Output: `output/edition_01_what-is-ai_v1.0.pdf`
 
 - [ ] **4.3** QA pass:

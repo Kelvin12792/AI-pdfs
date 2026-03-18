@@ -18,6 +18,64 @@ Every decision, change, and build event must be logged here. No exceptions. Log 
 
 ---
 
+## [2026-03-18] — Stage 4: Edition 01 Chapters 6-10 Written + Chapter 9 Pivot
+
+**What changed:**
+1. **Wrote Chapter 6 — The Three Reasons AI Exploded Now.** Covers the convergence of data (2 ZB in 2010 to 220+ ZB in 2026), computing power (NVIDIA GPU history from 1993 gaming startup through CUDA 2006 to AI supercomputers, AlexNet 2012), and methods (deep learning, Transformer architecture 2017). Full timeline table 1956-2026. Web-researched GPU history and global data statistics. Sources: Posts 11, 16, 52.
+2. **Wrote Chapter 7 — AI Tools You Can Try Today.** Four tool categories (chat, image, writing, productivity). Deep profiles of ChatGPT, Claude, Gemini with 2026 features/pricing. Image tools (DALL-E, Microsoft Designer, Adobe Firefly, Ideogram). AI in everyday software (Google Search, Microsoft 365 Copilot, Apple Intelligence, Gmail). 13-tool comparison table. "Patient teacher" concept. Sources: Posts 24, 2, 1, 50, 12. All tool info web-researched for 2026 accuracy.
+3. **Wrote Chapter 8 — Your First AI Conversation — Step by Step.** 10-step walkthrough from account creation to saving conversations. Search engine vs AI comparison table. Restaurant analogy (Post 5). Quiet room principle (Post 6). Three-part prompt formula intro (Post 50). Five starter prompts. Troubleshooting six bad-answer scenarios. Sources: Posts 24, 12, 5, 6, 4.
+4. **Pivoted Chapter 9 from "What AI Gets Right" to "How to Talk to AI — The Art of Prompting"** per Kelvin's direction. Deep prompt engineering dive: Context/Task/Rules formula (Post 50), seven techniques (role assignment, few-shot prompting, chain-of-thought, output formatting, revision loop, constraints, task decomposition), five before/after prompt transformations, six common mistakes. Sources: Posts 5, 6, 50, 8, 4, 62. Web-researched for 2026 prompt engineering best practices.
+5. **Wrote Chapter 10 — What AI Gets Wrong.** Six limitations with verified evidence: hallucination (five real court cases 2023-2025, Anthropic 2025 circuit research), bias (Amazon hiring, iTutorGroup $365K EEOC settlement, MIT Gender Shades, healthcare disparities), no real understanding (Chinese Room adapted as "Translation Room"), logic/math struggles, no cross-conversation memory, training data cutoff. First Pancake Principle (Post 8). Three-step fact-checking framework. Sources: Posts 4, 11, 27, 8, 68.
+6. **Fixed Chapter 8 teaser** to point to the new Chapter 9 (prompt engineering) instead of the original "What AI Gets Right."
+7. **Updated expanded_outline.md** — All 10 chapters marked [WRITTEN], Chapter 9 entry fully rewritten to reflect the prompt engineering pivot, Chapter 10 entry fully rewritten with verified content summary, chapter status summary table added.
+
+**Why:** Continuing the chapter-by-chapter writing process for Edition 01's expanded 15-chapter book format. Chapter 9 pivot creates a stronger pedagogical arc: tools (Ch7) → first use (Ch8) → mastering prompts (Ch9) → understanding limitations (Ch10). The original Ch9 AI strengths content remains available for later chapters or future editions.
+
+**New files created:**
+- `structured/edition_01_what-is-ai/chapter_06.md`
+- `structured/edition_01_what-is-ai/chapter_07.md`
+- `structured/edition_01_what-is-ai/chapter_08.md`
+- `structured/edition_01_what-is-ai/chapter_09.md`
+- `structured/edition_01_what-is-ai/chapter_10.md`
+
+**Files updated:**
+- `structured/edition_01_what-is-ai/expanded_outline.md` (Ch1-10 marked [WRITTEN], Ch9 + Ch10 entries rewritten, status summary added)
+- `structured/edition_01_what-is-ai/chapter_08.md` (teaser fixed for Ch9 pivot)
+- `CHANGELOG.md` (this entry)
+- `EDITION_REGISTRY.md` (Edition 01 status updated)
+- `IMPLEMENTATION_PLAN.md` (progress updated)
+
+**Decision made by:** Kelvin M
+
+---
+
+## [2026-03-18] — Stage 4: Edition 01 Chapters 1-5 Written + Expanded Outline Created
+
+**What changed:**
+1. **Created expanded_outline.md** — Full 15-chapter book outline for Edition 01 expanding from the original 5-section draft to a ~150-page book. Each chapter mapped to specific source posts with detailed content descriptions, callout box assignments, and diagram placeholders. Front matter (6 pages) and back matter (8 pages) specified.
+2. **Wrote Chapter 1 — You Already Use AI.** Morning routine AI touchpoints, 15+ daily AI examples, adoption statistics (Post 52), "you are absurdly early" reassurance. Sources: Posts 10, 52, 12, 6.
+3. **Wrote Chapter 2 — What AI Actually Means.** One-sentence definition, child learning cats analogy, examples → patterns → predictions framework, three AI task types (recognise, predict, generate), feedback loop (Post 3), what AI is NOT. Sources: Posts 10, 27, 3, 6.
+4. **Wrote Chapter 3 — AI vs. Regular Software.** Calculator vs AI comparison, thermostat vs smart home, 10-dimension comparison table, software spectrum (simple automation → deep learning), 10 paired traditional vs AI tool examples. Sources: Posts 6, 10, 11.
+5. **Wrote Chapter 4 — How AI Learns.** Extended child-learning analogy, three learning stages (training/testing/using), supervised (flashcards), unsupervised (sorting laundry), reinforcement (training a dog), feedback loop detail, training data explanation, "does AI understand?" question. Sources: Posts 3, 6, 11.
+6. **Wrote Chapter 5 — Types of AI.** Narrow/General/Super AI pyramid, current tool placement, AI winter history (two winters with causes and consequences), capability spectrum, managing expectations. Sources: Posts 11, 27.
+
+**Why:** Beginning the chapter-by-chapter writing process for Edition 01's expanded 15-chapter book format. Each chapter written as a standalone unit, reviewed and approved before proceeding to the next.
+
+**New files created:**
+- `structured/edition_01_what-is-ai/expanded_outline.md`
+- `structured/edition_01_what-is-ai/chapter_01.md`
+- `structured/edition_01_what-is-ai/chapter_02.md`
+- `structured/edition_01_what-is-ai/chapter_03.md`
+- `structured/edition_01_what-is-ai/chapter_04.md`
+- `structured/edition_01_what-is-ai/chapter_05.md`
+
+**Files updated:**
+- `CHANGELOG.md` (this entry)
+
+**Decision made by:** Kelvin M
+
+---
+
 ## [2026-03-17] — Stage 7: Edition 01 Expanded Build v2.0
 
 **What changed:**

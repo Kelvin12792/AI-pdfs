@@ -6,6 +6,30 @@
 
 ---
 
+## Chapter Status Summary (Updated 2026-03-18)
+
+| Chapter | Title | Status | File | Approx Lines |
+|---------|-------|--------|------|-------------|
+| 01 | You Already Use AI | [WRITTEN] | chapter_01.md | ~200 |
+| 02 | What AI Actually Means | [WRITTEN] | chapter_02.md | ~260 |
+| 03 | AI vs. Regular Software | [WRITTEN] | chapter_03.md | ~270 |
+| 04 | How AI Learns | [WRITTEN] | chapter_04.md | ~300 |
+| 05 | Types of AI | [WRITTEN] | chapter_05.md | ~350 |
+| 06 | The Three Reasons AI Exploded Now | [WRITTEN] | chapter_06.md | ~226 |
+| 07 | AI Tools You Can Try Today | [WRITTEN] | chapter_07.md | ~291 |
+| 08 | Your First AI Conversation | [WRITTEN] | chapter_08.md | ~352 |
+| 09 | How to Talk to AI — The Art of Prompting | [WRITTEN] | chapter_09.md | ~376 |
+| 10 | What AI Gets Wrong | [WRITTEN] | chapter_10.md | ~313 |
+| 11 | AI Myths vs. Reality | PENDING | — | — |
+| 12 | How AI Fits Into Work and School | PENDING | — | — |
+| 13 | The Beginner's AI Toolkit | PENDING | — | — |
+| 14 | Where AI Is Headed | PENDING | — | — |
+| 15 | Your AI Action Plan | PENDING | — | — |
+
+**Key deviation from original outline:** Chapter 9 was pivoted from "What AI Gets Right" (AI strengths/capabilities) to "How to Talk to AI — The Art of Prompting" (deep dive into prompt engineering) per Kelvin's direction on 2026-03-18. The original Chapter 9 AI strengths content (pattern recognition, speed, consistency, medical/scientific examples, Posts 27/45/24/25) remains available for integration into later chapters or a future edition. This pivot creates a stronger pedagogical arc: Ch7 (tools) → Ch8 (first conversation) → Ch9 (mastering prompts) → Ch10 (understanding limitations).
+
+---
+
 ## Book Structure
 
 ### Front Matter (~6 pages)
@@ -17,7 +41,7 @@
 
 ---
 
-### Chapter 1: You Already Use AI (8-10 pages)
+### Chapter 1: You Already Use AI (8-10 pages) [WRITTEN]
 **Core message:** AI is not futuristic — you are already using it every day without knowing it.
 **Source posts:** 10, 52, 12, 6
 **Content:**
@@ -31,7 +55,7 @@
 - Callout: KEY FACT — Only ~34% of American adults have ever used ChatGPT (Post 52, pending verification)
 - Chapter reflection question
 
-### Chapter 2: What AI Actually Means (8-10 pages)
+### Chapter 2: What AI Actually Means (8-10 pages) [WRITTEN]
 **Core message:** AI is software that learns from examples instead of following fixed rules.
 **Source posts:** 10, 27, 3, 6
 **Content:**
@@ -46,7 +70,7 @@
 - Callout: DID YOU KNOW? — The term AI was coined in 1956
 - Glossary sidebar: Algorithm, Data, Training, Pattern Recognition
 
-### Chapter 3: AI vs. Regular Software — What Makes It Different (8-10 pages)
+### Chapter 3: AI vs. Regular Software — What Makes It Different (8-10 pages) [WRITTEN]
 **Core message:** The fundamental difference is learning vs. following fixed rules.
 **Source posts:** 6, 10, 11
 **Content:**
@@ -60,7 +84,7 @@
 - Diagram: The Software Spectrum (from simple rules to AI)
 - Callout: IN THE REAL WORLD — Email spam filters learn and adapt
 
-### Chapter 4: How AI Learns — The Child Analogy (10-12 pages)
+### Chapter 4: How AI Learns — The Child Analogy (10-12 pages) [WRITTEN]
 **Core message:** AI learns the same way a child learns — through examples, feedback, and repetition.
 **Source posts:** 3, 6, 11
 **Content:**
@@ -77,7 +101,7 @@
 - Diagram: The Feedback Loop
 - Callout: DID YOU KNOW? — AI can process millions of examples per second
 
-### Chapter 5: Types of AI — Narrow, General, and Super (10-12 pages)
+### Chapter 5: Types of AI — Narrow, General, and Super (10-12 pages) [WRITTEN]
 **Core message:** Not all AI is the same — and the AI you use today is the simplest type.
 **Source posts:** 11, 27
 **Content:**
@@ -93,7 +117,7 @@
 - Diagram: The AI Capability Spectrum
 - Callout: WATCH OUT — When headlines say "AI," they almost always mean Narrow AI
 
-### Chapter 6: The Three Reasons AI Exploded Now (8-10 pages)
+### Chapter 6: The Three Reasons AI Exploded Now (8-10 pages) [WRITTEN]
 **Core message:** AI existed for 70 years but three forces converged to make it accessible.
 **Source posts:** 11, 16, 52
 **Content:**
@@ -108,7 +132,7 @@
 - Diagram: The AI Timeline (1956 to present)
 - Callout: KEY FACT — The hardware that powers AI was originally built for video games
 
-### Chapter 7: AI Tools You Can Try Today (10-12 pages)
+### Chapter 7: AI Tools You Can Try Today (10-12 pages) [WRITTEN]
 **Core message:** There are free, accessible AI tools you can use right now — no technical skill needed.
 **Source posts:** 24, 2, 1, 50, 12
 **Content:**
@@ -123,7 +147,7 @@
 - Callout: IN THE REAL WORLD — Major tech companies offer free AI education (Post 2)
 - Callout: DID YOU KNOW? — You can ask AI to explain AI to you like you're 10 years old
 
-### Chapter 8: Your First AI Conversation — Step by Step (10-12 pages)
+### Chapter 8: Your First AI Conversation — Step by Step (10-12 pages) [WRITTEN]
 **Core message:** Here is exactly how to have your first meaningful interaction with AI.
 **Source posts:** 24, 12, 5, 6, 4
 **Content:**
@@ -141,42 +165,49 @@
 - The quiet room analogy — clear input = clear output (Post 6)
 - Callout: KEY FACT — The way you ask matters as much as what you ask
 
-### Chapter 9: What AI Gets Right (8-10 pages)
-**Core message:** AI excels at specific types of tasks — knowing what they are helps you use it well.
-**Source posts:** 27, 45, 24, 25
-**Content:**
-- Pattern recognition at superhuman scale
-- Speed: processing millions of data points in seconds
-- Consistency: AI doesn't get tired, distracted, or emotional
-- Language: understanding and generating text in dozens of languages
-- Memory: recalling every detail of a conversation
-- Real examples of AI doing remarkable things:
-  - Medical image analysis
-  - Language translation
-  - Fraud detection
-  - Scientific research acceleration
-  - Accessibility tools for disabled people
-- The spreadsheet detective (Post 25 analogy)
-- AI in professional contexts: the colleague who read every document (Post 45)
-- The amplifier/megaphone framing (Post 27)
-- Callout: IN THE REAL WORLD — AI-assisted diagnosis catches things human doctors miss
+### Chapter 9: How to Talk to AI — The Art of Prompting (10-12 pages) [WRITTEN]
+**Core message:** The skill of communicating effectively with AI — prompt engineering — is a communication skill, not a technical one. Mastering a simple formula and a handful of techniques transforms AI from a novelty into a power tool.
+**Source posts:** 5, 6, 50, 8, 4, 62
+**Status:** Written and approved. Pivoted from original "What AI Gets Right" outline per Kelvin's direction to go deeper on prompt engineering. Original Ch9 AI strengths content (Posts 27, 45, 24, 25) available for integration into later chapters or a future edition.
+**Content as written:**
+- The prompt formula deep dive: Context + Task + Rules (Post 50 three-part formula)
+- Weak vs. strong prompt comparisons (cover letter example, freelancer email example)
+- Seven techniques:
+  1. Role assignment deep dive — six specific roles for different situations (Post 5)
+  2. Few-shot prompting (show, don't tell) — product description example teaching style through demonstration
+  3. Chain-of-thought prompting — step-by-step reasoning for complex questions (buy vs. rent home example)
+  4. Output formatting — tables, lists, bullet points, FAQs, word counts
+  5. The revision loop — deliberate draft/critique/revise three-round cycle (Post 8 iterative improvement)
+  6. Constraints and boundaries — telling AI what NOT to do (LinkedIn post example eliminating cliches)
+  7. Breaking complex tasks into sequential steps (dog grooming business plan across five prompts)
+- Five before/after prompt transformations (photography, difficult message, decision-making, getting feedback, planning)
+- Six common mistakes with fixes (cramming, vagueness, missing context, giving up, copying "magic prompts," over-complicating)
+- The prompting mindset: treat AI as a capable collaborator who has never met you before
+- Callout: KEY FACT — Every effective prompt has three components: context, task, and rules
+- Callout: DID YOU KNOW? — You can ask AI to critique its own work and then rewrite based on its own feedback
+- Callout: IN THE REAL WORLD — The difference between beginner and expert prompts is specificity, not cleverness
+- Callout: WATCH OUT — "Magic prompts" from the internet rarely match your specific situation
 
-### Chapter 10: What AI Gets Wrong (8-10 pages)
-**Core message:** AI has real limitations — understanding them makes you a smarter user.
-**Source posts:** 4, 11, 27, 8
-**Content:**
-- Hallucination: AI confidently makes things up (Post 4 — directions analogy)
-- Bias: AI learns from biased data and reproduces those biases
-- Lack of real understanding: pattern matching vs. comprehension
-- No common sense: AI can write poetry but can't tell you it's raining outside
-- The "confident but wrong" problem
-- Why AI struggles with math, logic puzzles, and recent events
-- The first pancake analogy — first answers aren't always best (Post 8)
-- How to verify AI's claims (fact-checking framework)
-- When NOT to trust AI (medical decisions, legal advice, financial planning without verification)
-- The error message reframe: errors are clues, not failures (Post 4)
-- Callout: WATCH OUT — AI can sound perfectly confident while being completely wrong
-- Callout: KEY FACT — Always verify AI's claims on important topics
+### Chapter 10: What AI Gets Wrong (10-12 pages) [WRITTEN]
+**Core message:** AI has real limitations — understanding them makes you a smarter, safer, more effective user.
+**Source posts:** 4, 11, 27, 8, 68, 63
+**Status:** Written and approved. Deep research integration with verified 2025-2026 real-world cases.
+**Content as written:**
+- Six limitations, each with source post integration + verified evidence:
+  1. Hallucination — taxi driver/directions analogy (Post 4), "confidently fabricate" (Post 11). Five verified cases: NY lawyers fined $5K (2023), MyPillow attorneys sanctioned (2025), CA appellate 21/23 fabricated citations + $10K fine (2025), Deloitte hallucinated Australian govt report ($440K), Deloitte Canadian govt report. Rate: 2-3 cases/day by mid-2025. Anthropic 2025 internal circuit research. 60%+ of AI citations fabricated per study.
+  2. Bias — Amazon hiring tool penalising "women's" resumes, iTutorGroup age discrimination ($365K EEOC settlement), MIT Gender Shades facial recognition, healthcare skin cancer diagnostic failures on dark skin, 2025-2026 resume screening bias. Why bias is structurally hard to fix.
+  3. No real understanding — Translation Room (Chinese Room, Searle 1980) adapted for beginners. No common sense, no current-world knowledge, no lived experience.
+  4. Logic/math/reasoning struggles — pattern prediction vs. structured logic, counting errors, improving trajectory.
+  5. No memory across conversations — each conversation starts fresh.
+  6. Training data cutoff — knowledge endpoint, hallucination risk for post-cutoff events.
+- First Pancake Principle (Post 8): first response = first draft, iterate
+- Error Reframe (Post 4): mistakes are clues about communication, not tool failures
+- Three-step fact-checking framework: assess stakes, check specifics, use AI to check itself
+- Five domains requiring mandatory verification: medical, legal, financial, academic citations, decisions affecting others
+- Callout: KEY FACT — Hundreds of documented hallucination cases in legal proceedings, 60%+ AI citations fabricated
+- Callout: DID YOU KNOW? — Amazon abandoned its AI hiring tool after it taught itself gender bias
+- Callout: IN THE REAL WORLD — Court found 21/23 case quotations in a lawyer's brief were AI-fabricated
+- Callout: WATCH OUT — AI makes things up with exactly the same confidence it uses for accurate information
 
 ### Chapter 11: AI Myths vs. Reality (8-10 pages)
 **Core message:** Separate what AI actually is from what movies and headlines tell you.
