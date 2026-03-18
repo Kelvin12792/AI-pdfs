@@ -349,4 +349,4 @@ Try it. One task. Tomorrow. That is how the habit starts.
 
 ---
 
-*In Chapter 9, we look at what AI does best. You have now used it. Next, you will learn where it truly shines: the tasks where AI is not just useful but genuinely remarkable. From medical diagnosis to scientific research to everyday productivity, Chapter 9 maps the landscape of AI's greatest strengths.*
+*In Chapter 9, we go deeper on the skill that separates people who get mediocre results from AI from those who get remarkable ones: the art of prompting. You will learn a simple formula that works every time, seven specific techniques for better results, and the mindset that turns every AI interaction into a productive conversation.*
