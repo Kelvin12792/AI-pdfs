@@ -14,7 +14,7 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 |-------|--------|-------|
 | Phase 0 — Environment Setup | COMPLETE | All dirs, deps, fonts, git |
 | Phase 1 — Content Pipeline | COMPLETE | 67 posts cleaned, verified, mapped across 2 batches |
-| Phase 2 — PDF 01 Draft | IN PROGRESS | Expanded to 15-chapter book. 10/15 chapters written (Ch1-10). Ch9 pivoted from "What AI Gets Right" to prompt engineering per Kelvin. Remaining: Ch11-15 + back matter. |
+| Phase 2 — PDF 01 Draft | IN PROGRESS | Expanded to 15-chapter book. ALL 15/15 chapters written (Ch1-15 complete 2026-03-21). Ch9 pivoted from "What AI Gets Right" to prompt engineering per Kelvin. Remaining: editorial review, back matter. |
 | Phase 3 — Asset Production | PARTIALLY COMPLETE | 10 diagrams built for v2.0 PDF. New diagrams needed for expanded book chapters. |
 | Phase 4 — PDF Build | PARTIALLY COMPLETE | v2.0 PDF built (21 pages). Full book PDF pending completion of all 15 chapters. |
 | Phase 5 — Pilot Review | NOT STARTED | Awaiting completed book |
@@ -144,7 +144,7 @@ This plan is designed to get Kelvin M from zero to a published first edition as 
 **Estimated time:** 4–8 hours
 **Prerequisite for:** Phase 3
 
-> **STATUS UPDATE (2026-03-18):** Edition 01 has expanded from a single-chapter draft to a 15-chapter book (~150 pages). The original draft (2.1-2.5) is complete. The expanded book is being written chapter-by-chapter. 10 of 15 chapters are written (chapter_01.md through chapter_10.md). Chapter 9 was pivoted from "What AI Gets Right" to "How to Talk to AI — The Art of Prompting" per Kelvin's direction. Remaining: Chapters 11-15, back matter, editorial review, and full PDF rebuild.
+> **STATUS UPDATE (2026-03-21):** Edition 01 has expanded from a single-chapter draft to a 15-chapter book. The original draft (2.1-2.5) is complete. ALL 15 CHAPTERS ARE NOW WRITTEN (chapter_01.md through chapter_15.md). Chapter 9 was pivoted from "What AI Gets Right" to "How to Talk to AI — The Art of Prompting" per Kelvin's direction. Remaining: editorial review (2.6-2.7), back matter, asset production for new chapters, and full book PDF rebuild.
 
 ### Tasks
 

@@ -18,6 +18,20 @@ Every decision, change, and build event must be logged here. No exceptions. Log 
 
 ---
 
+## [2026-03-21] — Stage 4: Edition 01 Chapters 13-15 Written — Book Complete
+
+**What changed:**
+1. **Wrote Chapter 13 — Your AI Starter Toolkit.** 30-day learning path (week-by-week from first conversation to permanent habit), five habits of effective AI users, six common beginner mistakes, personal AI learning journal framework with step-by-step setup and example table. Sources: Posts 24 (beginner advice, 5 tips), 11 (30-day roadmap concepts), 43 (performative productivity/mistakes), 60 (productivity habits), 10 (don't keep up with everything), 12 (using vs reading about AI).
+2. **Wrote Chapter 14 — The Ethics of AI: Bias, Privacy, and Your Responsibility.** Megaphone analogy (Post 27) as central frame. AI bias with three verified case studies (Amazon recruiting 2018, US hospital algorithm racial disparities, criminal justice risk assessment tools). Privacy checklist for AI users. Deepfakes and misinformation (2024 NH robocall case). Fairness and access gap. Five-question ethical responsibility framework. Sources: Post 27 (ethical judgment, megaphone/multiplier concept). Primarily external verified knowledge — source posts were thin on ethics content.
+3. **Wrote Chapter 15 — Where You Go from Here.** Closing chapter bringing all 14 prior chapters together. Three core principles (AI amplifies you, tools change but skills don't, start before you're ready). Recap comparison table (what most people believe vs what the reader now knows). Five concrete next steps. Final word on human relevance in the age of AI.
+4. **All 15 chapters of Edition 01 are now complete.** Book is ready for editorial review, asset production, and PDF build.
+
+**Why:** Completing the full 15-chapter book as planned. Chapters 14-15 were written with minimal source post material (ethics content was thin across all 68 posts) and relied primarily on verified external knowledge anchored by Post 27's megaphone/multiplier framing.
+
+**Decision made by:** Kelvin M
+
+---
+
 ## [2026-03-18] — Stage 4: Edition 01 Chapters 6-10 Written + Chapter 9 Pivot
 
 **What changed:**

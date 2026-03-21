@@ -34,7 +34,7 @@ Every edition must be registered here the moment it is created. Update the statu
 
 | # | Slug | Title | Topic Cluster | Status | Draft Date | Publish Date | Output Filename | Notes |
 |---|------|-------|---------------|--------|------------|--------------|-----------------|-------|
-| 01 | what-is-ai | What is AI? | Foundational | [BUILT] | 2026-03-17 | — | `edition_01_what-is-ai_v2.0.pdf` | v2.0 PDF: 21 pages, 0.79MB, 10 diagrams, 11 sections. Expanded book: 15 chapters, 10/15 written (Ch1-10 complete as of 2026-03-18). Ch9 pivoted from "What AI Gets Right" to "How to Talk to AI — The Art of Prompting" per Kelvin direction. |
+| 01 | what-is-ai | What is AI? | Foundational | [BUILT] | 2026-03-17 | — | `edition_01_what-is-ai_v2.0.pdf` | v2.0 PDF: 21 pages, 0.79MB, 10 diagrams, 11 sections. Expanded book: 15 chapters, ALL 15 WRITTEN (Ch1-15 complete as of 2026-03-21). Ch9 pivoted from "What AI Gets Right" to "How to Talk to AI — The Art of Prompting" per Kelvin direction. Pending: editorial review, new diagrams for expanded chapters, full book PDF rebuild. |
 | 02 | how-ai-thinks | How AI Thinks | Foundational | [PLANNED] | — | — | `edition_02_how-ai-thinks_v1.0.pdf` | — |
 | 03 | history-of-ai | A Brief History of AI | Foundational | [PLANNED] | — | — | `edition_03_history-of-ai_v1.0.pdf` | — |
 | 04 | types-of-ai | Types of AI | Foundational | [PLANNED] | — | — | `edition_04_types-of-ai_v1.0.pdf` | — |
@@ -76,3 +76,4 @@ When a published edition is updated, log it here.
 |-----------|---------|------|----------------|
 | 01 | v2.0 | 2026-03-17 | Expanded PDF: 21 pages, 0.79MB, all 10 diagrams, 11 content sections |
 | 01 | v3.0-draft | 2026-03-18 | Expanded book format: 15 chapters, 10/15 written (Ch1-10). Ch9 pivoted to prompt engineering. ~3,000 lines of content across 10 chapter files. Pending: Ch11-15, back matter, PDF rebuild. |
+| 01 | v3.1-draft | 2026-03-21 | All 15 chapters complete (Ch11-15 written). Full book draft finished. ~4,500+ lines across 15 chapter files. Pending: editorial review, asset production for new chapters, full book PDF rebuild. |
