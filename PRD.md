@@ -1,7 +1,8 @@
 # PRD.md — Product Requirements Document
 
 ## Product Name
-To be confirmed — series name proposals pending (empowering, clarity, progress, trust, accessibility)
+**The AI Basics Nobody Made Clear**
+Subtitle: A Beginner's Guide to AI
 
 ## Author
 Kelvin M — AI Educator & Researcher

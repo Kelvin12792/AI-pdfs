@@ -18,6 +18,23 @@ Every decision, change, and build event must be logged here. No exceptions. Log 
 
 ---
 
+## [2026-03-21] — Book Naming and Cover Design Decisions Confirmed
+
+**What changed:**
+1. **Book title confirmed:** "The AI Basics Nobody Made Clear" with subtitle "A Beginner's Guide to AI."
+2. **Cover layout confirmed:** Keeping existing 60/40 structure (60% abstract illustration, 40% dark text band). Cover text elements updated from series format (series name + edition title + tagline) to book format (title + subtitle + author).
+3. **Cover image style confirmed:** Abstract conceptual illustration, coral and cream palette, flat minimal design, no people, no text in image.
+4. **Updated PRD.md** with confirmed product name (was "To be confirmed").
+5. **Updated DESIGN_GUIDELINES.md** cover section with new text elements.
+6. **Updated STYLE_TOKENS.yaml** cover section with title, subtitle, and author text values.
+7. **Created assets/covers/COVER_BRIEF.md** with four Midjourney prompt options, two DALL-E 3 fallback prompts, post-generation checklist, and recommended approach.
+
+**Why:** The product has evolved from a series of standalone PDFs to a 15-chapter book. The naming and cover design needed to reflect this shift. Title chosen by Kelvin M for its directness and alignment with the reader's frustration ("nobody made this clear before").
+
+**Decision made by:** Kelvin M
+
+---
+
 ## [2026-03-21] — Stage 4: Edition 01 Chapters 13-15 Written — Book Complete
 
 **What changed:**
