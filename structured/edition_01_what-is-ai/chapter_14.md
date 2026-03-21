@@ -1,4 +1,4 @@
-# Chapter 14: The Ethics of AI — Bias, Privacy, and Your Responsibility
+# Chapter 14: The Ethics of AI: Bias, Privacy, and Your Responsibility
 
 ---
 
@@ -6,11 +6,11 @@
 
 A megaphone does not care what you shout into it. It amplifies your voice whether you are warning people about a fire or spreading a rumour that is not true. It makes quiet things loud. It makes small things big. It does not ask whether what you are saying is helpful or harmful. That is not the megaphone's job. That is yours.
 
-AI is a megaphone for human capability. It amplifies what you bring to it. If you bring clear thinking, good questions, and careful judgment, AI makes you faster and more effective. If you bring carelessness, unexamined assumptions, or bad intentions, AI amplifies those too — at a speed and scale that no individual could achieve alone.
+AI is a megaphone for human capability. It amplifies what you bring to it. If you bring clear thinking, good questions, and careful judgment, AI makes you faster and more effective. If you bring carelessness, unexamined assumptions, or bad intentions, AI amplifies those too, at a speed and scale that no individual could achieve alone.
 
 For thirteen chapters, you have been learning how to use this megaphone. You know what it can do. You know how it works. You know where it fails. Now comes the question that separates a skilled user from a responsible one: what should you do with this power, and what should you refuse to do?
 
-This is not philosophy for its own sake. Every time you paste someone's writing into an AI tool, you are making an ethical choice. Every time you share AI-generated content without saying it was AI-generated, you are making an ethical choice. Every time you trust an AI recommendation about a person — their creditworthiness, their job application, their medical risk — without questioning how that recommendation was made, you are making an ethical choice.
+This is not philosophy for its own sake. Every time you paste someone's writing into an AI tool, you are making an ethical choice. Every time you share AI-generated content without saying it was AI-generated, you are making an ethical choice. Every time you trust an AI recommendation about a person, including their creditworthiness, their job application, and their medical risk, without questioning how that recommendation was made, you are making an ethical choice.
 
 You do not need to be a philosopher to care about AI ethics. You need to be someone who uses AI. And after thirteen chapters, that is exactly what you are.
 
@@ -20,9 +20,9 @@ You do not need to be a philosopher to care about AI ethics. You need to be some
 
 AI learns from data. You know this from Chapter 4. But here is the part that makes ethicists, engineers, and everyday users uncomfortable: the data AI learns from is not neutral. It is a record of human behaviour, human decisions, and human history. And human history is full of bias.
 
-When AI is trained on hiring data from companies that historically favoured men over women for technical roles, the AI learns that pattern. It does not learn it because it is sexist. It learns it because the pattern is in the data, and pattern recognition is what AI does. Amazon discovered this in 2018 when an internal AI recruiting tool systematically downgraded résumés that contained the word "women's" — as in "women's chess club captain" or "women's college." The AI had learned from ten years of hiring data that reflected existing gender imbalances in the tech industry. Amazon scrapped the tool.
+When AI is trained on hiring data from companies that historically favoured men over women for technical roles, the AI learns that pattern. It does not learn it because it is sexist. It learns it because the pattern is in the data, and pattern recognition is what AI does. Amazon discovered this in 2018 when an internal AI recruiting tool systematically downgraded résumés that contained the word "women's," such as "women's chess club captain" or "women's college." The AI had learned from ten years of hiring data that reflected existing gender imbalances in the tech industry. Amazon scrapped the tool.
 
-When AI is trained on medical data collected primarily from one demographic group, it performs better for that group and worse for everyone else. A widely used algorithm in American hospitals was found to systematically underestimate the health needs of Black patients compared to white patients with the same conditions. The algorithm was not designed to discriminate. It used healthcare spending as a proxy for health needs, and because Black patients historically had less access to healthcare, they spent less — so the AI concluded they were healthier. They were not.
+When AI is trained on medical data collected primarily from one demographic group, it performs better for that group and worse for everyone else. A widely used algorithm in American hospitals was found to systematically underestimate the health needs of Black patients compared to white patients with the same conditions. The algorithm was not designed to discriminate. It used healthcare spending as a proxy for health needs, and because Black patients historically had less access to healthcare, they spent less, so the AI concluded they were healthier. They were not.
 
 When AI is trained on criminal justice data from systems with documented racial disparities, it reproduces those disparities. A risk assessment tool used across American courtrooms was found to incorrectly flag Black defendants as likely to reoffend at nearly twice the rate it incorrectly flagged white defendants. Judges used these scores when making bail and sentencing decisions.
 
@@ -32,7 +32,7 @@ These are not edge cases. They are the predictable outcome of training AI on dat
 
 The challenge is not that engineers want biased AI. Most actively try to prevent it. The challenge is structural.
 
-First, bias can be invisible in the data. A dataset might not contain any variable labelled "race" or "gender" and still produce biased outcomes, because other variables — postcode, name, school attended, spending patterns — correlate with race and gender. The AI finds the pattern even when the label is removed.
+First, bias can be invisible in the data. A dataset might not contain any variable labelled "race" or "gender" and still produce biased outcomes, because other variables like postcode, name, school attended, and spending patterns correlate with race and gender. The AI finds the pattern even when the label is removed.
 
 Second, "fair" is harder to define than it sounds. Should an AI loan system approve the same percentage of applicants from every demographic group? Or should it approve everyone above the same credit threshold, even if that produces unequal percentages? These two definitions of fairness can contradict each other mathematically, and choosing between them is a human judgment call, not a technical one.
 
@@ -51,15 +51,15 @@ Third, fixing bias in one place can create it in another. Adjusting an AI system
 
 ## Privacy: What Happens to What You Share
 
-Every time you type something into an AI tool, you are sending information to a server owned by a company. What happens to that information depends on the tool, the company, and the settings you chose — but most users never check.
+Every time you type something into an AI tool, you are sending information to a server owned by a company. What happens to that information depends on the tool, the company, and the settings you chose, but most users never check.
 
 Here are the questions every AI user should ask.
 
 **Is my conversation used to train future AI models?** Many AI tools use your conversations to improve their systems unless you specifically opt out. This means the question you asked about your medical symptoms, the work document you pasted for editing, or the personal journal entry you asked AI to help you revise could become part of the data used to train the next version of the model. Most major AI tools now offer settings to disable training on your data, but the default is often opt-in, not opt-out.
 
-**Who can see my conversations?** AI companies employ human reviewers who read conversations to check quality, flag safety issues, and improve the system. Your conversation is typically not linked to your name, but it is not truly anonymous either — if you included personal details in your prompt, those details are in the conversation log.
+**Who can see my conversations?** AI companies employ human reviewers who read conversations to check quality, flag safety issues, and improve the system. Your conversation is typically not linked to your name, but it is not truly anonymous either. If you included personal details in your prompt, those details are in the conversation log.
 
-**What happens if the company is breached?** AI companies store enormous volumes of conversations. A data breach at an AI company could expose millions of private conversations, business documents, and personal information. In 2023, a bug in ChatGPT briefly exposed some users' chat histories — including conversation titles — to other users. The exposure was limited and quickly fixed, but it demonstrated that the risk is real, not theoretical.
+**What happens if the company is breached?** AI companies store enormous volumes of conversations. A data breach at an AI company could expose millions of private conversations, business documents, and personal information. In 2023, a bug in ChatGPT briefly exposed some users' chat histories, including conversation titles, to other users. The exposure was limited and quickly fixed, but it demonstrated that the risk is real, not theoretical.
 
 **What about the data I paste in?** When you paste a work document, a student essay, or a client email into an AI tool, you may be sharing information you do not have permission to share. Many organisations now have explicit policies about what can and cannot be entered into AI tools. If you work with confidential, proprietary, or personally identifiable information, check your organisation's AI policy before pasting anything.
 
@@ -67,7 +67,7 @@ Here are the questions every AI user should ask.
 
 1. **Check your settings.** Look for a "data controls" or "privacy" section in your AI tool. Disable training on your conversations if the option exists.
 2. **Read the terms.** Specifically look for how your data is stored, who can access it, and whether it is used for training.
-3. **Never paste sensitive data** — passwords, financial records, medical records, client information — unless you are using an enterprise version with explicit data protection guarantees.
+3. **Never paste sensitive data** such as passwords, financial records, medical records, or client information unless you are using an enterprise version with explicit data protection guarantees.
 4. **Assume your conversation is not private.** Treat AI conversations with the same caution you would treat an email: do not write anything you would not want someone else to read.
 
 > **WATCH OUT**
@@ -96,7 +96,7 @@ Second, you have a responsibility as an AI content creator. If you use AI to gen
 
 ## Fairness and Access: Who Benefits and Who Gets Left Behind
 
-AI is not equally available to everyone. The tools are often free to start, but the most powerful features typically require paid subscriptions. The best AI tools are built primarily in English, which creates a significant advantage for English speakers. The infrastructure required to run AI — powerful servers, fast internet, reliable electricity — is concentrated in wealthy countries.
+AI is not equally available to everyone. The tools are often free to start, but the most powerful features typically require paid subscriptions. The best AI tools are built primarily in English, which creates a significant advantage for English speakers. The infrastructure required to run AI, including powerful servers, fast internet, and reliable electricity, is concentrated in wealthy countries.
 
 This creates a compounding gap. People with early access to AI gain skills, productivity, and economic advantages. People without access fall further behind. And because AI is accelerating the pace of change in education and the workforce, the gap widens faster than previous technology gaps did.
 
@@ -111,21 +111,21 @@ Second, advocate for access. If your workplace, school, or community is making d
 Third, be aware of what AI does not see. If AI was trained primarily on data from one culture, one language, or one demographic, it will work best for that group and less well for others. When you use AI to make decisions that affect other people, ask yourself: does this tool work as well for them as it does for me?
 
 > **IN THE REAL WORLD**
-> The World Economic Forum reports that sixty-three percent of employers globally cite the skills gap as the single biggest barrier to business transformation. The gap is widest in regions with the least access to AI tools and training — the places that need the benefits of AI the most.
+> The World Economic Forum reports that sixty-three percent of employers globally cite the skills gap as the single biggest barrier to business transformation. The gap is widest in regions with the least access to AI tools and training, which are the places that need the benefits of AI the most.
 
 ---
 
 ## Your Responsibility as an AI User
 
-Ethics is not a chapter you read and forget. It is a lens you apply every time you use AI. Here is a practical framework — five questions to ask yourself regularly.
+Ethics is not a chapter you read and forget. It is a lens you apply every time you use AI. Here is a practical framework: five questions to ask yourself regularly.
 
 **1. Did I verify this?** Before sharing, publishing, or acting on AI-generated information, did you check whether it is accurate? AI confidence is not the same as AI accuracy. You learned this in Chapter 10.
 
-**2. Am I being transparent?** If you used AI to create something — a report, an email, an image, an essay — are you honest about it when honesty is expected? Transparency does not mean apologising for using AI. It means not pretending you did not.
+**2. Am I being transparent?** If you used AI to create something, whether a report, an email, an image, or an essay, are you honest about it when honesty is expected? Transparency does not mean apologising for using AI. It means not pretending you did not.
 
 **3. Whose data am I using?** When you paste someone else's writing, work, or personal information into an AI tool, do you have permission? Would they be comfortable knowing their data was processed by an AI system?
 
-**4. Who is affected by this decision?** If you are using AI to make a decision that affects other people — hiring, grading, recommending, evaluating — have you considered whether the AI might be biased against certain groups? Have you applied your own judgment alongside the AI's recommendation?
+**4. Who is affected by this decision?** If you are using AI to make a decision that affects other people, such as hiring, grading, recommending, or evaluating, have you considered whether the AI might be biased against certain groups? Have you applied your own judgment alongside the AI's recommendation?
 
 **5. Am I amplifying something harmful?** Remember the megaphone. AI amplifies what you bring to it. If you are using AI to generate misleading content, to manipulate people, or to scale dishonest practices, you are responsible for the amplification, not the tool.
 
@@ -144,10 +144,10 @@ Ethics is not a chapter you read and forget. It is a lens you apply every time y
 
 ## Key Takeaways
 
-- AI is a megaphone — it amplifies your intentions, your biases, and your judgment, not just your productivity.
+- AI is a megaphone. It amplifies your intentions, your biases, and your judgment, not just your productivity.
 - Bias in AI is inherited from biased data, and fixing it requires human value judgments, not just technical adjustments.
-- Your AI conversations are not private by default — check your settings, read the terms, and never paste sensitive data carelessly.
-- Deepfakes are cheap to create and hard to detect — verify before you share, and label what you create.
+- Your AI conversations are not private by default. Check your settings, read the terms, and never paste sensitive data carelessly.
+- Deepfakes are cheap to create and hard to detect. Verify before you share, and label what you create.
 - Ethical AI use comes down to five questions you can ask yourself every time you open an AI tool.
 
 ---
@@ -156,7 +156,7 @@ Ethics is not a chapter you read and forget. It is a lens you apply every time y
 
 **AI Bias:** Systematic errors in AI output that reflect historical inequalities, demographic imbalances, or flawed assumptions in the training data. Bias can produce unfair outcomes even when no one intended it.
 
-**Deepfake:** AI-generated or AI-manipulated media — images, audio, or video — designed to convincingly depict events that never happened or words that were never spoken.
+**Deepfake:** AI-generated or AI-manipulated media, including images, audio, or video, designed to convincingly depict events that never happened or words that were never spoken.
 
 **Data Privacy:** The right of individuals to control how their personal information is collected, stored, used, and shared, including by AI systems that process their data.
 
@@ -198,7 +198,7 @@ D) Share it quickly before it becomes outdated
 
 **6. AI-generated or AI-manipulated media designed to convincingly depict events that never happened are called ______.**
 
-**7. AI does not create bias — it ______ bias from the data it is trained on and applies it at scale.**
+**7. AI does not create bias. It ______ bias from the data it is trained on and applies it at scale.**
 
 **8. Explain in one to two sentences why "fair" is difficult to define when designing AI systems.**
 
@@ -210,10 +210,10 @@ D) Share it quickly before it becomes outdated
 
 ## Reflection
 
-What assumption about AI ethics did this chapter challenge for you? Before reading this, did you think of bias, privacy, and fairness as problems for engineers and policymakers to solve — or as something that affects you personally every time you use an AI tool?
+What assumption about AI ethics did this chapter challenge for you? Before reading this, did you think of bias, privacy, and fairness as problems for engineers and policymakers to solve, or as something that affects you personally every time you use an AI tool?
 
 Consider the five responsibility questions from this chapter. Which one do you think you are most likely to forget in your daily AI use? Why? What would help you remember it?
 
 ---
 
-*In Chapter 15 — the final chapter — we bring everything together. Fourteen chapters of knowledge, tools, habits, and ethical awareness, all distilled into a clear picture of where you stand and where you go from here. You started this book wondering whether AI was too complicated to understand. You are about to finish it knowing that it is not. The only question left is: what will you build with what you know?*
+*In Chapter 15, the final chapter, we bring everything together. Fourteen chapters of knowledge, tools, habits, and ethical awareness, all distilled into a clear picture of where you stand and where you go from here. You started this book wondering whether AI was too complicated to understand. You are about to finish it knowing that it is not. The only question left is: what will you build with what you know?*
