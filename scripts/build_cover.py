@@ -1,259 +1,307 @@
 """
-Build cover image for: The AI Basics Nobody Made Clear
-Layout: 60% illustration (top) / 40% dark text band (bottom)
-Concept: A glowing circular lens/portal at center radiating light outward.
-         Scattered symbols (?, !, 0, 1) float in the outer darkness/haze,
-         but dissolve into clarity near the bright center.
-         Invokes curiosity: "What's at the center? What will I discover?"
-Palette: Anthropic brand - coral, cream, dark
+Build cover: The AI Basics Nobody Made Clear
+Full-bleed bright futuristic AI scene — text merged into illustration.
 """
 
 import random
 import math
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-# === DIMENSIONS ===
 WIDTH = 2480
 HEIGHT = 3508
 DPI = 300
 
-# === COLORS ===
+# === PALETTE ===
 CORAL = (204, 120, 92)
-CORAL_DARK = (158, 78, 46)
-CORAL_LIGHT = (242, 212, 200)
-CORAL_GLOW = (230, 160, 130)
-CREAM_BG = (249, 246, 243)
+CORAL_BRIGHT = (240, 155, 120)
+CORAL_HOT = (255, 180, 140)
+CORAL_PALE = (255, 225, 208)
 WHITE = (255, 255, 255)
+CREAM = (252, 248, 244)
 DARK = (26, 26, 26)
-DARK_MID = (40, 36, 34)
-TEXT_MUTED = (136, 136, 136)
-TEXT_INVERSE = (255, 255, 255)
+TEAL = (100, 220, 215)
+TEAL_BRIGHT = (160, 245, 240)
 
-# === LAYOUT ===
-IMAGE_ZONE_HEIGHT = int(HEIGHT * 0.60)
-TEXT_ZONE_HEIGHT = HEIGHT - IMAGE_ZONE_HEIGHT
-PADDING = 66
-
-# === FONTS ===
 FONT_DIR = "/home/user/AI-pdfs/assets/fonts"
-font_bold = ImageFont.truetype(f"{FONT_DIR}/Inter-Bold.ttf", 144)
-font_regular = ImageFont.truetype(f"{FONT_DIR}/Inter-Regular.ttf", 56)
-font_medium = ImageFont.truetype(f"{FONT_DIR}/Inter-Medium.ttf", 48)
-font_symbol_large = ImageFont.truetype(f"{FONT_DIR}/Inter-Bold.ttf", 96)
-font_symbol_med = ImageFont.truetype(f"{FONT_DIR}/Inter-Bold.ttf", 64)
-font_symbol_small = ImageFont.truetype(f"{FONT_DIR}/Inter-Medium.ttf", 40)
+font_title = ImageFont.truetype(f"{FONT_DIR}/Inter-Bold.ttf", 165)
+font_subtitle = ImageFont.truetype(f"{FONT_DIR}/Inter-Medium.ttf", 62)
+font_author = ImageFont.truetype(f"{FONT_DIR}/Inter-Medium.ttf", 44)
+font_hud = ImageFont.truetype(f"{FONT_DIR}/Inter-Regular.ttf", 28)
+font_data = ImageFont.truetype(f"{FONT_DIR}/Inter-Regular.ttf", 24)
 
-random.seed(77)
+random.seed(88)
 
 # ============================================================
-# TOP 60%: CURIOSITY PORTAL — dark background with glowing center
+# BACKGROUND — warm gradient, bright center
 # ============================================================
-
-img = Image.new("RGB", (WIDTH, HEIGHT), DARK)
+img = Image.new("RGB", (WIDTH, HEIGHT), (55, 40, 36))
 draw = ImageDraw.Draw(img)
 
-cx = WIDTH // 2
-cy = IMAGE_ZONE_HEIGHT // 2
+core_x, core_y = WIDTH // 2, int(HEIGHT * 0.36)
 
-# --- STEP 1: Dark-to-warm radial gradient background for illustration zone ---
-max_radius = int(math.sqrt(cx**2 + cy**2))
-for r in range(max_radius, 0, -1):
-    t = r / max_radius  # 1 at edge, 0 at center
-    # Edge: dark charcoal. Center: warm cream/coral glow
-    bg_r = int(DARK_MID[0] * t + CREAM_BG[0] * (1 - t))
-    bg_g = int(DARK_MID[1] * t + CREAM_BG[1] * (1 - t))
-    bg_b = int(DARK_MID[2] * t + CREAM_BG[2] * (1 - t))
-    draw.ellipse(
-        [cx - r, cy - r, cx + r, cy + r],
-        fill=(bg_r, bg_g, bg_b),
-    )
+# Warm vertical gradient
+for y in range(HEIGHT):
+    t = y / HEIGHT
+    # Brighter in the upper-middle portion
+    brightness = math.exp(-((t - 0.36) ** 2) / 0.12)
+    r = int(55 + 110 * brightness)
+    g = int(40 + 70 * brightness)
+    b = int(36 + 55 * brightness)
+    draw.line([(0, y), (WIDTH, y)], fill=(min(255, r), min(255, g), min(255, b)))
 
-# --- STEP 2: Radiating lines from center (light rays) ---
-num_rays = 48
-for i in range(num_rays):
-    angle = (2 * math.pi * i) / num_rays + random.uniform(-0.02, 0.02)
-    ray_length = random.randint(500, 900)
-
-    x1 = cx + int(120 * math.cos(angle))
-    y1 = cy + int(120 * math.sin(angle))
-    x2 = cx + int(ray_length * math.cos(angle))
-    y2 = cy + int(ray_length * math.sin(angle))
-
-    # Rays fade: bright coral near center, transparent at tips
-    for step in range(20):
-        t = step / 20
-        sx = int(x1 + (x2 - x1) * t)
-        sy = int(y1 + (y2 - y1) * t)
-        ex = int(x1 + (x2 - x1) * (t + 0.06))
-        ey = int(y1 + (y2 - y1) * (t + 0.06))
-        alpha = 1 - t  # fades out
-        ray_r = int(CORAL_GLOW[0] * alpha + DARK_MID[0] * (1 - alpha))
-        ray_g = int(CORAL_GLOW[1] * alpha + DARK_MID[1] * (1 - alpha))
-        ray_b = int(CORAL_GLOW[2] * alpha + DARK_MID[2] * (1 - alpha))
-        width = max(1, int(4 * alpha))
-        draw.line([(sx, sy), (ex, ey)], fill=(ray_r, ray_g, ray_b), width=width)
-
-# --- STEP 3: Concentric rings (lens/portal rings) ---
-ring_radii = [140, 200, 280, 400, 560]
-for i, radius in enumerate(ring_radii):
-    t = i / len(ring_radii)
-    alpha = 1 - t * 0.7
-    ring_r = int(CORAL[0] * alpha + DARK_MID[0] * (1 - alpha))
-    ring_g = int(CORAL[1] * alpha + DARK_MID[1] * (1 - alpha))
-    ring_b = int(CORAL[2] * alpha + DARK_MID[2] * (1 - alpha))
-    width = max(2, int(5 * (1 - t * 0.5)))
-    draw.ellipse(
-        [cx - radius, cy - radius, cx + radius, cy + radius],
-        outline=(ring_r, ring_g, ring_b),
-        width=width,
-    )
-
-# --- STEP 4: Bright glowing core ---
-# Multiple overlapping circles for glow effect
-for r in range(150, 0, -2):
-    t = r / 150  # 1 at edge, 0 at center
-    core_r = int(CORAL[0] * t + WHITE[0] * (1 - t))
-    core_g = int(CORAL[1] * t + WHITE[1] * (1 - t))
-    core_b = int(CORAL[2] * t + WHITE[2] * (1 - t))
-    draw.ellipse(
-        [cx - r, cy - r, cx + r, cy + r],
-        fill=(core_r, core_g, core_b),
-    )
-
-# Inner bright white-hot center
-for r in range(50, 0, -1):
-    t = r / 50
-    c = int(255 * (1 - t * 0.15))
-    draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(c, c, c))
-
-# --- STEP 5: Floating symbols in the outer zone ---
-# Symbols: ?, 0, 1, ! — scattered in darkness, fading toward center
-symbols = ["?", "?", "?", "0", "1", "1", "0", "?", "!", "?", "0", "1",
-           "?", "1", "0", "?", "?", "0", "1", "!", "?", "0", "1", "?",
-           "?", "0", "1", "0", "1", "?", "!", "0", "1", "?", "0", "1"]
-
-for sym in symbols:
-    # Place in outer zone (distance 350-1100 from center)
-    angle = random.uniform(0, 2 * math.pi)
-    dist = random.randint(400, 1100)
-    sx = cx + int(dist * math.cos(angle))
-    sy = cy + int(dist * math.sin(angle))
-
-    # Skip if outside illustration zone
-    if sy < 30 or sy > IMAGE_ZONE_HEIGHT - 30 or sx < 30 or sx > WIDTH - 30:
-        continue
-
-    # Opacity based on distance: far = more visible, near center = fading
-    t = min(1, (dist - 350) / 700)
-    alpha = t * random.uniform(0.3, 0.8)
-
-    sym_r = int(CORAL_LIGHT[0] * alpha + DARK_MID[0] * (1 - alpha))
-    sym_g = int(CORAL_LIGHT[1] * alpha + DARK_MID[1] * (1 - alpha))
-    sym_b = int(CORAL_LIGHT[2] * alpha + DARK_MID[2] * (1 - alpha))
-
-    font_choice = random.choice([font_symbol_large, font_symbol_med, font_symbol_small])
-    draw.text((sx, sy), sym, fill=(sym_r, sym_g, sym_b), font=font_choice, anchor="mm")
-
-# --- STEP 6: Small orbiting dots (like particles drawn to the light) ---
-for _ in range(80):
-    angle = random.uniform(0, 2 * math.pi)
-    dist = random.randint(160, 700)
-    px = cx + int(dist * math.cos(angle))
-    py = cy + int(dist * math.sin(angle))
-
-    if py < 10 or py > IMAGE_ZONE_HEIGHT - 10:
-        continue
-
-    t = (dist - 160) / 540
-    dot_size = random.randint(3, int(8 + t * 8))
-    alpha = 0.4 + t * 0.5
-    dot_r = int(CORAL[0] * alpha + CREAM_BG[0] * (1 - alpha))
-    dot_g = int(CORAL[1] * alpha + CREAM_BG[1] * (1 - alpha))
-    dot_b = int(CORAL[2] * alpha + CREAM_BG[2] * (1 - alpha))
-
-    draw.ellipse(
-        [px - dot_size, py - dot_size, px + dot_size, py + dot_size],
-        fill=(dot_r, dot_g, dot_b),
-    )
-
-# --- STEP 7: Subtle arc paths (orbital trails) ---
-for i in range(6):
-    orbit_r = random.randint(250, 650)
-    start_angle = random.uniform(0, 2 * math.pi)
-    arc_length = random.uniform(0.4, 1.2)
-
-    points = []
-    for step in range(60):
-        t = step / 60
-        a = start_angle + arc_length * t
-        ox = cx + int(orbit_r * math.cos(a))
-        oy = cy + int(orbit_r * math.sin(a) * 0.85)  # slight vertical compression
-        points.append((ox, oy))
-
-    if len(points) > 1:
-        alpha = 0.3
-        trail_r = int(CORAL_LIGHT[0] * alpha + DARK_MID[0] * (1 - alpha))
-        trail_g = int(CORAL_LIGHT[1] * alpha + DARK_MID[1] * (1 - alpha))
-        trail_b = int(CORAL_LIGHT[2] * alpha + DARK_MID[2] * (1 - alpha))
-        draw.line(points, fill=(trail_r, trail_g, trail_b), width=2)
+# Radial brightening around core
+for rad in range(800, 0, -4):
+    t = rad / 800
+    alpha = (1 - t) ** 2 * 0.4  # additive brightness
+    # Read center color and brighten
+    add_r = int(140 * alpha)
+    add_g = int(95 * alpha)
+    add_b = int(75 * alpha)
+    base = img.getpixel((min(WIDTH-1, core_x), min(HEIGHT-1, max(0, core_y - rad + 1))))
+    fill = (min(255, base[0] + add_r), min(255, base[1] + add_g), min(255, base[2] + add_b))
+    draw.ellipse([core_x - rad, core_y - rad, core_x + rad, core_y + rad], fill=fill)
 
 # ============================================================
-# Soft blur on the illustration for a dreamy glow
+# PERSPECTIVE GRID
 # ============================================================
-illustration = img.crop((0, 0, WIDTH, IMAGE_ZONE_HEIGHT))
-# Blend original with slightly blurred version for glow
-blurred = illustration.filter(ImageFilter.GaussianBlur(radius=6))
-illustration = Image.blend(illustration, blurred, alpha=0.35)
-img.paste(illustration, (0, 0))
+horizon_y = int(HEIGHT * 0.46)
+floor_bottom = int(HEIGHT * 0.80)
 
-# Redraw on the composited image
+for i in range(35):
+    t = (i / 35) ** 1.8
+    y = int(horizon_y + (floor_bottom - horizon_y) * t)
+    alpha = t * 0.45
+    draw.line([(120, y), (WIDTH - 120, y)],
+              fill=(int(CORAL_BRIGHT[0] * alpha), int(CORAL_BRIGHT[1] * alpha), int(CORAL_BRIGHT[2] * alpha)),
+              width=1)
+
+for i in range(-16, 17):
+    bottom_x = WIDTH // 2 + i * 140
+    alpha = max(0.05, 0.4 - abs(i) * 0.022)
+    draw.line([(WIDTH // 2, horizon_y), (bottom_x, floor_bottom)],
+              fill=(int(CORAL_BRIGHT[0] * alpha), int(CORAL_BRIGHT[1] * alpha), int(CORAL_BRIGHT[2] * alpha)),
+              width=1)
+
+# ============================================================
+# AI CORE — bright radiant sphere (no dark ring)
+# ============================================================
+
+# Wide soft glow — only adds brightness
+for r in range(500, 0, -3):
+    t = r / 500
+    intensity = (1 - t) ** 1.5
+    add = int(120 * intensity)
+    cx1, cy1 = core_x - r, core_y - r
+    cx2, cy2 = core_x + r, core_y + r
+    # Sample background and add light
+    try:
+        bg = img.getpixel((core_x, max(0, core_y - r + 2)))
+    except:
+        bg = (100, 70, 60)
+    fill = (min(255, bg[0] + add), min(255, bg[1] + int(add * 0.7)), min(255, bg[2] + int(add * 0.55)))
+    draw.ellipse([cx1, cy1, cx2, cy2], fill=fill)
+
+# Bright inner sphere
+for r in range(180, 0, -2):
+    t = r / 180
+    cr = int(CORAL_HOT[0] * t + WHITE[0] * (1 - t))
+    cg = int(CORAL_HOT[1] * t + WHITE[1] * (1 - t))
+    cb = int(CORAL_HOT[2] * t + WHITE[2] * (1 - t))
+    draw.ellipse([core_x - r, core_y - r, core_x + r, core_y + r], fill=(cr, cg, cb))
+
+# White-hot center
+for r in range(60, 0, -1):
+    t = r / 60
+    c = int(255 - 3 * t)
+    draw.ellipse([core_x - r, core_y - r, core_x + r, core_y + r], fill=(c, c, c))
+
+# Rings
+for radius in [210, 280, 380]:
+    alpha = 0.5 - radius / 1200
+    rr = int(CORAL_PALE[0] * alpha)
+    rg = int(CORAL_PALE[1] * alpha)
+    rb = int(CORAL_PALE[2] * alpha)
+    draw.ellipse([core_x - radius, core_y - radius, core_x + radius, core_y + radius],
+                 outline=(min(255, rr + 60), min(255, rg + 40), min(255, rb + 35)), width=2)
+
+# ============================================================
+# CIRCUIT TRACES
+# ============================================================
+for i in range(18):
+    angle = (2 * math.pi * i) / 18 + random.uniform(-0.1, 0.1)
+    px = core_x + int(195 * math.cos(angle))
+    py = core_y + int(195 * math.sin(angle))
+
+    for seg in range(random.randint(3, 5)):
+        seg_len = random.randint(50, 130)
+        if seg % 2 == 0:
+            nx = px + int(seg_len * math.cos(angle))
+            ny = py + int(seg_len * math.sin(angle))
+        else:
+            perp = angle + math.pi / 2 * random.choice([-1, 1])
+            nx = px + int(seg_len * 0.5 * math.cos(perp))
+            ny = py + int(seg_len * 0.5 * math.sin(perp))
+
+        dist = math.sqrt((nx - core_x)**2 + (ny - core_y)**2)
+        alpha = max(0.1, 0.9 - dist / 600)
+        color = (int(CORAL_BRIGHT[0] * alpha), int(CORAL_BRIGHT[1] * alpha), int(CORAL_BRIGHT[2] * alpha))
+        draw.line([(px, py), (nx, ny)], fill=color, width=2)
+        ns = random.randint(3, 7)
+        draw.ellipse([nx - ns, ny - ns, nx + ns, ny + ns], fill=color)
+        px, py = nx, ny
+
+# ============================================================
+# HOLOGRAPHIC PANELS — bright teal with glow effect
+# ============================================================
+
+def draw_panel(draw, x, y, w, h, tilt=0, alpha=0.7):
+    pts = [(x + tilt, y), (x + w + tilt, y), (x + w - tilt, y + h), (x - tilt, y + h)]
+
+    # Bright fill
+    fill = (int(20 + TEAL[0] * alpha * 0.12),
+            int(30 + TEAL[1] * alpha * 0.12),
+            int(30 + TEAL[2] * alpha * 0.12))
+    draw.polygon(pts, fill=fill)
+
+    # Bright border
+    border = (int(TEAL_BRIGHT[0] * alpha),
+              int(TEAL_BRIGHT[1] * alpha),
+              int(TEAL_BRIGHT[2] * alpha))
+    draw.line([pts[0], pts[1]], fill=border, width=3)
+    draw.line([pts[1], pts[2]], fill=border, width=2)
+    draw.line([pts[2], pts[3]], fill=border, width=3)
+    draw.line([pts[3], pts[0]], fill=border, width=2)
+
+    # Bright inner bars
+    for ly in range(y + 22, y + h - 12, 24):
+        bar_w = random.randint(int(w * 0.25), int(w * 0.8))
+        bar_alpha = alpha * 0.55
+        bar_color = (int(TEAL[0] * bar_alpha), int(TEAL[1] * bar_alpha), int(TEAL[2] * bar_alpha))
+        draw.line([(x + 18, ly), (x + 18 + bar_w, ly)], fill=bar_color, width=3)
+
+    # Corner dots
+    for p in pts:
+        draw.ellipse([p[0] - 4, p[1] - 4, p[0] + 4, p[1] + 4], fill=border)
+
+# Left side
+draw_panel(draw, 90, 180, 420, 310, tilt=22, alpha=0.75)
+draw_panel(draw, 130, 560, 370, 240, tilt=16, alpha=0.55)
+draw_panel(draw, 70, 870, 400, 270, tilt=18, alpha=0.40)
+
+# Right side
+draw_panel(draw, 1970, 220, 420, 290, tilt=-22, alpha=0.75)
+draw_panel(draw, 2010, 580, 370, 250, tilt=-14, alpha=0.55)
+draw_panel(draw, 1990, 900, 390, 240, tilt=-16, alpha=0.40)
+
+# ============================================================
+# HEXAGON PATTERN — subtle background texture
+# ============================================================
+hex_size = 60
+for row in range(-2, 30):
+    for col in range(-2, 22):
+        hx = col * hex_size * 1.75 + (row % 2) * hex_size * 0.875
+        hy = row * hex_size * 1.5
+
+        if hy > HEIGHT * 0.65 or hy < 0:
+            continue
+
+        dist = math.sqrt((hx - core_x)**2 + (hy - core_y)**2)
+        if dist < 450 or dist > 1200:
+            continue
+
+        alpha = max(0, 0.12 - abs(dist - 800) / 5000)
+        hex_color = (int(CORAL_BRIGHT[0] * alpha + 5), int(CORAL_BRIGHT[1] * alpha + 3), int(CORAL_BRIGHT[2] * alpha + 3))
+
+        hex_pts = []
+        for a in range(6):
+            ang = math.pi / 3 * a + math.pi / 6
+            hex_pts.append((hx + hex_size * 0.4 * math.cos(ang),
+                           hy + hex_size * 0.4 * math.sin(ang)))
+        draw.polygon(hex_pts, outline=hex_color)
+
+# ============================================================
+# DATA STREAMS
+# ============================================================
+for sx in [150, 260, 2220, 2330]:
+    for idx in range(random.randint(10, 22)):
+        sy = 50 + idx * random.randint(45, 70)
+        if sy > HEIGHT * 0.60:
+            break
+        char = random.choice("0011010011")
+        alpha = random.uniform(0.2, 0.5)
+        color = (int(TEAL[0] * alpha), int(TEAL[1] * alpha), int(TEAL[2] * alpha))
+        draw.text((sx + random.randint(-3, 3), sy), char, fill=color, font=font_data)
+
+# ============================================================
+# PARTICLES — bright sparks
+# ============================================================
+for _ in range(250):
+    px = random.randint(20, WIDTH - 20)
+    py = random.randint(20, int(HEIGHT * 0.70))
+    dist = math.sqrt((px - core_x)**2 + (py - core_y)**2)
+    size = random.randint(2, 7)
+
+    if dist < 250:
+        color = (255, 240, 230)
+    elif dist < 500:
+        alpha = random.uniform(0.5, 1.0)
+        color = (int(CORAL_HOT[0] * alpha), int(CORAL_HOT[1] * alpha), int(CORAL_HOT[2] * alpha))
+    else:
+        alpha = random.uniform(0.15, 0.45)
+        base = random.choice([CORAL_BRIGHT, TEAL])
+        color = (int(base[0] * alpha + 20), int(base[1] * alpha + 15), int(base[2] * alpha + 15))
+
+    draw.ellipse([px - size, py - size, px + size, py + size], fill=color)
+
+# ============================================================
+# GLOW PASS
+# ============================================================
+glow = img.copy().filter(ImageFilter.GaussianBlur(radius=14))
+img = Image.blend(img, glow, alpha=0.22)
 draw = ImageDraw.Draw(img)
 
 # ============================================================
-# BOTTOM 40%: Dark text band
+# BOTTOM TEXT OVERLAY — smooth gradient fade
 # ============================================================
+overlay_start = int(HEIGHT * 0.58)
+for y in range(overlay_start, HEIGHT):
+    t = (y - overlay_start) / (HEIGHT - overlay_start)
+    alpha = min(0.94, t ** 0.7)
+    bg_y = img.getpixel((WIDTH // 2, y))
+    nr = int(bg_y[0] * (1 - alpha) + DARK[0] * alpha)
+    ng = int(bg_y[1] * (1 - alpha) + DARK[1] * alpha)
+    nb = int(bg_y[2] * (1 - alpha) + DARK[2] * alpha)
+    draw.line([(0, y), (WIDTH, y)], fill=(nr, ng, nb))
 
-draw.rectangle(
-    [(0, IMAGE_ZONE_HEIGHT), (WIDTH, HEIGHT)],
-    fill=DARK,
-)
+# ============================================================
+# TEXT
+# ============================================================
+text_x = 110
+title_y = int(HEIGHT * 0.68)
 
-# Subtle gradient transition at the top of text band
-for y in range(40):
-    t = y / 40
-    tr_r = int(DARK_MID[0] * (1 - t) + DARK[0] * t)
-    tr_g = int(DARK_MID[1] * (1 - t) + DARK[1] * t)
-    tr_b = int(DARK_MID[2] * (1 - t) + DARK[2] * t)
-    draw.line([(0, IMAGE_ZONE_HEIGHT + y), (WIDTH, IMAGE_ZONE_HEIGHT + y)], fill=(tr_r, tr_g, tr_b))
+draw.text((text_x, title_y), "The AI Basics", fill=CORAL_HOT, font=font_title)
+bbox1 = font_title.getbbox("The AI Basics")
+h1 = bbox1[3] - bbox1[1]
 
-band_top = IMAGE_ZONE_HEIGHT
-band_height = TEXT_ZONE_HEIGHT
-text_x = PADDING + 20
-
-# Title
-title_line1 = "The AI Basics"
-title_line2 = "Nobody Made Clear"
-title_y = band_top + int(band_height * 0.18)
-
-draw.text((text_x, title_y), title_line1, fill=CORAL, font=font_bold)
-bbox1 = font_bold.getbbox(title_line1)
-line1_height = bbox1[3] - bbox1[1]
-
-draw.text((text_x, title_y + line1_height + 20), title_line2, fill=CORAL, font=font_bold)
-bbox2 = font_bold.getbbox(title_line2)
-line2_height = bbox2[3] - bbox2[1]
-
-# Subtitle
-subtitle_y = title_y + line1_height + 20 + line2_height + 60
-draw.text((text_x, subtitle_y), "A Beginner's Guide to AI", fill=TEXT_INVERSE, font=font_regular)
-
-# Author line
-author_y = HEIGHT - PADDING - 80
-draw.text((text_x, author_y), "by Kelvin M, AI Educator & Researcher", fill=TEXT_MUTED, font=font_medium)
+draw.text((text_x, title_y + h1 + 28), "Nobody Made Clear", fill=CORAL_HOT, font=font_title)
+bbox2 = font_title.getbbox("Nobody Made Clear")
+h2 = bbox2[3] - bbox2[1]
 
 # Accent line
-line_y = subtitle_y + 100
-draw.line([(text_x, line_y), (text_x + 300, line_y)], fill=CORAL, width=4)
+accent_y = title_y + h1 + 28 + h2 + 55
+draw.line([(text_x, accent_y), (text_x + 450, accent_y)], fill=CORAL_BRIGHT, width=5)
+
+# Subtitle
+draw.text((text_x, accent_y + 45), "A Beginner's Guide to AI", fill=CREAM, font=font_subtitle)
+
+# Author
+draw.text((text_x, HEIGHT - 130), "by Kelvin M  |  AI Educator & Researcher",
+          fill=(170, 160, 155), font=font_author)
+
+# HUD
+draw.text((60, 40), "AI SERIES  //  EDITION 01", fill=(140, 130, 122), font=font_hud)
+draw.line([(60, 76), (370, 76)], fill=(110, 100, 95), width=1)
+draw.text((WIDTH - 440, 40), "BASICS  //  FUNDAMENTALS", fill=(140, 130, 122), font=font_hud)
 
 # ============================================================
 # SAVE
