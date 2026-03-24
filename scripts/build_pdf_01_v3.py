@@ -31,20 +31,23 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "edition_01_what-is-ai_v3.0.pdf")
 
-# ─── Colors from STYLE_TOKENS.yaml ───
-PRIMARY = HexColor("#CC785C")
-PRIMARY_DARK = HexColor("#9E4E2E")
-PRIMARY_LIGHT = HexColor("#F2D4C8")
+# ─── Colors matched to Final Cover page.png ───
+# Cover palette: deep navy #2D2640, warm orange #E8834A, gold #E9A84C, teal #2A9D8F
+PRIMARY = HexColor("#E8834A")        # Warm orange (brain glow / accent)
+PRIMARY_DARK = HexColor("#C6632A")   # Darker orange
+PRIMARY_LIGHT = HexColor("#F5D5BF")  # Light peach tint
 BG_PAGE = HexColor("#FFFFFF")
-BG_SURFACE = HexColor("#F9F6F3")
-BG_DARK = HexColor("#1A1A1A")
+BG_SURFACE = HexColor("#F5F3F0")     # Warm off-white surface
+BG_DARK = HexColor("#2D2640")        # Deep navy from cover
+BG_COVER = HexColor("#2D2640")       # Cover background
 TEXT_PRIMARY = HexColor("#1A1A1A")
 TEXT_SECONDARY = HexColor("#4A4A4A")
 TEXT_MUTED = HexColor("#888888")
 TEXT_INVERSE = HexColor("#FFFFFF")
 BORDER = HexColor("#E0D9D4")
-ACCENT_TEAL = HexColor("#2A9D8F")
-ACCENT_AMBER = HexColor("#E9C46A")
+ACCENT_TEAL = HexColor("#2A9D8F")    # Teal from cover circuits
+ACCENT_AMBER = HexColor("#E9A84C")   # Gold from cover series label
+ACCENT_GOLD = HexColor("#E9A84C")    # Alias for cover gold
 ACCENT_CORAL = HexColor("#E76F51")
 ACCENT_GREEN = HexColor("#57A773")
 
@@ -138,8 +141,8 @@ def make_styles():
         textColor=TEXT_PRIMARY, spaceAfter=3*mm, alignment=TA_JUSTIFY,
     )
     s['cover_title'] = ParagraphStyle(
-        'CoverTitle', fontName='Inter-Bold', fontSize=36, leading=43.2,
-        textColor=PRIMARY, alignment=TA_LEFT,
+        'CoverTitle', fontName='Inter-Bold', fontSize=42, leading=50,
+        textColor=BG_DARK, alignment=TA_LEFT,
     )
     s['cover_series'] = ParagraphStyle(
         'CoverSeries', fontName='Inter-Regular', fontSize=14, leading=18,
@@ -424,6 +427,7 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
     elements = []
     i = 0
     last_heading = ""
+    is_first_h1 = True  # Skip PageBreak for first h1 (caller already adds one)
 
     while i < len(lines):
         line = lines[i]
@@ -441,30 +445,38 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
             # Check if we should insert a diagram after a heading
             continue
 
-        # Chapter title: # Heading
+        # Chapter title: # Heading — always start on a new page
         if stripped.startswith('# ') and not stripped.startswith('## '):
             heading_text = format_inline(stripped[2:].strip())
+            if not is_first_h1:
+                elements.append(PageBreak())
+            is_first_h1 = False
             elements.append(h1(heading_text))
             last_heading = stripped[2:].strip()
             i += 1
             _maybe_insert_diagrams(elements, chapter_num, last_heading)
             continue
 
-        # H2: ## Heading
+        # H2: ## Heading — keep with next content block
         if stripped.startswith('## '):
             heading_text = format_inline(stripped[3:].strip())
-            elements.append(h2(heading_text))
             last_heading = stripped[3:].strip()
             i += 1
+            # Peek ahead to grab next content element for KeepTogether
+            heading_el = h2(heading_text)
+            peek_els = _peek_next_content(lines, i, styles, chapter_num)
+            elements.append(KeepTogether([heading_el] + peek_els))
             _maybe_insert_diagrams(elements, chapter_num, last_heading)
             continue
 
-        # H3: ### Heading
+        # H3: ### Heading — keep with next content block
         if stripped.startswith('### '):
             heading_text = format_inline(stripped[4:].strip())
-            elements.append(h3(heading_text))
             last_heading = stripped[4:].strip()
             i += 1
+            heading_el = h3(heading_text)
+            peek_els = _peek_next_content(lines, i, styles, chapter_num)
+            elements.append(KeepTogether([heading_el] + peek_els))
             _maybe_insert_diagrams(elements, chapter_num, last_heading)
             continue
 
@@ -576,6 +588,35 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
     return elements
 
 
+def _peek_next_content(lines, i, styles, chapter_num):
+    """Peek ahead from position i and return the first content flowable.
+    Used to keep headings together with the paragraph that follows them.
+    Does NOT advance i (caller handles that via normal parsing).
+    """
+    while i < len(lines):
+        s = lines[i].strip()
+        if not s:
+            i += 1
+            continue
+        # Return a spacer + the first paragraph of content
+        if s == '---':
+            return [section_divider()]
+        if s.startswith('#'):
+            return []  # Another heading — nothing to attach
+        if s.startswith('> '):
+            return []  # Callout box — too large to keep together
+        if s.startswith('|'):
+            return []  # Table — too large
+        if s.startswith('- '):
+            return [bullet(format_inline(s[2:].strip()))]
+        num_m = re.match(r'^(\d+)\.\s+(.+)', s)
+        if num_m:
+            return [step_item(int(num_m.group(1)), format_inline(num_m.group(2)))]
+        # Regular paragraph — grab first line/paragraph
+        return [body(format_inline(s))]
+    return []
+
+
 def _maybe_insert_diagrams(elements, chapter_num, heading):
     """Insert diagrams after matching headings."""
     if chapter_num not in CHAPTER_DIAGRAMS:
@@ -606,96 +647,34 @@ def _parse_table(table_lines):
 # ─── Cover Page ───
 
 def draw_cover(canvas, doc):
-    """Draw the cover page with cover image or fallback."""
+    """Draw the cover page using the full-page Final Cover image."""
     canvas.saveState()
-
-    # Dark background for bottom 40%
-    text_zone_h = PAGE_H * 0.40
-    canvas.setFillColor(BG_DARK)
-    canvas.rect(0, 0, PAGE_W, text_zone_h, fill=1, stroke=0)
-
-    # Top 60%: cover image or fallback
-    image_zone_h = PAGE_H * 0.60
-    cover_path = os.path.join(COVER_DIR, "edition_01_cover.png")
-
+    cover_path = os.path.join(COVER_DIR, "Final Cover page.png")
     if os.path.exists(cover_path):
-        # Use the generated cover image
         canvas.drawImage(
-            cover_path, 0, text_zone_h, PAGE_W, image_zone_h,
-            preserveAspectRatio=True, anchor='c', mask='auto',
+            cover_path, 0, 0, PAGE_W, PAGE_H,
+            preserveAspectRatio=False, mask='auto',
         )
     else:
-        # Fallback: light warm background with network drawing
-        canvas.setFillColor(HexColor("#F2D4C8"))
-        canvas.rect(0, text_zone_h, PAGE_W, image_zone_h, fill=1, stroke=0)
-
-        canvas.setStrokeColor(HexColor("#CC785C"))
-        canvas.setFillColor(HexColor("#FFFFFF"))
-        canvas.setLineWidth(2)
-
-        cx, cy = PAGE_W / 2, text_zone_h + image_zone_h * 0.5
-        nodes = []
-        for idx in range(8):
-            angle = idx * math.pi * 2 / 8
-            r = 120
-            x = cx + r * math.cos(angle)
-            y = cy + r * math.sin(angle)
-            nodes.append((x, y))
-            canvas.circle(x, y, 18, fill=1, stroke=1)
-
-        canvas.setFillColor(PRIMARY)
-        canvas.circle(cx, cy, 30, fill=1, stroke=0)
-        canvas.setFillColor(HexColor("#FFFFFF"))
-        canvas.setFont('Inter-Bold', 16)
-        canvas.drawCentredString(cx, cy - 6, "AI")
-
-        canvas.setStrokeColor(HexColor("#CC785C"))
-        canvas.setLineWidth(1.5)
-        for nx, ny in nodes:
-            canvas.line(cx, cy, nx, ny)
-        for idx in range(len(nodes)):
-            j = (idx + 1) % len(nodes)
-            canvas.setStrokeAlpha(0.3)
-            canvas.line(nodes[idx][0], nodes[idx][1], nodes[j][0], nodes[j][1])
-        canvas.setStrokeAlpha(1.0)
-
-        for idx in range(16):
-            angle = idx * math.pi * 2 / 16
-            r = 180
-            x = cx + r * math.cos(angle)
-            y = cy + r * math.sin(angle)
-            canvas.setFillColor(PRIMARY_LIGHT)
-            canvas.circle(x, y, 6, fill=1, stroke=0)
-
-    # Text in dark zone
-    pad = 22 * mm
-    text_y = text_zone_h - 40
-
-    # Series name
-    canvas.setFillColor(TEXT_INVERSE)
-    canvas.setFont('Inter-Regular', 14)
-    canvas.drawString(pad, text_y, "AI Education Series by Kelvin M")
-
-    # Book title
-    text_y -= 55
-    canvas.setFillColor(ACCENT_CORAL)
-    canvas.setFont('Inter-Bold', 36)
-    canvas.drawString(pad, text_y, "The AI Basics")
-    text_y -= 44
-    canvas.drawString(pad, text_y, "Nobody Made Clear")
-
-    # Subtitle
-    text_y -= 35
-    canvas.setFillColor(TEXT_INVERSE)
-    canvas.setFont('Inter-Italic', 11)
-    canvas.drawString(pad, text_y, "A Beginner's Guide to AI")
-
-    # Author
-    text_y -= 30
-    canvas.setFillColor(TEXT_MUTED)
-    canvas.setFont('Inter-Medium', 12)
-    canvas.drawString(pad, text_y, "by Kelvin M \u2014 AI Educator & Researcher")
-
+        # Fallback: solid dark background with text
+        canvas.setFillColor(BG_COVER)
+        canvas.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
+        pad = 22 * mm
+        canvas.setFillColor(ACCENT_GOLD)
+        canvas.setFont('Inter-Regular', 14)
+        canvas.drawString(pad, PAGE_H * 0.42, "AI EDUCATION SERIES \u2014 EDITION 01")
+        canvas.setFillColor(TEXT_INVERSE)
+        canvas.setFont('Inter-Bold', 42)
+        canvas.drawString(pad, PAGE_H * 0.34, "What is AI?")
+        canvas.setFont('Inter-Regular', 14)
+        canvas.drawString(pad, PAGE_H * 0.28,
+                          "The complete beginner\u2019s guide to")
+        canvas.drawString(pad, PAGE_H * 0.25,
+                          "understanding artificial intelligence")
+        canvas.setFillColor(TEXT_MUTED)
+        canvas.setFont('Inter-Medium', 12)
+        canvas.drawString(pad, PAGE_H * 0.08,
+                          "by Kelvin M \u2014 AI Educator & Researcher")
     canvas.restoreState()
 
 
@@ -708,7 +687,7 @@ def draw_footer(canvas, doc):
     canvas.line(MARGIN_LEFT, y + 8*mm, PAGE_W - MARGIN_RIGHT, y + 8*mm)
     canvas.setFillColor(TEXT_MUTED)
     canvas.setFont('Inter-Regular', 8)
-    canvas.drawString(MARGIN_LEFT, y, "The AI Basics Nobody Made Clear \u2014 by Kelvin M")
+    canvas.drawString(MARGIN_LEFT, y, "What is AI? \u2014 AI Education Series by Kelvin M")
     canvas.setFont('Inter-Medium', 9)
     canvas.drawRightString(PAGE_W - MARGIN_RIGHT, y, str(doc.page))
     canvas.restoreState()
@@ -753,7 +732,7 @@ def build():
         bottomMargin=MARGIN_BOTTOM,
         leftMargin=MARGIN_LEFT,
         rightMargin=MARGIN_RIGHT,
-        title="The AI Basics Nobody Made Clear",
+        title="What is AI? \u2014 AI Education Series Edition 01",
         author="Kelvin M",
         subject="AI Education for Complete Beginners",
         creator="AI Education PDF Series Build System v3.0",
@@ -768,14 +747,19 @@ def build():
     # ═══ TITLE PAGE ═══
     elements.append(spacer(40))
     elements.append(Paragraph(
-        "The AI Basics Nobody Made Clear",
+        "AI EDUCATION SERIES \u2014 EDITION 01",
+        ParagraphStyle('SeriesLabel', fontName='Inter-Medium', fontSize=12,
+                       leading=16, textColor=ACCENT_GOLD, spaceAfter=4*mm),
+    ))
+    elements.append(Paragraph(
+        "What is AI?",
         STYLES['cover_title'],
     ))
-    elements.append(spacer(6))
+    elements.append(spacer(4))
     elements.append(Paragraph(
-        "A Beginner\u2019s Guide to AI",
-        ParagraphStyle('SubTitle', fontName='Inter-Medium', fontSize=16,
-                       leading=22, textColor=TEXT_SECONDARY, alignment=TA_LEFT),
+        "The complete beginner\u2019s guide to understanding artificial intelligence",
+        ParagraphStyle('SubTitle', fontName='Inter-Regular', fontSize=14,
+                       leading=20, textColor=TEXT_SECONDARY, alignment=TA_LEFT),
     ))
     elements.append(spacer(10))
     elements.append(Paragraph(
