@@ -31,14 +31,16 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "edition_01_what-is-ai_v3.0.pdf")
 
-# ─── Colors matched to Final Cover page.png ───
-# Cover palette: deep navy #2D2640, warm orange #E8834A, gold #E9A84C, teal #2A9D8F
+# ─── Circuit Glow Palette (matched to Final Cover page.png) ───
+# Primary cover colors: navy #2D2640, orange #E8834A, gold #E9A84C, teal #2A9D8F
 PRIMARY = HexColor("#E8834A")        # Warm orange (brain glow / accent)
 PRIMARY_DARK = HexColor("#C6632A")   # Darker orange
 PRIMARY_LIGHT = HexColor("#F5D5BF")  # Light peach tint
+NAVY = HexColor("#2D2640")           # Deep navy from cover
+NAVY_LIGHT = HexColor("#3D3555")     # Slightly lighter navy
 BG_PAGE = HexColor("#FFFFFF")
 BG_SURFACE = HexColor("#F5F3F0")     # Warm off-white surface
-BG_DARK = HexColor("#2D2640")        # Deep navy from cover
+BG_DARK = HexColor("#2D2640")        # Alias for navy
 BG_COVER = HexColor("#2D2640")       # Cover background
 TEXT_PRIMARY = HexColor("#1A1A1A")
 TEXT_SECONDARY = HexColor("#4A4A4A")
@@ -50,6 +52,11 @@ ACCENT_AMBER = HexColor("#E9A84C")   # Gold from cover series label
 ACCENT_GOLD = HexColor("#E9A84C")    # Alias for cover gold
 ACCENT_CORAL = HexColor("#E76F51")
 ACCENT_GREEN = HexColor("#57A773")
+# Tinted backgrounds for callout boxes
+TEAL_LIGHT = HexColor("#E6F5F3")
+GOLD_LIGHT = HexColor("#FDF5E6")
+GREEN_LIGHT = HexColor("#EAF5EE")
+CORAL_LIGHT = HexColor("#FDEDEA")
 
 # ─── Page dimensions ───
 PAGE_W, PAGE_H = A4
@@ -73,15 +80,14 @@ def make_styles():
     s['h1'] = ParagraphStyle(
         'H1', fontName='Inter-Bold', fontSize=22, leading=26.4,
         textColor=PRIMARY, spaceBefore=8*mm, spaceAfter=4*mm,
-        borderWidth=0.5, borderColor=BORDER, borderPadding=(0, 0, 4, 0),
     )
     s['h2'] = ParagraphStyle(
         'H2', fontName='Inter-SemiBold', fontSize=17, leading=20.4,
-        textColor=TEXT_PRIMARY, spaceBefore=6*mm, spaceAfter=3*mm,
+        textColor=ACCENT_GOLD, spaceBefore=6*mm, spaceAfter=3*mm,
     )
     s['h3'] = ParagraphStyle(
         'H3', fontName='Inter-Medium', fontSize=14, leading=16.8,
-        textColor=TEXT_SECONDARY, spaceBefore=4*mm, spaceAfter=2*mm,
+        textColor=ACCENT_TEAL, spaceBefore=4*mm, spaceAfter=2*mm,
     )
     s['body'] = ParagraphStyle(
         'Body', fontName='Inter-Regular', fontSize=11, leading=15.4,
@@ -158,7 +164,7 @@ def make_styles():
     )
     s['toc_item'] = ParagraphStyle(
         'TOCItem', fontName='Inter-Regular', fontSize=11, leading=18,
-        textColor=TEXT_PRIMARY, leftIndent=8, spaceAfter=1*mm,
+        textColor=NAVY, leftIndent=8, spaceAfter=1*mm,
     )
     s['objectives'] = ParagraphStyle(
         'Objectives', fontName='Inter-Regular', fontSize=11, leading=17,
@@ -173,9 +179,8 @@ def make_styles():
         textColor=TEXT_PRIMARY, leftIndent=14, bulletIndent=0, spaceAfter=3*mm,
     )
     s['pull_quote'] = ParagraphStyle(
-        'PullQuote', fontName='Inter-SemiBold', fontSize=14, leading=20,
-        textColor=PRIMARY_DARK, alignment=TA_CENTER,
-        spaceBefore=6*mm, spaceAfter=6*mm,
+        'PullQuote', fontName='Inter-SemiBold', fontSize=13, leading=19,
+        textColor=TEXT_INVERSE, alignment=TA_LEFT,
     )
     s['section_intro'] = ParagraphStyle(
         'SectionIntro', fontName='Inter-Medium', fontSize=11, leading=16,
@@ -211,16 +216,37 @@ def spacer(h_mm=4):
     return Spacer(1, h_mm * mm)
 
 def pull_quote(text):
-    return Paragraph(f"\u201c{text}\u201d", STYLES['pull_quote'])
+    """Navy background pull quote box with orange left bar."""
+    para = Paragraph(f"\u201c{text}\u201d", STYLES['pull_quote'])
+    t = Table([[para]], colWidths=[CONTENT_W - 16*mm])
+    t.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, -1), NAVY),
+        ('TOPPADDING', (0, 0), (-1, -1), 10*mm),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 10*mm),
+        ('LEFTPADDING', (0, 0), (-1, -1), 10*mm),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8*mm),
+        ('ROUNDEDCORNERS', [4, 4, 4, 4]),
+    ]))
+    outer = Table([[t]], colWidths=[CONTENT_W])
+    outer.setStyle(TableStyle([
+        ('LINEBEFOREDECOR', (0, 0), (0, -1), 3, PRIMARY),
+        ('TOPPADDING', (0, 0), (-1, -1), 0),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+        ('LEFTPADDING', (0, 0), (-1, -1), 0),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 0),
+    ]))
+    return outer
 
 def section_divider():
     return HRFlowable(
-        width="40%", thickness=1, color=PRIMARY_LIGHT,
+        width="40%", thickness=1.5, color=ACCENT_TEAL,
         spaceAfter=4*mm, spaceBefore=4*mm, hAlign='CENTER',
     )
 
 
-def callout_box(label_text, body_text, border_color, label_color):
+def callout_box(label_text, body_text, border_color, label_color, bg_color=None):
+    if bg_color is None:
+        bg_color = BG_SURFACE
     label_style = ParagraphStyle(
         'CL', parent=STYLES['callout_label'], textColor=label_color,
     )
@@ -231,7 +257,7 @@ def callout_box(label_text, body_text, border_color, label_color):
         colWidths=[CONTENT_W - 16*mm],
     )
     t.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (-1, -1), BG_SURFACE),
+        ('BACKGROUND', (0, 0), (-1, -1), bg_color),
         ('TOPPADDING', (0, 0), (-1, -1), 8*mm),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 8*mm),
         ('LEFTPADDING', (0, 0), (-1, -1), 10*mm),
@@ -243,7 +269,7 @@ def callout_box(label_text, body_text, border_color, label_color):
     ]))
     outer = Table([[t]], colWidths=[CONTENT_W])
     outer.setStyle(TableStyle([
-        ('LINEBEFOREDECOR', (0, 0), (0, -1), 1.5, border_color),
+        ('LINEBEFOREDECOR', (0, 0), (0, -1), 2.5, border_color),
         ('TOPPADDING', (0, 0), (-1, -1), 0),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
         ('LEFTPADDING', (0, 0), (-1, -1), 0),
@@ -253,16 +279,16 @@ def callout_box(label_text, body_text, border_color, label_color):
 
 
 def did_you_know(text):
-    return callout_box("DID YOU KNOW?", text, ACCENT_TEAL, ACCENT_TEAL)
+    return callout_box("DID YOU KNOW?", text, ACCENT_TEAL, ACCENT_TEAL, TEAL_LIGHT)
 
 def key_fact(text):
-    return callout_box("KEY FACT", text, ACCENT_AMBER, ACCENT_AMBER)
+    return callout_box("KEY FACT", text, ACCENT_AMBER, ACCENT_AMBER, GOLD_LIGHT)
 
 def real_world(text):
-    return callout_box("IN THE REAL WORLD", text, ACCENT_GREEN, ACCENT_GREEN)
+    return callout_box("IN THE REAL WORLD", text, ACCENT_GREEN, ACCENT_GREEN, GREEN_LIGHT)
 
 def watch_out(text):
-    return callout_box("WATCH OUT", text, ACCENT_CORAL, ACCENT_CORAL)
+    return callout_box("WATCH OUT", text, ACCENT_CORAL, ACCENT_CORAL, CORAL_LIGHT)
 
 
 def make_table(headers, rows, col_widths=None):
@@ -270,7 +296,7 @@ def make_table(headers, rows, col_widths=None):
         n = len(headers)
         col_widths = [CONTENT_W / n] * n
     header_style = ParagraphStyle('TH', fontName='Inter-SemiBold', fontSize=10,
-                                   leading=14, textColor=TEXT_PRIMARY)
+                                   leading=14, textColor=TEXT_INVERSE)
     cell_style = ParagraphStyle('TD', fontName='Inter-Regular', fontSize=10,
                                  leading=14, textColor=TEXT_PRIMARY)
     data = [[Paragraph(h, header_style) for h in headers]]
@@ -278,13 +304,13 @@ def make_table(headers, rows, col_widths=None):
         data.append([Paragraph(str(c), cell_style) for c in row])
     t = Table(data, colWidths=col_widths, repeatRows=1)
     style_commands = [
-        ('BACKGROUND', (0, 0), (-1, 0), PRIMARY_LIGHT),
-        ('TEXTCOLOR', (0, 0), (-1, 0), TEXT_PRIMARY),
+        ('BACKGROUND', (0, 0), (-1, 0), NAVY),
+        ('TEXTCOLOR', (0, 0), (-1, 0), TEXT_INVERSE),
         ('TOPPADDING', (0, 0), (-1, -1), 2.5*mm),
         ('BOTTOMPADDING', (0, 0), (-1, -1), 2.5*mm),
         ('LEFTPADDING', (0, 0), (-1, -1), 3*mm),
         ('RIGHTPADDING', (0, 0), (-1, -1), 3*mm),
-        ('LINEBELOW', (0, 0), (-1, 0), 0.5, BORDER),
+        ('LINEBELOW', (0, 0), (-1, 0), 0.5, ACCENT_TEAL),
         ('LINEBELOW', (0, -1), (-1, -1), 0.5, BORDER),
         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
     ]
@@ -294,6 +320,8 @@ def make_table(headers, rows, col_widths=None):
         else:
             style_commands.append(('BACKGROUND', (0, i), (-1, i), BG_PAGE))
         style_commands.append(('LINEBELOW', (0, i), (-1, i), 0.5, BORDER))
+    # Gold left accent
+    style_commands.append(('LINEBEFOREDECOR', (0, 0), (0, -1), 2, ACCENT_GOLD))
     t.setStyle(TableStyle(style_commands))
     return t
 
@@ -311,7 +339,7 @@ def step_item(number, text):
         colWidths=[18*pt], rowHeights=[18*pt],
     )
     badge_table.setStyle(TableStyle([
-        ('BACKGROUND', (0, 0), (0, 0), PRIMARY),
+        ('BACKGROUND', (0, 0), (0, 0), NAVY),
         ('ROUNDEDCORNERS', [9, 9, 9, 9]),
         ('VALIGN', (0, 0), (0, 0), 'MIDDLE'),
         ('ALIGN', (0, 0), (0, 0), 'CENTER'),
@@ -348,6 +376,47 @@ def diagram_with_caption(filename, caption_text, width=None):
     img.hAlign = 'CENTER'
     caption = Paragraph(caption_text, STYLES['caption'])
     return [img, spacer(3), caption]
+
+
+# ─── Chapter Banner Flowable ───
+
+class ChapterBannerFlowable(Flowable):
+    """Full-width navy banner for chapter openers with gold chapter number
+    and white title, plus a teal accent line at the bottom."""
+    def __init__(self, chapter_num, chapter_title):
+        Flowable.__init__(self)
+        self.chapter_num = chapter_num
+        self.chapter_title = chapter_title
+        self.width = CONTENT_W
+        self.height = 32 * mm
+        self.spaceAfter = 6 * mm
+
+    def wrap(self, availWidth, availHeight):
+        return (self.width, self.height)
+
+    def draw(self):
+        c = self.canv
+        overshoot = MARGIN_LEFT
+        total_w = self.width + overshoot + MARGIN_RIGHT
+
+        # Navy background — extend to page edges
+        c.setFillColor(NAVY)
+        c.roundRect(-overshoot, 0, total_w, self.height, 0, fill=1, stroke=0)
+
+        # Teal accent line at bottom
+        c.setStrokeColor(ACCENT_TEAL)
+        c.setLineWidth(2.5)
+        c.line(-overshoot, 0, -overshoot + total_w, 0)
+
+        # Chapter number in gold
+        c.setFillColor(ACCENT_GOLD)
+        c.setFont('Inter-Medium', 11)
+        c.drawString(6, self.height - 12, f"CHAPTER {self.chapter_num}")
+
+        # Chapter title in white
+        c.setFillColor(TEXT_INVERSE)
+        c.setFont('Inter-Bold', 22)
+        c.drawString(6, 8, self.chapter_title)
 
 
 # ─── Diagram placement config ───
@@ -445,14 +514,22 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
             # Check if we should insert a diagram after a heading
             continue
 
-        # Chapter title: # Heading — always start on a new page
+        # Chapter title: # Heading — always start on a new page with banner
         if stripped.startswith('# ') and not stripped.startswith('## '):
-            heading_text = format_inline(stripped[2:].strip())
+            raw_heading = stripped[2:].strip()
             if not is_first_h1:
                 elements.append(PageBreak())
             is_first_h1 = False
-            elements.append(h1(heading_text))
-            last_heading = stripped[2:].strip()
+            # Parse "Chapter N: Title" pattern for banner
+            ch_match = re.match(r'Chapter\s+(\d+):\s*(.*)', raw_heading)
+            if ch_match and chapter_num > 0:
+                elements.append(ChapterBannerFlowable(
+                    int(ch_match.group(1)), ch_match.group(2).strip()
+                ))
+                elements.append(spacer(4))
+            else:
+                elements.append(h1(format_inline(raw_heading)))
+            last_heading = raw_heading
             i += 1
             _maybe_insert_diagrams(elements, chapter_num, last_heading)
             continue
@@ -462,9 +539,9 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
             heading_text = format_inline(stripped[3:].strip())
             last_heading = stripped[3:].strip()
             i += 1
-            # Peek ahead to grab next content element for KeepTogether
             heading_el = h2(heading_text)
-            peek_els = _peek_next_content(lines, i, styles, chapter_num)
+            peek_els, consumed = _peek_next_content(lines, i, styles, chapter_num)
+            i += consumed  # Skip lines already consumed by peek
             elements.append(KeepTogether([heading_el] + peek_els))
             _maybe_insert_diagrams(elements, chapter_num, last_heading)
             continue
@@ -475,7 +552,8 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
             last_heading = stripped[4:].strip()
             i += 1
             heading_el = h3(heading_text)
-            peek_els = _peek_next_content(lines, i, styles, chapter_num)
+            peek_els, consumed = _peek_next_content(lines, i, styles, chapter_num)
+            i += consumed  # Skip lines already consumed by peek
             elements.append(KeepTogether([heading_el] + peek_els))
             _maybe_insert_diagrams(elements, chapter_num, last_heading)
             continue
@@ -589,32 +667,31 @@ def parse_markdown_to_elements(md_text, styles, chapter_num=0):
 
 
 def _peek_next_content(lines, i, styles, chapter_num):
-    """Peek ahead from position i and return the first content flowable.
+    """Peek ahead from position i and return (flowables, lines_consumed).
     Used to keep headings together with the paragraph that follows them.
-    Does NOT advance i (caller handles that via normal parsing).
     """
+    start_i = i
     while i < len(lines):
         s = lines[i].strip()
         if not s:
             i += 1
             continue
-        # Return a spacer + the first paragraph of content
         if s == '---':
-            return [section_divider()]
+            return ([section_divider()], i - start_i + 1)
         if s.startswith('#'):
-            return []  # Another heading — nothing to attach
+            return ([], 0)
         if s.startswith('> '):
-            return []  # Callout box — too large to keep together
+            return ([], 0)
         if s.startswith('|'):
-            return []  # Table — too large
+            return ([], 0)
         if s.startswith('- '):
-            return [bullet(format_inline(s[2:].strip()))]
+            return ([bullet(format_inline(s[2:].strip()))], i - start_i + 1)
         num_m = re.match(r'^(\d+)\.\s+(.+)', s)
         if num_m:
-            return [step_item(int(num_m.group(1)), format_inline(num_m.group(2)))]
-        # Regular paragraph — grab first line/paragraph
-        return [body(format_inline(s))]
-    return []
+            return ([step_item(int(num_m.group(1)), format_inline(num_m.group(2)))], i - start_i + 1)
+        # Regular paragraph — just grab the single line
+        return ([body(format_inline(s))], i - start_i + 1)
+    return ([], 0)
 
 
 def _maybe_insert_diagrams(elements, chapter_num, heading):
@@ -679,15 +756,19 @@ def draw_cover(canvas, doc):
 
 
 def draw_footer(canvas, doc):
-    """Draw footer on content pages."""
+    """Draw footer on content pages with navy line and teal page number."""
     canvas.saveState()
     y = MARGIN_BOTTOM - 6*mm
-    canvas.setStrokeColor(BORDER)
+    # Navy top line
+    canvas.setStrokeColor(NAVY)
     canvas.setLineWidth(0.5)
     canvas.line(MARGIN_LEFT, y + 8*mm, PAGE_W - MARGIN_RIGHT, y + 8*mm)
+    # Series name in muted
     canvas.setFillColor(TEXT_MUTED)
     canvas.setFont('Inter-Regular', 8)
     canvas.drawString(MARGIN_LEFT, y, "What is AI? \u2014 AI Education Series by Kelvin M")
+    # Teal page number
+    canvas.setFillColor(ACCENT_TEAL)
     canvas.setFont('Inter-Medium', 9)
     canvas.drawRightString(PAGE_W - MARGIN_RIGHT, y, str(doc.page))
     canvas.restoreState()
@@ -771,9 +852,11 @@ def build():
     # ═══ TABLE OF CONTENTS ═══
     elements.append(h1("Table of Contents"))
     elements.append(spacer(4))
+    toc_style = ParagraphStyle('TOCEntry', fontName='Inter-Regular', fontSize=11,
+                               leading=18, textColor=NAVY, leftIndent=8, spaceAfter=1*mm)
     for idx, title in enumerate(CHAPTER_TITLES, 1):
-        toc_text = f"{idx:2d}.  {title}"
-        elements.append(Paragraph(toc_text, STYLES['toc_item']))
+        toc_text = f"<font color='#E9A84C'><b>{idx:2d}.</b></font>  {title}"
+        elements.append(Paragraph(toc_text, toc_style))
     elements.append(PageBreak())
 
     # ═══ CHAPTERS ═══
