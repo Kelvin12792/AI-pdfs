@@ -83,10 +83,9 @@ The cover occupies the full A4 page with no margins. Structure from top to botto
 |------|--------|---------|
 | Cover image | 60% of page height | AI-generated full-bleed image |
 | Dark overlay band | 40% of page height | Background: `color.bg.dark` |
-| Series name | Within dark band | Top of dark band, 14pt, `color.text.inverse`, Inter Regular |
-| Edition number + title | Within dark band | Large, 36pt, `color.primary`, Inter Bold |
-| Tagline | Within dark band | 11pt, `color.text.inverse`, Inter Italic, adapted per edition |
-| Author line | Bottom of dark band | "by Kelvin M — AI Educator & Researcher", 12pt, `color.text.muted` |
+| Book title | Within dark band | "The AI Basics Nobody Made Clear", 36pt, `color.primary`, Inter Bold |
+| Subtitle | Within dark band | "A Beginner's Guide to AI", 14pt, `color.text.inverse`, Inter Regular |
+| Author line | Bottom of dark band | "by Kelvin M, AI Educator & Researcher", 12pt, `color.text.muted` |
 
 ---
 

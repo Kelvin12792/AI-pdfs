@@ -119,10 +119,12 @@ cover:
   text_zone_height_pct: 0.40     # 40% of page height
   text_zone_bg: "#1A1A1A"
   padding_mm: 22
+  title: "The AI Basics Nobody Made Clear"
   title_color: "#CC785C"
-  series_name_color: "#FFFFFF"
+  subtitle: "A Beginner's Guide to AI"
+  subtitle_color: "#FFFFFF"
+  author: "by Kelvin M, AI Educator & Researcher"
   author_color: "#888888"
-  tagline_color: "#FFFFFF"
 
 # ─────────────────────────────────────────────
 # CALLOUT BOXES
